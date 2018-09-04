@@ -108,3 +108,5 @@ menu:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
+
+theme: jekyll-theme-time-machine
