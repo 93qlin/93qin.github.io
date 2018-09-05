@@ -109,4 +109,4 @@ menu:
 deploy:
   type:
 
-theme: jekyll-theme-time-machine
+# theme: jekyll-theme-time-machine
