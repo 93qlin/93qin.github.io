@@ -34,5 +34,7 @@ More info: [Generating](https://hexo.io/docs/generating.html)
 ``` bash
 $ hexo deploy
 ```
-
+tags_title: Tags
+archives_title: Archives
+categories_title: Categories
 More info: [Deployment](https://hexo.io/docs/deployment.html)
