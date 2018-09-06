@@ -7,6 +7,7 @@
 #    text: About       菜单显示的文字，如果省略即默认与图标一致，首字母会转大写
 #    url: /about       链接，绝对或相对路径，必须。
 #    target: _blank    是否跳出，省略则在当前页面打开
+favicon: /bitbug_favicon.ico
 menu:
   home:
     text: 主页
@@ -26,7 +27,6 @@ menu:
     url: /404
 
 rss: /atom.xml
-
 #你的头像url
 avatar: /img/logo.jpg
 
@@ -55,9 +55,9 @@ share: true
 
 #是否开启打赏，关闭 reward: false
 reward:
-  title: 谢谢大爷~
-  wechat: /img/wechat.jpg     #微信，关闭设为 false
-  alipay: /img/alipay.jpg     #支付宝，关闭设为 false
+  title: 多谢多谢~
+  wechat: /img/wechat.png     #微信，关闭设为 false
+  alipay: /img/alipay.png     #支付宝，关闭设为 false
 
 #是否开启搜索
 search: true
@@ -75,7 +75,6 @@ cnzz: false
 
 # Miscellaneous
 google_analytics: ''
-favicon: /img/alipay.jpg
 
 # less
 less:
