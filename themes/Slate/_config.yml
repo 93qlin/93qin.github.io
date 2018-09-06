@@ -42,6 +42,7 @@ color: '#3F51B5'
 # Content
 tags:
   title: 标签
+
 # 文章截断
 excerpt_render: false
 excerpt_length: 200
