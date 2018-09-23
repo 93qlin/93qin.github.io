@@ -52,7 +52,7 @@ archive_yearly: true
 
 #是否开启分享
 share: true
-
+livere_uid : MTAyMC8zOTgwMy8xNjMzMA==
 #是否开启打赏，关闭 reward: false
 reward:
   title: 多谢多谢~
