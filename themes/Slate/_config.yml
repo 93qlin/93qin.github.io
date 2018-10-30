@@ -58,12 +58,17 @@ reward:
   title: 多谢多谢~
   wechat: /img/wechat.png     #微信，关闭设为 false
   alipay: /img/alipay.png     #支付宝，关闭设为 false
+# 文章图片灯箱效果。
+
+lightbox: true
+# 开启文章内容导航。
+
 
 #是否开启搜索
 search: true
 
 #是否大屏幕下文章页隐藏导航
-hideMenu: true
+# hideMenu: true
 
 #是否开启toc
 #toc: false
@@ -71,8 +76,8 @@ toc:
   list_number: true  # 是否显示数字排序
 
 #站长统计，如要开启，输入CNZZ站点id，如 cnzz: 1255152447
-cnzz: false
 
+category_dir: categorie
 # Miscellaneous
 google_analytics: ''
 
