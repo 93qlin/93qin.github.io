@@ -23,8 +23,8 @@ import timeago from 'timeago.js';
 ```
 第三步：使用
 本例中讲述如何在vue中使用
-```
 //1.在vue分过滤器中定义changeTime方法
+```
 filters: {
     //timeago.js插件
     //计算时间，类似于几分钟前，几小时前，几天前等
@@ -35,12 +35,16 @@ filters: {
 }
 ```
 //2.在template中使用，例如：
-//time是需要转换的时间戳，changeTime是过滤器中定义的方法
 ```
+//time是需要转换的时间戳，changeTime是过滤器中定义的方法
 <span>{{time | changeTime}}</span>
 ```
 
-作者：chinaBerg
-链接：https://juejin.im/post/5abda1ae51882555731c3b0f
-来源：掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+### 路由传参
+
+vue传参方式有：query、params+动态路由传参。说下两者的区别：    1.query通过path切换路由，params通过name切换路由// query通过path切换路由
+```
+<router-link :to="{path: 'Detail', query: { id: 1 }}">前往Detail页面</router-link>
+// params通过name切换路由
+<router-link :to="{name: 'Detail', params: { id: 1 }}">前往Detail页面</router-link>
+```
