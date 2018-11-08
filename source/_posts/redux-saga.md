@@ -7,7 +7,7 @@ tags:
   - redux-saga
   - 递归
 ---
-## 记录学习redux-saga
+## 记录学习redux-saga(https://flaviocopes.com/redux-saga/)
 > generator的使用
 ```
 function* gen() {
