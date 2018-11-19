@@ -684,3 +684,250 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(User)
 
 ```
+#### dva-loading(You don't need to write showLoading and hideLoading any more.)
+
+1.npm install dva-loading --save
+
+2.index.js里
+import createLoading from 'dva-loading';
+const app = dva();
+app.use(createLoading(opts));
+
+有异步动作的时候
+```
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+        loading: state.loading,
+    }
+}
+export default connect(mapStateToProps)(User)
+```
+> console.log(props.loading);
+得到
+```
+{global: false, models: {…}, effects: {…}}effects: {}__proto__: Objectglobal: falsemodels: {}__proto__: Object
+Userpage.js:5 {global: true, models: {…}, effects: {…}}effects: {user/fetch: true}global: truemodels: {user: true}__proto__: Object
+Userpage.js:5 {global: true, models: {…}, effects: {…}}
+Userpage.js:5 {global: false, models: {…}, effects: {…}}
+```
+好处是不用一个个model写 hideLoading,也可以单独控制，只要connect进来
+```
+import React from 'react'
+import PropTypes from 'prop-types' // eslint-disable-line
+import {connect} from 'dva'
+const User = (props) => {
+    console.log(props.loading.global); // 全局设置只要有异步就会有变化
+
+    const { error, user} = props.user
+    const{dispatch} = props
+    let isFetching = props.loading.effects['user/fetch']
+
+    let data
+    if (error) {
+        data  = error
+    } else if(isFetching){
+        data= 'loading...'
+
+    }else{
+        data = user&&user.data[0].name
+    }
+    return (
+        <div>
+            <h1>{data}</h1>
+            <button onClick = {() => {dispatch({type:'user/fetch'})}}>get user</button>
+        </div>
+    )
+}
+
+User.propTypes = {}
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+        loading: state.loading,
+    }
+}
+export default connect(mapStateToProps)(User)
+```
+#### 传递app给RouterConfig
+```
+import React from 'react';
+import { Router, Route, Switch } from 'dva/router';
+import IndexPage from './routes/IndexPage';
+import CounterPage from './routes/CounterPage';
+import UserPage from './routes/Userpage'
+function RouterConfig({ history,app }) {
+  return (
+    <Router history={history}>
+      <Switch>
+        <Route path="/" exact component={IndexPage} />
+        <Route path="/counter" exact component={CounterPage} />
+        <Route path="/user" exact component={UserPage} />
+      </Switch>
+    </Router>
+  );
+}
+
+export default RouterConfig;
+```
+#### onAction(fn | fn[])(在 action 被 dispatch 时触发，用于注册 redux 中间件。支持函数或函数数组格式)
+通过 ** redux-logger ** 打印日志：
+```
+import dva from 'dva';
+import './index.css';
+import {createBrowserHistory as createHistory}  from 'history';
+import createLoading from 'dva-loading';
+import { createLogger } from 'redux-logger'
+const logger = store => next => action => {
+  console.log('dispathing',action);
+  let result = next(action)
+  console.log('next state', store.getState());
+  return result
+}  // 自己写的中间件
+const  error = store => next => action => {
+  try {
+    console.log('error');
+    next(action)
+  } catch (e) {
+    console.log('error'+ e);
+  }
+} // 自己写的中间件
+// // 1. Initialize
+// const app = dva();
+
+const app = dva({
+  history: createHistory(),
+  onAction: [createLogger(),error]
+});
+// 2. Plugins
+// app.use({});
+app.use(createLoading());
+// 3. Model
+// app.model(require('./models/counter').default);
+// app.model(require('./models/example').default);
+require('./models').default.forEach(key => app.model(key.default))
+// 4. Router
+app.router(require('./router').default);
+
+// 5. Start
+app.start('#root');
+```
+#### extraReducers（可以解决提供reducer的插件在dva中的使用，也可以自定义）
+> 放在index添假额外的数据，全局性的state,打开调试工具可以看到
+
+```
+import dva from 'dva';
+import './index.css';
+import {createBrowserHistory as createHistory}  from 'history';
+import createLoading from 'dva-loading';
+import { createLogger } from 'redux-logger'
+const logger = store => next => action => {
+  console.log('dispathing',action);
+  let result = next(action)
+  console.log('next state', store.getState());
+  return result
+}  // 自己写的中间件
+const  error = store => next => action => {
+  try {
+    console.log('error');
+    next(action)
+  } catch (e) {
+    console.log('error'+ e);
+  }
+} // 自己写的中间件
+const extraReducer  = {
+  form (state=false,action){ //form是命名空间namespace，类似user
+    switch (action.type) {
+      case 'SHOW':
+        return true;
+      case 'HIDE':
+        return false;
+      default:
+        return state  
+    }
+  }
+}
+// // 1. Initialize
+// const app = dva();
+
+const app = dva({
+  history: createHistory(),
+  onAction: [createLogger(),error],
+  extraReducers: extraReducer
+});
+// 2. Plugins
+// app.use({});
+app.use(createLoading());
+// 3. Model
+// app.model(require('./models/counter').default);
+// app.model(require('./models/example').default);
+require('./models').default.forEach(key => app.model(key.default))
+// 4. Router
+app.router(require('./router').default);
+
+// 5. Start
+app.start('#root');
+```
+#### onEffect
+```
+import dva from 'dva';
+import './index.css';
+import {createBrowserHistory as createHistory}  from 'history';
+import createLoading from 'dva-loading';
+import { createLogger } from 'redux-logger'
+const logger = store => next => action => {
+  console.log('dispathing',action);
+  let result = next(action)
+  console.log('next state', store.getState());
+  return result
+}  // 自己写的中间件
+const  error = store => next => action => {
+  try {
+    console.log('error');
+    next(action)
+  } catch (e) {
+    console.log('error'+ e);
+  }
+} // 自己写的中间件
+const extraReducer  = {
+  form (state=false,action){  //form是命名空间namespace，类似user
+    switch (action.type) {
+      case 'SHOW':
+        return true;
+      case 'HIDE':
+        return false;
+      default:
+        return state  
+    }
+  }
+}
+const onEffect = (effect,{put},model,key) => {
+  return function*(...args){
+    yield put({type: 'SHOW'})
+    yield effect(...args)
+    yield put({type: 'HIDE'})
+  }
+}
+// // 1. Initialize
+// const app = dva();
+
+const app = dva({
+  history: createHistory(),
+  onAction: [createLogger(),error],
+  extraReducers: extraReducer,
+  onEffect: onEffect
+});
+// 2. Plugins
+// app.use({});
+app.use(createLoading());
+// 3. Model
+// app.model(require('./models/counter').default);
+// app.model(require('./models/example').default);
+require('./models').default.forEach(key => app.model(key.default))
+// 4. Router
+app.router(require('./router').default);
+
+// 5. Start
+app.start('#root');
+```
+#### 提供reducer的插件在dva中的使用（redux-form·react-intl-redux）
