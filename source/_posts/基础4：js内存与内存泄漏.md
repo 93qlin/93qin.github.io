@@ -1,7 +1,0 @@
----
-title: 基础4：js内存与内存泄漏
-categories: "基础4：js内存与内存泄漏"
-tags:
-  - JavaScript
-  - 基础
----
