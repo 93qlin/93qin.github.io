@@ -287,13 +287,13 @@
   </entry>
   
   <entry>
-    <title>基础4.4：js内存与内存泄漏</title>
-    <link href="https://93qlin.github.io/2019/02/28/%E5%9F%BA%E7%A1%804.4%EF%BC%9Ajs%E5%86%85%E5%AD%98%E4%B8%8E%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/"/>
-    <id>https://93qlin.github.io/2019/02/28/基础4.4：js内存与内存泄漏/</id>
+    <title>3.3作用域与作用域链</title>
+    <link href="https://93qlin.github.io/2019/02/28/%E5%9F%BA%E7%A1%803.3%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/"/>
+    <id>https://93qlin.github.io/2019/02/28/基础3.3：作用域和作用域链/</id>
     <published>2019-02-28T03:12:12.518Z</published>
     <updated>2019-02-28T03:12:12.518Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="1-作用域？"><a href="#1-作用域？" class="headerlink" title="1.作用域？"></a>1.作用域？</h4><blockquote><p>变量a的作用域是什么？一会儿又问：函数a的作用域是什么？变量和函数的作用域分别是啥玩意？<br>我们先来看看“作用域”是什么意思，“作用域”拆开来就是“作用”和“域”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">作用：访问、操作、调用……</span><br><span class="line">域：区域、范围、空间……</span><br></pre></td></tr></table></figure></p></blockquote><p><strong>作用域</strong>: 就是变量和函数的可访问范围，或者说变量或函数起作用的区域。</p><p>1.javascript函数的作用域：</p><blockquote><p>函数内的区域，就是这个函数的作用域，变量和函数在这个区域都可以访问操作。最外层函数外的区域叫全局作用域，函数内的区域叫局部作用域。</p></blockquote><p>2.javascript变量的作用域：</p><blockquote><p>在源代码中变量所在的区域，就是这个变量的作用域，变量在这个区域内可以被访问操作。在全局作用域上定义的变量叫全局变量，在函数内定义的变量叫局部变量。<br>简单地理解，JS源代码被函数{ }划分成一块一块的区域，这些区域换个身份就是某函数或某变量的作用域，变量的作用域和函数的作用域在源代码中有可能指的是同一块区域。</p></blockquote><h4 id="2-作用域链"><a href="#2-作用域链" class="headerlink" title="2.作用域链"></a>2.作用域链</h4><p>作用域链（Scope Chain）是javascript内部中一种变量、函数查找机制，它决定了变量和函数的作用范围，即作用域链<br>作用域链的形成原理，通过1999年的ECMAScript-262-3th第三版来说明作用域链的形成原理，将会介绍执行环境，变量对象和活动对象，arguments对象，作用域链等几个概念。2009年发布了ECMAScript-262-5th第五版，不同的是取消了变量对象和活动对象等概念，引入了词法环境（Lexical Environments）、环境记录（EnviromentRecord）等新的概念，所以两个版本的概念不要混淆了。</p>]]></content>
     
     <summary type="html">
     
@@ -304,12 +304,12 @@
     
     </summary>
     
-      <category term="基础4.4：js内存与内存泄漏" scheme="https://93qlin.github.io/categories/%E5%9F%BA%E7%A1%804-4%EF%BC%9Ajs%E5%86%85%E5%AD%98%E4%B8%8E%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/"/>
+      <category term="3.3作用域与作用域链" scheme="https://93qlin.github.io/categories/3-3%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/"/>
     
     
       <category term="基础" scheme="https://93qlin.github.io/tags/%E5%9F%BA%E7%A1%80/"/>
     
-      <category term="JavaScript" scheme="https://93qlin.github.io/tags/JavaScript/"/>
+      <category term="javascript" scheme="https://93qlin.github.io/tags/javascript/"/>
     
   </entry>
   
@@ -341,13 +341,13 @@
   </entry>
   
   <entry>
-    <title>3.3作用域与作用域链</title>
-    <link href="https://93qlin.github.io/2019/02/28/%E5%9F%BA%E7%A1%803.3%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/"/>
-    <id>https://93qlin.github.io/2019/02/28/基础3.3：作用域和作用域链/</id>
+    <title>基础4.4：js内存与内存泄漏</title>
+    <link href="https://93qlin.github.io/2019/02/28/%E5%9F%BA%E7%A1%804.4%EF%BC%9Ajs%E5%86%85%E5%AD%98%E4%B8%8E%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/"/>
+    <id>https://93qlin.github.io/2019/02/28/基础4.4：js内存与内存泄漏/</id>
     <published>2019-02-28T03:12:12.518Z</published>
     <updated>2019-02-28T03:12:12.518Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="1-作用域？"><a href="#1-作用域？" class="headerlink" title="1.作用域？"></a>1.作用域？</h4><blockquote><p>变量a的作用域是什么？一会儿又问：函数a的作用域是什么？变量和函数的作用域分别是啥玩意？<br>我们先来看看“作用域”是什么意思，“作用域”拆开来就是“作用”和“域”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">作用：访问、操作、调用……</span><br><span class="line">域：区域、范围、空间……</span><br></pre></td></tr></table></figure></p></blockquote><p><strong>作用域</strong>: 就是变量和函数的可访问范围，或者说变量或函数起作用的区域。</p><p>1.javascript函数的作用域：</p><blockquote><p>函数内的区域，就是这个函数的作用域，变量和函数在这个区域都可以访问操作。最外层函数外的区域叫全局作用域，函数内的区域叫局部作用域。</p></blockquote><p>2.javascript变量的作用域：</p><blockquote><p>在源代码中变量所在的区域，就是这个变量的作用域，变量在这个区域内可以被访问操作。在全局作用域上定义的变量叫全局变量，在函数内定义的变量叫局部变量。<br>简单地理解，JS源代码被函数{ }划分成一块一块的区域，这些区域换个身份就是某函数或某变量的作用域，变量的作用域和函数的作用域在源代码中有可能指的是同一块区域。</p></blockquote><h4 id="2-作用域链"><a href="#2-作用域链" class="headerlink" title="2.作用域链"></a>2.作用域链</h4><p>作用域链（Scope Chain）是javascript内部中一种变量、函数查找机制，它决定了变量和函数的作用范围，即作用域链<br>作用域链的形成原理，通过1999年的ECMAScript-262-3th第三版来说明作用域链的形成原理，将会介绍执行环境，变量对象和活动对象，arguments对象，作用域链等几个概念。2009年发布了ECMAScript-262-5th第五版，不同的是取消了变量对象和活动对象等概念，引入了词法环境（Lexical Environments）、环境记录（EnviromentRecord）等新的概念，所以两个版本的概念不要混淆了。</p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
     
     <summary type="html">
     
@@ -358,12 +358,12 @@
     
     </summary>
     
-      <category term="3.3作用域与作用域链" scheme="https://93qlin.github.io/categories/3-3%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/"/>
+      <category term="基础4.4：js内存与内存泄漏" scheme="https://93qlin.github.io/categories/%E5%9F%BA%E7%A1%804-4%EF%BC%9Ajs%E5%86%85%E5%AD%98%E4%B8%8E%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/"/>
     
     
       <category term="基础" scheme="https://93qlin.github.io/tags/%E5%9F%BA%E7%A1%80/"/>
     
-      <category term="javascript" scheme="https://93qlin.github.io/tags/javascript/"/>
+      <category term="JavaScript" scheme="https://93qlin.github.io/tags/JavaScript/"/>
     
   </entry>
   
