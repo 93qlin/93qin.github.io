@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>永不言弃 | 一步一脚印，一岁一枯荣，never never give up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content>
+  <meta property="og:type" content="website">
+<meta property="og:title" content="永不言弃">
+<meta property="og:url" content="https://93qlin.github.io/page/3/index.html">
+<meta property="og:site_name" content="永不言弃">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="永不言弃">
+  
+    <link rel="alternative" href="/atom.xml" title="永不言弃" type="application/atom+xml">
+  
+  <meta name="summary" content>
+  <link rel="shortcut icon" href="/bitbug_favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<link rel="stylesheet" href="/dist/APlayer.min.css">
+<body>
+  <div id="aplayer"></div>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">lin</h5>
+        <a href="mailto:925697386@qq.com" title="925697386@qq.com" class="mail">925697386@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/">
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives">
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags">
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/93qlin" target="_blank">
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/404">
+              <i class="icon icon-lg icon-link"></i>
+              测试
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC"></p>
+  <p>永不言弃 &copy; 2019</p>
+  lin
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+  <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=505820138&auto=0&height=66">
+</iframe> -->
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">永不言弃</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">永不言弃</h1>
+    <h5 class="subtitle">
+        
+        一步一脚印，一岁一枯荣，never never give up
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <ul class="post-list">
+  
+    <li class="post-list-item">
+        <article id="post-原型和闭包" class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/28/原型和闭包/">原型和闭包</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2019-02-28T03:12:12.517Z" itemprop="datePublished" class="post-time">
+  2019-02-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/原型和闭包/">原型和闭包</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+              ==1.一切（引用类型）都是对象，对象是属性的集合。==    2.函数和对象的关系  
+ 
+ ==函数就是对象的一种==       1   2       var fn = function () &#123; &#125;;   console.log(fn instanceof Object);  // true        
+ 
+ 
+ 函数与对象之间，却不仅仅是一种包含和被
+    
+    
+        <a href="/2019/02/28/原型和闭包/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-单页面多路由" class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/28/单页面多路由/">单页面多路由</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2019-02-28T03:12:12.517Z" itemprop="datePublished" class="post-time">
+  2019-02-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/单页面多路由/">单页面多路由</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+            
+ “单页面多路由区域操作”，实际需求是这样的，在一个页面里我们有2个以上 区域，我们通过配置路由的js文件，来操作这些区域的内容。例如我们在src/App.vue里加上两个 标签。我们用vue-cli建立了新的项目，并打开了src目录下的App.vue文件，在 下面新写了两行 标签,并加入了些CSS样式。     
+ 
+      1   2   3       &lt;router-v
+    
+    
+        <a href="/2019/02/28/单页面多路由/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-事件绑定、事件监听、事件委托（事件代理）" class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/28/事件绑定、事件监听、事件委托（事件代理）/">事件绑定、事件监听、事件委托（事件代理）</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2019-02-28T03:12:12.516Z" itemprop="datePublished" class="post-time">
+  2019-02-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/事件绑定、事件监听、事件委托（事件代理）/">事件绑定、事件监听、事件委托（事件代理）</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+              事件绑定、事件监听、事件委托（事件代理）( http://www.jb51.net/article/93752.htm )    事件绑定  
+ 要想让 JavaScript 对用户的操作作出响应，首先要对 DOM 元素绑定事件处理函数。所谓事件处理函数，就是处理用户操作的函数，不同的操作对应不同的名称。 在JavaScript中，有三种常用的绑定事件的方法： 在DOM元素中直接绑定；
+    
+    
+        <a href="/2019/02/28/事件绑定、事件监听、事件委托（事件代理）/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-redux和react-redux深入理解" class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/28/redux和react-redux深入理解/">redux和react-redux深入理解</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2019-02-28T03:12:12.516Z" itemprop="datePublished" class="post-time">
+  2019-02-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/redux和react-redux深入理解/">redux和react-redux深入理解</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+              context  
+ 帮助理解react-redux 
+ 某个组件只要往自己的 context 里面放了某些状态，这个组件之下的所有子组件都直接访问这个状态而不需要通过中间组件的传递。一个组件的 context 只有它的子组件能够访问。 
+ 
+      1   2   3   4   5   6   7   8   9   10   11   12   13   14   15   
+    
+    
+        <a href="/2019/02/28/redux和react-redux深入理解/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-webpack" class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/28/webpack/">webpack</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2019-02-28T03:12:12.516Z" itemprop="datePublished" class="post-time">
+  2019-02-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/webpack/">webpack</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+              webpack    基础  1 .初始化： npm init 2 .安装： npm install webpack –save-dev 
+   webpack处理js文件  命令： webpack ./hello.js hello.bunder.js（生成的文件名） 
+   webpack处理css文件  需要安装loader: npm install  css-loader sty
+    
+    
+        <a href="/2019/02/28/webpack/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-vue问题，技巧提升" class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/28/vue问题，技巧提升/">vue问题，技巧提升</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2019-02-28T03:12:12.516Z" itemprop="datePublished" class="post-time">
+  2019-02-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/vue问题，技巧提升/">vue问题，技巧提升</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+            
+ 用了vue已有将近两年了，一直没做过总结只知道做项目，遇到类似的问题不记得有时还得去翻之前的项目，偶然看见别人在做了一个项目就做了总结很是汗颜，所以想着写一篇博客来总结（当然也有许多地方是复制粘贴别人的） 
+ 
+   timeago.js将时间戳转换成“几天前”“几分钟前”等格式  第一步：安装timeago.js       1       npm install timeago.j
+    
+    
+        <a href="/2019/02/28/vue问题，技巧提升/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-函数式编程" class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/28/函数式编程/">函数式编程</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2019-02-28T03:12:12.516Z" itemprop="datePublished" class="post-time">
+  2019-02-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/函数式编程/">函数式编程</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+              一.本质上它是一种数学运算，原始目的就是求值    二。函数式编程有两个最基本的运算：合成和柯里化。  
+ 1.合成：如果一个值要经过多个函数，才能变成另外一个值，就可以把所有中间步骤合并成一个函数，这叫做”函数的合成”（compose）。       1   2   3   4   5   6   7   8   9   10   11       const compose = f
+    
+    
+        <a href="/2019/02/28/函数式编程/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/体会/">体会</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-react基础" class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/28/react基础/">react基础</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2019-02-28T03:12:12.515Z" itemprop="datePublished" class="post-time">
+  2019-02-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/react/">react</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+              react基础       1   2       1.npm install -g create-react-app   2.create-react-app 项目名称       
+   redux       1       管理数据源和所有状态，负责展示的组件都可以采用无状态函数式的写法       
+   组件    类别  有状态，无状态（也叫函数式组件），       1
+    
+    
+        <a href="/2019/02/28/react基础/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-react钩子 hook" class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/28/react钩子 hook/">hook</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2019-02-28T03:12:12.515Z" itemprop="datePublished" class="post-time">
+  2019-02-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/hook/">hook</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+             `  
+   hook 
+    
+    
+        <a href="/2019/02/28/react钩子 hook/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hook/">hook</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-react+dva+mock.js" class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/28/react+dva+mock.js/">react+dva+mock</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2019-02-28T03:12:12.515Z" itemprop="datePublished" class="post-time">
+  2019-02-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/react-dva-mock/">react+dva+mock</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+              mock.js  1.在.roadhogrc.mock.js文件下（ https://github.com/sorrycc/roadhog）roadhog使用文档        1   2   3   4   5   6   7   8   9   10       export default &#123;       // Support type as Object and Ar
+    
+    
+        <a href="/2019/02/28/react+dva+mock.js/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mock-js/">mock.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+</article>
+
+    </li>
+  
+</ul>
+
+<nav id="page-nav">
+    <div class="inner">
+    <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
+    </div>
+</nav>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "永不言弃",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://93qlin.github.io/page/3/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    <!-- <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul> -->
+ </div>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+<!-- <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script> -->
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"log":false,"mobile":{"show":true},"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

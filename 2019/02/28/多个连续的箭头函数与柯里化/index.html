@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>多个连续的箭头函数与柯里化 | 永不言弃 | 一步一脚印，一岁一枯荣，never never give up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="es6,javascript">
+  <meta name="description" content="高阶函数高阶函数定义：将函数作为参数或者返回值是函数的函数。 所以高阶函数分两种： 是我们常见的 sort,reduce 等函数。返回值是函数的函数。一般而言，我们要理解常见的高阶函数还是很容易的。比如：1234567891011function add(a) &amp;#123;    return function(b) &amp;#123;        return a + b    &amp;#125;&amp;#12">
+<meta name="keywords" content="es6,javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多个连续的箭头函数与柯里化">
+<meta property="og:url" content="https://93qlin.github.io/2019/02/28/多个连续的箭头函数与柯里化/index.html">
+<meta property="og:site_name" content="永不言弃">
+<meta property="og:description" content="高阶函数高阶函数定义：将函数作为参数或者返回值是函数的函数。 所以高阶函数分两种： 是我们常见的 sort,reduce 等函数。返回值是函数的函数。一般而言，我们要理解常见的高阶函数还是很容易的。比如：1234567891011function add(a) &amp;#123;    return function(b) &amp;#123;        return a + b    &amp;#125;&amp;#12">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-28T03:12:12.520Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多个连续的箭头函数与柯里化">
+<meta name="twitter:description" content="高阶函数高阶函数定义：将函数作为参数或者返回值是函数的函数。 所以高阶函数分两种： 是我们常见的 sort,reduce 等函数。返回值是函数的函数。一般而言，我们要理解常见的高阶函数还是很容易的。比如：1234567891011function add(a) &amp;#123;    return function(b) &amp;#123;        return a + b    &amp;#125;&amp;#12">
+  
+    <link rel="alternative" href="/atom.xml" title="永不言弃" type="application/atom+xml">
+  
+  <meta name="summary" content>
+  <link rel="shortcut icon" href="/bitbug_favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<link rel="stylesheet" href="/dist/APlayer.min.css">
+<body>
+  <div id="aplayer"></div>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">lin</h5>
+        <a href="mailto:925697386@qq.com" title="925697386@qq.com" class="mail">925697386@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/">
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives">
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags">
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/93qlin" target="_blank">
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/404">
+              <i class="icon icon-lg icon-link"></i>
+              测试
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC"></p>
+  <p>永不言弃 &copy; 2019</p>
+  lin
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+  <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=505820138&auto=0&height=66">
+</iframe> -->
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">多个连续的箭头函数与柯里化</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">多个连续的箭头函数与柯里化</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2019-02-28T03:12:12.520Z" itemprop="datePublished" class="page-time">
+  2019-02-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/多个连续的箭头函数与柯里化/">多个连续的箭头函数与柯里化</a></li></ul>
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-多个连续的箭头函数与柯里化" class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    <!-- <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul> -->
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#高阶函数"><span class="post-toc-number">1.</span> <span class="post-toc-text">高阶函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#柯里化"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">柯里化</span></a></li></ol></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h3><p>高阶函数定义：将函数作为参数或者返回值是函数的函数。</p>
+<p>所以高阶函数分两种：</p>
+<p>是我们常见的 sort,reduce 等函数。<br>返回值是函数的函数。<br>一般而言，我们要理解常见的高阶函数还是很容易的。比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function add(a) &#123;</span><br><span class="line">    return function(b) &#123;</span><br><span class="line">        return a + b</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var add3 = add(3)</span><br><span class="line">add3(4) === 3 + 4 //true</span><br><span class="line">add 函数 在 es6 里的写法等价为</span><br><span class="line"></span><br><span class="line">let add = a =&gt; b =&gt; a + b</span><br></pre></td></tr></table></figure></p>
+<p>其实以上就是 柯里化函数 只不过用 es6 写，变了一个样子，后面详细介绍它的原理和特点。</p>
+<p>多个连续的箭头函数<br>but 当一堆箭头函数在你面前的时候，你会不会有一丝犹豫，我在此之前就是一脸懵逼。。。比如我看到下面的 redux-thunk 的源码（没错整个源码只有14行）里的多个连续箭头函数的时候。。。</p>
+<p>// 形如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a =&gt; b =&gt; c =&gt; &#123;xxx&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那怎么轻松理解这些箭头干了啥呢，当我看了柯里化后，瞬间就懂了，</p>
+<p>多个连续箭头函数就是 es6的多次柯里化的写法</p>
+<h4 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h4><p>我们先看 stackoverflow 的关于如何理解多个箭头函数的最高票回答,</p>
+<p>他说 这就是柯里化函数。(This is a curried function)</p>
+<p>wiki 的柯里化定义: 把接受多个参数的函数变换成接受一个单一参数的函数，并且返回（接受余下的参数而且返回结果的）新函数的技术</p>
+<p>好，现在懂没，我来简单说一下。</p>
+<p>关键就是理解柯里化，其实可以把它理解成，柯里化后，将第一个参数变量存在函数里面了(闭包)，然后本来需要n个参数的函数可以变成只需要剩下的（n - 1个）参数就可以调用，比如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let add = x =&gt; y =&gt; x + y</span><br><span class="line">let add2 = add(2)</span><br></pre></td></tr></table></figure></p>
+<p>本来完成 add 这个操作，应该是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let add = (x, y) =&gt; x + y</span><br></pre></td></tr></table></figure></p>
+<p>它需要俩参数，而现在 add2 函数完成同样操作只需要一个参数，这在函数式编程中广泛应用。</p>
+<p>详细解释一下，就是 add2 函数 等价于 有了 x 这个闭包变量的 y =&gt; x + y 函数</p>
+<p>并且此时 x = 2，所以此时调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add2(3) === 2 + 3</span><br></pre></td></tr></table></figure></p>
+<p>回归正题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let add = x =&gt; y =&gt; x + y</span><br></pre></td></tr></table></figure></p>
+<p>add 函数按照 wiki 的定义可以理解成只柯里化了一次，那么下面这种呢？</p>
+<p>a =&gt; b =&gt; c =&gt; {xxx}<br>n 个连续箭头组成的函数实际上就是柯里化了 n - 1次。</p>
+<p>具体调用过程如下：</p>
+<p>前 n - 1 次调用，其实是提前将参数传递进去，并没有调用最内层函数体，最后一次调用才会调用最内层函数体，并返回最内层函数体的返回值。</p>
+<p>结合上文可知，这里的多个连续箭头（无论俩个箭头函数三个及以上）函数连在一起 就是在柯里化。</p>
+<p>所以连续箭头函数就是多次柯里化函数的 es6 写法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let test = a =&gt; b =&gt; c =&gt; &#123;xxx&#125;</span><br></pre></td></tr></table></figure></p>
+<p>调用特点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let test = a =&gt; b =&gt; c =&gt; &#123;xxx&#125;</span><br></pre></td></tr></table></figure></p>
+<p>比如对于上面的 test 函数，它有 3 个箭头， 这个函数要被调用 3 次 test(a)(b)(c)，前两次调用只是在传递参数，只有最后依次调用才会返回 {xxx} 代码段的返回值，并且在 {xxx} 代码段中可以调用 a,b,c</p>
+<p>柯里化函数的功能<br>可以惰性求值<br>可以提前传递部分参数<br>出自(<a href="https://www.cnblogs.com/xueandsi/p/6032578.html" target="_blank" rel="noopener">https://www.cnblogs.com/xueandsi/p/6032578.html</a>)</p>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://93qlin.github.io/2019/02/28/多个连续的箭头函数与柯里化/" target="_blank" rel="external">https://93qlin.github.io/2019/02/28/多个连续的箭头函数与柯里化/</a>
+                </p>
+                <footer><cite><a href="https://93qlin.github.io">@永不言弃</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2019/02/28/基础5.3：面向对象之继承的的七种方式/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">基础5.3.：面向对象之继承的的七种方式</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2019/02/28/基础5.2：面向对象之创建对象的七种模式/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">基础5.2：面向对象之创建对象的七种模式</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="多个连续的箭头函数与柯里化" data-title="多个连续的箭头函数与柯里化" data-url="https://93qlin.github.io/2019/02/28/多个连续的箭头函数与柯里化/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        多谢多谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "多个连续的箭头函数与柯里化",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://93qlin.github.io/2019/02/28/多个连续的箭头函数与柯里化/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    <!-- <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul> -->
+ </div>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+<!-- <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script> -->
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"log":false,"mobile":{"show":true},"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>函数式编程 | 永不言弃 | 一步一脚印，一岁一枯荣，never never give up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="javascript,体会">
+  <meta name="description" content="一.本质上它是一种数学运算，原始目的就是求值二。函数式编程有两个最基本的运算：合成和柯里化。 1.合成：如果一个值要经过多个函数，才能变成另外一个值，就可以把所有中间步骤合并成一个函数，这叫做”函数的合成”（compose）。1234567891011const compose = function (f, g) &amp;#123;  return function (x) &amp;#123;    retu">
+<meta name="keywords" content="javascript,体会">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数式编程">
+<meta property="og:url" content="https://93qlin.github.io/2019/02/28/函数式编程/index.html">
+<meta property="og:site_name" content="永不言弃">
+<meta property="og:description" content="一.本质上它是一种数学运算，原始目的就是求值二。函数式编程有两个最基本的运算：合成和柯里化。 1.合成：如果一个值要经过多个函数，才能变成另外一个值，就可以把所有中间步骤合并成一个函数，这叫做”函数的合成”（compose）。1234567891011const compose = function (f, g) &amp;#123;  return function (x) &amp;#123;    retu">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-28T03:12:12.517Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="函数式编程">
+<meta name="twitter:description" content="一.本质上它是一种数学运算，原始目的就是求值二。函数式编程有两个最基本的运算：合成和柯里化。 1.合成：如果一个值要经过多个函数，才能变成另外一个值，就可以把所有中间步骤合并成一个函数，这叫做”函数的合成”（compose）。1234567891011const compose = function (f, g) &amp;#123;  return function (x) &amp;#123;    retu">
+  
+    <link rel="alternative" href="/atom.xml" title="永不言弃" type="application/atom+xml">
+  
+  <meta name="summary" content>
+  <link rel="shortcut icon" href="/bitbug_favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<link rel="stylesheet" href="/dist/APlayer.min.css">
+<body>
+  <div id="aplayer"></div>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">lin</h5>
+        <a href="mailto:925697386@qq.com" title="925697386@qq.com" class="mail">925697386@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/">
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives">
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags">
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/93qlin" target="_blank">
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/404">
+              <i class="icon icon-lg icon-link"></i>
+              测试
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC"></p>
+  <p>永不言弃 &copy; 2019</p>
+  lin
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+  <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=505820138&auto=0&height=66">
+</iframe> -->
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">函数式编程</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">函数式编程</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2019-02-28T03:12:12.516Z" itemprop="datePublished" class="page-time">
+  2019-02-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/函数式编程/">函数式编程</a></li></ul>
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-函数式编程" class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/体会/">体会</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    <!-- <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul> -->
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#一-本质上它是一种数学运算，原始目的就是求值"><span class="post-toc-number">1.</span> <span class="post-toc-text">一.本质上它是一种数学运算，原始目的就是求值</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#二。函数式编程有两个最基本的运算：合成和柯里化。"><span class="post-toc-number">2.</span> <span class="post-toc-text">二。函数式编程有两个最基本的运算：合成和柯里化。</span></a></li></ol><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#三-函子"><span class="post-toc-number"></span> <span class="post-toc-text">三.函子</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#四、of-方法"><span class="post-toc-number"></span> <span class="post-toc-text">四、of 方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#五、Maybe-函子"><span class="post-toc-number"></span> <span class="post-toc-text">五、Maybe 函子</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#六、Either-函子"><span class="post-toc-number"></span> <span class="post-toc-text">六、Either 函子</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#七、ap-函子"><span class="post-toc-number"></span> <span class="post-toc-text">七、ap 函子</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#八、Monad-函子"><span class="post-toc-number"></span> <span class="post-toc-text">八、Monad 函子</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#九、IO-操作"><span class="post-toc-number"></span> <span class="post-toc-text">九、IO 操作</span></a>
+            </li></nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h5 id="一-本质上它是一种数学运算，原始目的就是求值"><a href="#一-本质上它是一种数学运算，原始目的就是求值" class="headerlink" title="一.本质上它是一种数学运算，原始目的就是求值"></a>一.本质上它是一种数学运算，原始目的就是求值</h5><h5 id="二。函数式编程有两个最基本的运算：合成和柯里化。"><a href="#二。函数式编程有两个最基本的运算：合成和柯里化。" class="headerlink" title="二。函数式编程有两个最基本的运算：合成和柯里化。"></a>二。函数式编程有两个最基本的运算：合成和柯里化。</h5><blockquote>
+<p>1.合成：如果一个值要经过多个函数，才能变成另外一个值，就可以把所有中间步骤合并成一个函数，这叫做”函数的合成”（compose）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const compose = function (f, g) &#123;</span><br><span class="line">  return function (x) &#123;</span><br><span class="line">    return f(g(x));</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">必须满足结合律</span><br><span class="line">compose(f, compose(g, h))</span><br><span class="line">// 等同于</span><br><span class="line">compose(compose(f, g), h)</span><br><span class="line">// 等同于</span><br><span class="line">compose(f, g, h)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>2 柯里化: 把一个多参数的函数，转化为单参数函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">f(x)和g(x)合成为f(g(x))，有一个隐藏的前提，就是f和g都只能接受一个参数。如果可以接受多个参数，比如f(x, y)和g(a, b, c)，函数合成就非常麻烦。</span><br><span class="line">这时就需要函数柯里化了。所谓&quot;柯里化&quot;，就是把一个多参数的函数，转化为单参数函数.</span><br><span class="line">// 柯里化之前</span><br><span class="line">function add(x, y) &#123;</span><br><span class="line">  return x + y;</span><br><span class="line">&#125;</span><br><span class="line">add(1, 2) // 3</span><br><span class="line">// 柯里化之后</span><br><span class="line">function addX(y) &#123;</span><br><span class="line">  return function (x) &#123;</span><br><span class="line">    return x + y;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">addX(2)(1) // 3</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="三-函子"><a href="#三-函子" class="headerlink" title="三.函子"></a>三.函子</h4><blockquote>
+<p>函数不仅可以用于同一个范畴之中值的转换，还可以用于将一个范畴转成另一个范畴。这就涉及到了函子（Functor）。<br>1 函子的概念<br>函子是函数式编程里面最重要的数据类型，也是基本的运算单位和功能单位。<br>2 函子的代码实现<br>任何具有map方法的数据结构，都可以当作函子的实现。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Functor &#123;</span><br><span class="line">  constructor(val) &#123;</span><br><span class="line">    this.val = val;</span><br><span class="line">  &#125;</span><br><span class="line">  map(f) &#123;</span><br><span class="line">    return new Functor(f(this.val));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>上面代码中，Functor是一个函子，它的map方法接受函数f作为参数，然后返回一个新的函子，里面包含的值是被f处理过的（f(this.val)）。</p>
+</blockquote>
+<blockquote>
+<p>一般约定，函子的标志就是容器具有map方法。该方法将容器里面的每一个值，映射到另一个容器。<br>下面是一些用法的示例。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(new Functor(2)).map(function (two) &#123;</span><br><span class="line">  return two + 2;</span><br><span class="line">&#125;);</span><br><span class="line">// Functor(4)</span><br><span class="line">(new Functor(&apos;flamethrowers&apos;)).map(function(s) &#123;</span><br><span class="line">  return s.toUpperCase();</span><br><span class="line">&#125;);</span><br><span class="line">// Functor(&apos;FLAMETHROWERS&apos;)</span><br><span class="line">(new Functor(&apos;bombs&apos;)).map(_.concat(&apos; away&apos;)).map(_.prop(&apos;length&apos;));</span><br><span class="line">// Functor(10)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>上面的例子说明，函数式编程里面的运算，都是通过函子完成，即运算不直接针对值，而是针对这个值的容器—-函子。函子本身具有对外接口（map方法），各种函数就是运算符，通过接口接入容器，引发容器里面的值的变形。<br>==因此，学习函数式编程，实际上就是学习函子的各种运算==。由于可以把运算方法封装在函子里面，所以又衍生出各种不同类型的函子，有多少种运算，就有多少种函子。函数式编程就变成了运用不同的函子，解决实际问题。</p>
+</blockquote>
+<h4 id="四、of-方法"><a href="#四、of-方法" class="headerlink" title="四、of 方法"></a>四、of 方法</h4><blockquote>
+<p>新的函子的时候，用了new命令。这实在==太不像==函数式编程了，因为new命令是面向对象编程的标志。<br>函数式编程一般约定，函子有一个of方法，用来生成新的容器。<br>下面就用of方法替换掉new。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Functor.of = function(val) &#123;</span><br><span class="line">  return new Functor(val);</span><br><span class="line">&#125;;</span><br><span class="line">然后，前面的例子就可以改成下面这样。</span><br><span class="line">Functor.of(2).map(function (two) &#123;</span><br><span class="line">  return two + 2;</span><br><span class="line">&#125;);</span><br><span class="line">// Functor(4)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>这就更像函数式编程了。</p>
+<h4 id="五、Maybe-函子"><a href="#五、Maybe-函子" class="headerlink" title="五、Maybe 函子"></a>五、Maybe 函子</h4><blockquote>
+<p>函子接受各种函数，处理容器内部的值。==这里就有一个问题，容器内部的值可能是一个空值（比如null）==，而外部函数未必有处理空值的机制，如果传入空值，很可能就会出错。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Functor.of(null).map(function (s) &#123;</span><br><span class="line">  return s.toUpperCase();</span><br><span class="line">&#125;);</span><br><span class="line">// TypeError</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>上面代码中，函子里面的值是null，结果小写变成大写的时候就出错了。<br>Maybe 函子就是为了解决这一类问题而设计的。简单说，它的map方法里面设置了空值检查<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Maybe extends Functor &#123;</span><br><span class="line">  map(f) &#123;</span><br><span class="line">    return this.val ? Maybe.of(f(this.val)) : Maybe.of(null);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>有了 Maybe 函子，处理空值就不会出错了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Maybe.of(null).map(function (s) &#123;</span><br><span class="line">  return s.toUpperCase();</span><br><span class="line">&#125;);</span><br><span class="line">// M</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="六、Either-函子"><a href="#六、Either-函子" class="headerlink" title="六、Either 函子"></a>六、Either 函子</h4><blockquote>
+<p>条件运算if…else是最常见的运算之一，函数式编程里面，使用 Either 函子表达。<br>Either 函子内部有两个值：左值（Left）和右值（Right）。右值是正常情况下使用的值，左值是右值不存在时使用的默认值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Either extends Functor &#123;</span><br><span class="line">  constructor(left, right) &#123;</span><br><span class="line">    this.left = left;</span><br><span class="line">    this.right = right;</span><br><span class="line">  &#125;</span><br><span class="line">  map(f) &#123;</span><br><span class="line">    return this.right ?</span><br><span class="line">      Either.of(this.left, f(this.right)) :</span><br><span class="line">      Either.of(f(this.left), this.right);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">Either.of = function (left, right) &#123;</span><br><span class="line">  return new Either(left, right);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>下面是用法。<br>var addOne = function (x) {<br>  return x + 1;<br>};<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Either.of(5, 6).map(addOne);</span><br><span class="line">// Either(5, 7);</span><br><span class="line">Either.of(1, null).map(addOne);</span><br><span class="line">// Either(2, null);</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>上面代码中，如果右值有值，就使用右值，否则使用左值。通过这种方式，Either 函子表达了条件运算。<br>Either 函子的常见用途是提供默认值。下面是一个例子。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Either.of(&#123;address: &apos;xxx&apos;&#125;, currentUser.address).map(updateField);</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>上面代码中，如果用户没有提供地址，Either 函子就会使用左值的默认地址。<br>Either 函子的另一个用途是代替try…catch，使用左值表示错误。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function parseJSON(json) &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    return Either.of(null, JSON.parse(json));</span><br><span class="line">  &#125; catch (e: Error) &#123;</span><br><span class="line">    return Either.of(e, null);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>上面代码中，左值为空，就表示没有出错，否则左值会包含一个错误对象e。一般来说，所有可能出错的运算，都可以返回一个 Either 函子</p>
+</blockquote>
+<h4 id="七、ap-函子"><a href="#七、ap-函子" class="headerlink" title="七、ap 函子"></a>七、ap 函子</h4><blockquote>
+<p>函子里面包含的值，完全可能是函数。我们可以想象这样一种情况，一个函子的值是数值，另一个函子的值是函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function addTwo(x) &#123;</span><br><span class="line">  return x + 2;</span><br><span class="line">&#125;</span><br><span class="line">const A = Functor.of(2);</span><br><span class="line">const B = Functor.of(addTwo)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>上面代码中，函子A内部的值是2，函子B内部的值是函数addTwo。<br>有时，我们想==让函子B内部的函数，可以使用函子A内部的值进行运算==。这时就需要用到 ap 函子。</p>
+</blockquote>
+<blockquote>
+<p>ap 是 applicative（应用）的缩写。凡是部署了ap方法的函子，就是 ap 函子。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Ap extends Functor &#123;</span><br><span class="line">  ap(F) &#123;</span><br><span class="line">    return Ap.of(this.val(F.val));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>==注意，ap方法的参数不是函数==，而是另一个函子。</p>
+</blockquote>
+<blockquote>
+<p>因此，前面例子可以写成下面的形式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ap.of(addTwo).ap(Functor.of(2))</span><br><span class="line">// Ap(4)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>ap 函子的意义在于，对于那些多参数的函数，就可以从多个容器之中取值，实现函子的链式操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function add(x) &#123;</span><br><span class="line">  return function (y) &#123;</span><br><span class="line">    return x + y;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">Ap.of(add).ap(Maybe.of(2)).ap(Maybe.of(3));</span><br><span class="line">// Ap(5)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>上面代码中，函数add是柯里化以后的形式，一共需要两个参数。通过 ap 函子，我们就可以实现从两个容器之中取值。它还有另外一种写法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ap.of(add(2)).ap(Maybe.of(3));</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="八、Monad-函子"><a href="#八、Monad-函子" class="headerlink" title="八、Monad 函子"></a>八、Monad 函子</h4><blockquote>
+<p>函子是一个容器，可以包含任何值。函子之中再包含一个函子，也是完全合法的。但是，这样就会出现多层嵌套的函子。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Maybe.of(</span><br><span class="line">  Maybe.of(</span><br><span class="line">    Maybe.of(&#123;name: &apos;Mulburry&apos;, number: 8402&#125;)</span><br><span class="line">  )</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>上面这个函子，一共有三个Maybe嵌套。如果要取出内部的值，就要连续取三次this.val。这当然很不方便，因此就出现了 Monad 函子。</p>
+</blockquote>
+<blockquote>
+<p>==Monad 函子的作用是，总是返回一个单层的函子==。它有一个flatMap方法，与map方法作用相同，唯一的区别是如果生成了一个嵌套函子，它会取出后者内部的值，保证返回的永远是一个单层的容器，不会出现嵌套的情况。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Monad extends Functor &#123;</span><br><span class="line">  join() &#123;</span><br><span class="line">    return this.val;</span><br><span class="line">  &#125;</span><br><span class="line">  flatMap(f) &#123;</span><br><span class="line">    return this.map(f).join();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>上面代码中，如果函数f返回的是一个函子，那么this.map(f)就会生成一个嵌套的函子。所以，==join方法保证了flatMap方法总是返回一个单层的函子==。这意味着嵌套的函子会被铺平（flatten）。</p>
+</blockquote>
+<h4 id="九、IO-操作"><a href="#九、IO-操作" class="headerlink" title="九、IO 操作"></a>九、IO 操作</h4><blockquote>
+<p>Monad 函子的重要应用，就是实现 I/O （输入输出）操作。</p>
+</blockquote>
+<blockquote>
+<p>I/O 是不纯的操作，普通的函数式编程没法做，这时就需要把 IO 操作写成Monad函子，通过它来完成。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var fs = require(&apos;fs&apos;);</span><br><span class="line">var readFile = function(filename) &#123;</span><br><span class="line">  return new IO(function() &#123;</span><br><span class="line">    return fs.readFileSync(filename, &apos;utf-8&apos;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">var print = function(x) &#123;</span><br><span class="line">  return new IO(function() &#123;</span><br><span class="line">    console.log(x);</span><br><span class="line">    return x;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>上面代码中，读取文件和打印本身都是不纯的操作，但是readFile和print却是纯函数，因为它们总是返回 IO 函子。</p>
+</blockquote>
+<blockquote>
+<p>如果 IO 函子是一个Monad，具有flatMap方法，那么我们就可以像下面这样调用这两个函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">readFile(&apos;./user.txt&apos;)</span><br><span class="line">.flatMap(print)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>这就是神奇的地方，上面的代码完成了不纯的操作，但是因为flatMap返回的还是一个 IO 函子，所以这个表达式是纯的。我们通过一个纯的表达式，完成带有副作用的操作，这就是 Monad 的作用。</p>
+</blockquote>
+<blockquote>
+<p>由于返回还是 IO 函子，所以可以实现链式操作。因此，在大多数库里面，flatMap方法被改名成chain。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var tail = function(x) &#123;</span><br><span class="line">  return new IO(function() &#123;</span><br><span class="line">    return x[x.length - 1];</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">readFile(&apos;./user.txt&apos;)</span><br><span class="line">.flatMap(tail)</span><br><span class="line">.flatMap(print)</span><br><span class="line">// 等同于</span><br><span class="line">readFile(&apos;./user.txt&apos;)</span><br><span class="line">.chain(tail)</span><br><span class="line">.chain(print)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p> 上面代码读取了文件user.txt，然后选取最后一行输出。</p>
+</blockquote>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://93qlin.github.io/2019/02/28/函数式编程/" target="_blank" rel="external">https://93qlin.github.io/2019/02/28/函数式编程/</a>
+                </p>
+                <footer><cite><a href="https://93qlin.github.io">@永不言弃</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2019/02/28/vue问题，技巧提升/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">vue问题，技巧提升</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2019/02/28/react基础/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">react基础</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="函数式编程" data-title="函数式编程" data-url="https://93qlin.github.io/2019/02/28/函数式编程/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        多谢多谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "函数式编程",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://93qlin.github.io/2019/02/28/函数式编程/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    <!-- <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul> -->
+ </div>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+<!-- <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script> -->
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"log":false,"mobile":{"show":true},"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

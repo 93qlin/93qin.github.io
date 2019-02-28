@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>设计模式 | 永不言弃 | 一步一脚印，一岁一枯荣，never never give up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="JavaScript,设计模式">
+  <meta name="description" content="基础知识什么是设计模式？ 在面向对象软件设计过程中针对特定问题的简洁而优雅的解决方案。通俗理解:==给好的设计取个名字。==  设计模式的作用？ 当某个类似的场景出现的时候，很快的找到某种模式作为解决方案。  javaScript和其他静态类型的语言有差异，不应照搬设计模式。 多态什么是多态 同一操作作用于不同对象的上面，可以产生不同的解释和不同的执行效果。通俗理解：主人说发出叫的命令，不同动物发">
+<meta name="keywords" content="JavaScript,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="https://93qlin.github.io/2019/02/28/设计模式/index.html">
+<meta property="og:site_name" content="永不言弃">
+<meta property="og:description" content="基础知识什么是设计模式？ 在面向对象软件设计过程中针对特定问题的简洁而优雅的解决方案。通俗理解:==给好的设计取个名字。==  设计模式的作用？ 当某个类似的场景出现的时候，很快的找到某种模式作为解决方案。  javaScript和其他静态类型的语言有差异，不应照搬设计模式。 多态什么是多态 同一操作作用于不同对象的上面，可以产生不同的解释和不同的执行效果。通俗理解：主人说发出叫的命令，不同动物发">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-28T03:12:12.522Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式">
+<meta name="twitter:description" content="基础知识什么是设计模式？ 在面向对象软件设计过程中针对特定问题的简洁而优雅的解决方案。通俗理解:==给好的设计取个名字。==  设计模式的作用？ 当某个类似的场景出现的时候，很快的找到某种模式作为解决方案。  javaScript和其他静态类型的语言有差异，不应照搬设计模式。 多态什么是多态 同一操作作用于不同对象的上面，可以产生不同的解释和不同的执行效果。通俗理解：主人说发出叫的命令，不同动物发">
+  
+    <link rel="alternative" href="/atom.xml" title="永不言弃" type="application/atom+xml">
+  
+  <meta name="summary" content>
+  <link rel="shortcut icon" href="/bitbug_favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<link rel="stylesheet" href="/dist/APlayer.min.css">
+<body>
+  <div id="aplayer"></div>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">lin</h5>
+        <a href="mailto:925697386@qq.com" title="925697386@qq.com" class="mail">925697386@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/">
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives">
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags">
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/93qlin" target="_blank">
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/404">
+              <i class="icon icon-lg icon-link"></i>
+              测试
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC"></p>
+  <p>永不言弃 &copy; 2019</p>
+  lin
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+  <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=505820138&auto=0&height=66">
+</iframe> -->
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">设计模式</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">设计模式</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2019-02-28T03:12:12.521Z" itemprop="datePublished" class="page-time">
+  2019-02-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-设计模式" class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    <!-- <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul> -->
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基础知识"><span class="post-toc-number">1.</span> <span class="post-toc-text">基础知识</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#什么是设计模式？"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">什么是设计模式？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#设计模式的作用？"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">设计模式的作用？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#多态"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">多态</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#什么是多态"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">什么是多态</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#封装"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">封装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#封装数据"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">封装数据</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#封装实现"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">封装实现</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#封装类型"><span class="post-toc-number">1.4.3.</span> <span class="post-toc-text">封装类型</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#封装变化"><span class="post-toc-number">1.4.4.</span> <span class="post-toc-text">封装变化</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#原型模式和基于原型模式的JavaScript对象系统。"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">原型模式和基于原型模式的JavaScript对象系统。</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#第一个设计模式————原型模式"><span class="post-toc-number">1.5.1.</span> <span class="post-toc-text">第一个设计模式————原型模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#使用克隆的原型模式"><span class="post-toc-number">1.5.1.1.</span> <span class="post-toc-text">使用克隆的原型模式</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#克隆是创建对象的手段"><span class="post-toc-number">1.5.2.</span> <span class="post-toc-text">克隆是创建对象的手段</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#原型编程泛型"><span class="post-toc-number">1.5.3.</span> <span class="post-toc-text">原型编程泛型</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#JavaScript中的原型继承"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">JavaScript中的原型继承</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1，所有数据都是对象"><span class="post-toc-number">1.6.1.</span> <span class="post-toc-text">1，所有数据都是对象</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-要得到一个对象不是通过实例化类，而是找到一个对象并克隆它"><span class="post-toc-number">1.6.2.</span> <span class="post-toc-text">2.要得到一个对象不是通过实例化类，而是找到一个对象并克隆它</span></a></li></ol></li></ol></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><h4 id="什么是设计模式？"><a href="#什么是设计模式？" class="headerlink" title="什么是设计模式？"></a>什么是设计模式？</h4><blockquote>
+<p>在面向对象软件设计过程中针对特定问题的简洁而优雅的解决方案。<br>通俗理解:==给好的设计取个名字。==</p>
+</blockquote>
+<h4 id="设计模式的作用？"><a href="#设计模式的作用？" class="headerlink" title="设计模式的作用？"></a>设计模式的作用？</h4><blockquote>
+<p>当某个类似的场景出现的时候，很快的找到某种模式作为解决方案。</p>
+</blockquote>
+<p><em>javaScript和其他静态类型的语言有差异，不应照搬设计模式。</em></p>
+<h4 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h4><h5 id="什么是多态"><a href="#什么是多态" class="headerlink" title="什么是多态"></a>什么是多态</h5><blockquote>
+<p>同一操作作用于不同对象的上面，可以产生不同的解释和不同的执行效果。<br>通俗理解：主人说发出叫的命令，不同动物发出不同的叫声。<br>代码理解多态：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var makeSound=function(animal) &#123;</span><br><span class="line">    animal.sound()</span><br><span class="line">&#125;</span><br><span class="line">var Duck = function()&#123;&#125;</span><br><span class="line">Dunk.prototype.sound = function() &#123;</span><br><span class="line">    console.log(&apos;嘎嘎嘎&apos;)</span><br><span class="line">&#125;</span><br><span class="line">var Dog = function()&#123;&#125;</span><br><span class="line">Dog.prototype.sound = function() &#123;</span><br><span class="line">    console.log(&apos;汪汪汪&apos;)</span><br><span class="line">&#125;</span><br><span class="line">mackSound(new Duck)</span><br><span class="line">mackSound(new Dog)</span><br><span class="line"></span><br><span class="line">还有其他动物就简单追加一些代码就可以了。</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>多态思想是把”做什么”和”谁去做”分开，<br>那如何分开？消除类型之间的耦合关系。<br>如果makeSound指定了发出叫声的对向是某个类型，那就不能被替换另一类型所以:==静态类型语言的多态==：涉及到类型检查，所以像（java）通过向上转型，通过继承来实现多态。<br>==javaScript的多态==：由于变量类型在运行期间是可变的，不存在类型耦合，所以它的多态是与生俱来的。</p>
+</blockquote>
+<blockquote>
+<p>javaScript函数也是对象，函数用来封装行为并到处传递，当对函数发出“调用”的消息时，这些函数会返回不同的执行效果。这是多态的一种体现。这也是很多设计模式在JavaScript中使用高阶函数来实现的原因。</p>
+</blockquote>
+<h4 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h4><blockquote>
+<p>封装的目的是将信息影藏。<br>广义上包括封装数据和封装实现，封装类型和封装变化。</p>
+</blockquote>
+<h5 id="封装数据"><a href="#封装数据" class="headerlink" title="封装数据"></a>封装数据</h5><blockquote>
+<p>许多语言封装数据是通过语法解析来实现的，用（private,public,protect）等关键字来提供不同的访问权限。<br>JavaScript没有这些关键字的支持，只能通过==变量的作用域==来实现封装特性而且只能模拟public和private两种封装性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var myObject = (function() &#123;</span><br><span class="line">    var _name = &quot;haha&quot;      //私有变量（&apos;private&apos;）</span><br><span class="line">    return &#123;</span><br><span class="line">        getName: function()&#123; // 公开方法（&apos;public&apos;）</span><br><span class="line">            return _name</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line">console.log(myObject._name)  // 输出：haha</span><br><span class="line">console.log(myObject.getName()) // 输出undefined</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h5 id="封装实现"><a href="#封装实现" class="headerlink" title="封装实现"></a>封装实现</h5><p>封装使得对象之间的耦合变松散，对象之间只通过暴露api接口来通信。</p>
+<h5 id="封装类型"><a href="#封装类型" class="headerlink" title="封装类型"></a>封装类型</h5><blockquote>
+<p>它是静态类型语言的一种重要的封装方式。一般通过抽象类和接口来进行的。<br>JavaScript是类型模糊的语言没有抽象类和接口的支持，所以在封装类型方面没有能力也没必要做的更多。</p>
+</blockquote>
+<h5 id="封装变化"><a href="#封装变化" class="headerlink" title="封装变化"></a>封装变化</h5><p>找到系统稳定不变的部分和容易变化的部分隔离开，系统演变的过程中只需要替换容易变化的部分。</p>
+<h4 id="原型模式和基于原型模式的JavaScript对象系统。"><a href="#原型模式和基于原型模式的JavaScript对象系统。" class="headerlink" title="原型模式和基于原型模式的JavaScript对象系统。"></a>原型模式和基于原型模式的JavaScript对象系统。</h4><h5 id="第一个设计模式————原型模式"><a href="#第一个设计模式————原型模式" class="headerlink" title="第一个设计模式————原型模式"></a>第一个设计模式————原型模式</h5><h6 id="使用克隆的原型模式"><a href="#使用克隆的原型模式" class="headerlink" title="使用克隆的原型模式"></a>使用克隆的原型模式</h6><blockquote>
+<p>es5提供了Object.created()来克隆对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var Plane = function() &#123;</span><br><span class="line">	this.aa = 11</span><br><span class="line">&#125;</span><br><span class="line">var plane = new Plane()</span><br><span class="line">plane.aa = 22</span><br><span class="line">var clonePlane = Object.create(plane)</span><br><span class="line">console.log(clonePlane.aa)  // 22</span><br><span class="line">plane.aa = 33</span><br><span class="line">console.log(clonePlane.aa) // 33</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h5 id="克隆是创建对象的手段"><a href="#克隆是创建对象的手段" class="headerlink" title="克隆是创建对象的手段"></a>克隆是创建对象的手段</h5><p>在javaScript创建对象非常容易，不存在类型耦合，所以原型模式的意义并不大，但是他的对象系统就是使用原型模式来搭建的。</p>
+<h5 id="原型编程泛型"><a href="#原型编程泛型" class="headerlink" title="原型编程泛型"></a>原型编程泛型</h5><blockquote>
+<p>object是animal的原型，而animal是Dog原型，他们之间形成了一个原型链，这个原型链很有用处当调用Dog对象的某个方法时，它本身没有，Dog对象会把这个请求委托給它的原型animal对象这样顺着原型链一直委托下去，便得到继承的效果。<br>==这样基于原型链的委托机制就是原型继承的本质==。</p>
+</blockquote>
+<h4 id="JavaScript中的原型继承"><a href="#JavaScript中的原型继承" class="headerlink" title="JavaScript中的原型继承"></a>JavaScript中的原型继承</h4><p>==原型编程的基本规则：==</p>
+<ol>
+<li>所有数据都是对象</li>
+<li>要得到一个对象不是通过实例化类，而是找到一个对象并克隆它</li>
+<li>对象会记住它的原型</li>
+<li>如果对象无法响应某个请求，它会把这个请求委托给它自己的原型</li>
+</ol>
+<h5 id="1，所有数据都是对象"><a href="#1，所有数据都是对象" class="headerlink" title="1，所有数据都是对象"></a>1，所有数据都是对象</h5><p>javascrit模仿java有两套类型机制：基本类型和对象类型。<br>javaScript并不是所有数据都是对象，按设计者本意除undefined外一切都应是对象，为了实现这个number，boolean,string这几种基本类型也可以通过“包装类”的方式变成对象类型的数据处理。</p>
+<blockquote>
+<p>  javaSript中的根对象是object.prototype对象（一个空对象）。javascripty中遇到的每个对象都是从Object.prototype对象克隆而来的。Object.prototype对象就是他们的原型，比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var obj1 = new Object();</span><br><span class="line">var obj2 = &#123;&#125;;</span><br><span class="line">查看这两个对象的原型(es5的Object.getPrototypeOf)</span><br><span class="line">console.log(Object.getPrototypeOf(obj1)===Object.prototype) //true</span><br><span class="line">console.log(Object.getPrototypeOf(obj2)===Object.prototype) //true</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h5 id="2-要得到一个对象不是通过实例化类，而是找到一个对象并克隆它"><a href="#2-要得到一个对象不是通过实例化类，而是找到一个对象并克隆它" class="headerlink" title="2.要得到一个对象不是通过实例化类，而是找到一个对象并克隆它"></a>2.要得到一个对象不是通过实例化类，而是找到一个对象并克隆它</h5><p>JavaScript引擎内部负责实现克隆，<br>调用var obj1 = new Object()和var obj2 = {};时内部会从Object.prototype上克隆一个对象；一段熟悉的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">funtion Person(name)&#123;</span><br><span class="line">    this.name = name</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.getName = function()&#123;</span><br><span class="line">    return this.name</span><br><span class="line">&#125;</span><br><span class="line">var a = new Person(&apos;seven&apos;)</span><br><span class="line">console.log(a.name) //seven</span><br><span class="line">console.log(a.getName())</span><br><span class="line">console.log(Object.getPrototypeOf(a)===Person.prototype)</span><br></pre></td></tr></table></figure></p>
+<p>==javascript没有类的概念==这里的Person不是类而是函数构造器，因为js的函数既可以作为普通函数调用也可以作为构造器被调用，用new运算符调用时就是一个构造器，创建对象的过程就是先克隆Object.prototype对象，再进行一些其他额外的操作的过程（实际上并不是真的克隆了一个新对象《内存方面出发还做了其他处理，参考js精髓和编程实战）</p>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://93qlin.github.io/2019/02/28/设计模式/" target="_blank" rel="external">https://93qlin.github.io/2019/02/28/设计模式/</a>
+                </p>
+                <footer><cite><a href="https://93qlin.github.io">@永不言弃</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2019/02/28/树形数据扁平化，扁平化数据树形化/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">扁平化数据树形化 ,树形数据扁平化</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2019/02/28/用Hexo + github搭建自己的博客/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">用Hexo + github搭建自己的博客</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="设计模式" data-title="设计模式" data-url="https://93qlin.github.io/2019/02/28/设计模式/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        多谢多谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "设计模式",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://93qlin.github.io/2019/02/28/设计模式/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    <!-- <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul> -->
+ </div>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+<!-- <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script> -->
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"log":false,"mobile":{"show":true},"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

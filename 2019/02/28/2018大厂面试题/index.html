@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>2018面试题 | 永不言弃 | 一步一脚印，一岁一枯荣，never never give up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="基础,面试">
+  <meta name="description" content="以下是别人面试题汇总(原文没有答案，自己总结的)。 阿里（没有深入研究过node,也不想去研究,以后可能主要精力放在java上.）1.使用过的koa2中间件 2.koa-body原理 3.介绍自己写过的中间件 4.有没有涉及到Cluster 5.介绍pm2 6.master挂了的话pm2怎么处理 7.如何和MySQL进行通信 8.React生命周期及自己的理解  生命周期函数（钩子函数）通俗的说就">
+<meta name="keywords" content="基础,面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018面试题">
+<meta property="og:url" content="https://93qlin.github.io/2019/02/28/2018大厂面试题/index.html">
+<meta property="og:site_name" content="永不言弃">
+<meta property="og:description" content="以下是别人面试题汇总(原文没有答案，自己总结的)。 阿里（没有深入研究过node,也不想去研究,以后可能主要精力放在java上.）1.使用过的koa2中间件 2.koa-body原理 3.介绍自己写过的中间件 4.有没有涉及到Cluster 5.介绍pm2 6.master挂了的话pm2怎么处理 7.如何和MySQL进行通信 8.React生命周期及自己的理解  生命周期函数（钩子函数）通俗的说就">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://93qlin.github.io/img/reactBasic.png">
+<meta property="og:image" content="https://93qlin.github.io/img/20180815113822366.png">
+<meta property="og:updated_time" content="2019-02-28T03:12:12.514Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2018面试题">
+<meta name="twitter:description" content="以下是别人面试题汇总(原文没有答案，自己总结的)。 阿里（没有深入研究过node,也不想去研究,以后可能主要精力放在java上.）1.使用过的koa2中间件 2.koa-body原理 3.介绍自己写过的中间件 4.有没有涉及到Cluster 5.介绍pm2 6.master挂了的话pm2怎么处理 7.如何和MySQL进行通信 8.React生命周期及自己的理解  生命周期函数（钩子函数）通俗的说就">
+<meta name="twitter:image" content="https://93qlin.github.io/img/reactBasic.png">
+  
+    <link rel="alternative" href="/atom.xml" title="永不言弃" type="application/atom+xml">
+  
+  <meta name="summary" content>
+  <link rel="shortcut icon" href="/bitbug_favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<link rel="stylesheet" href="/dist/APlayer.min.css">
+<body>
+  <div id="aplayer"></div>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">lin</h5>
+        <a href="mailto:925697386@qq.com" title="925697386@qq.com" class="mail">925697386@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/">
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives">
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags">
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/93qlin" target="_blank">
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/404">
+              <i class="icon icon-lg icon-link"></i>
+              测试
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC"></p>
+  <p>永不言弃 &copy; 2019</p>
+  lin
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+  <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=505820138&auto=0&height=66">
+</iframe> -->
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">2018面试题</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">2018面试题</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2019-02-28T03:12:12.514Z" itemprop="datePublished" class="page-time">
+  2019-02-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/2018面试题/">2018面试题</a></li></ul>
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-2018大厂面试题" class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    <!-- <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul> -->
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>以下是别人面试题汇总(原文没有答案，自己总结的)。</p>
+<p>阿里<br>（没有深入研究过node,也不想去研究,以后可能主要精力放在java上.）<br>1.使用过的koa2中间件</p>
+<p>2.koa-body原理</p>
+<p>3.介绍自己写过的中间件</p>
+<p>4.有没有涉及到Cluster</p>
+<p>5.介绍pm2</p>
+<p>6.master挂了的话pm2怎么处理</p>
+<p>7.如何和MySQL进行通信</p>
+<p>8.React生命周期及自己的理解</p>
+<blockquote>
+<p>生命周期函数（钩子函数）通俗的说就是在某一时刻会被自动调用执行的函数。<br>    <strong>生命周期可以分成四个部分：</strong><br>    <img src="/img/reactBasic.png" alt="image"><br>    props,state,render()函数：</p>
+<pre><code>1. render()函数会在props,state改变时触发。
+2.子组件的render()函数会在父组件render()执行的时候被执行（这会导致一些性能问题，我们可以在子组件的componentshouldupdate函数中进行判断，优化性能）
+</code></pre><p>   在render()，创建虚拟dom，进行diff算法，更新dom树。<br>    注意：不要在render中修改state,会导致死循环。<br>    <strong>1.初始化</strong><br>      在这里可以初始化props,state<br>    <strong>2.挂载</strong><br>    ①：componentWillMount():  <strong>注意：改生命周期在未来17版本中将被弃用(在这里请求异步数据，render可能不会渲染到，因为componentWillMount执行后，render立马执行)</strong><br>      组件被挂载到页面之前调用，整个生命周期中只会调用一次（组件更新时不会再调用）。<br>      注意：在这里可修改state<br>    ②：componentDidMount()：<br>      组件被挂载到页面之后调用，整个生命周期只调用一次（组件更新不会调用）。<br>      建议：在这里可以异步请求数据。在这里设置状态会触发重新渲染。但是不推荐在这里使用setState函数，它会触发一次额外的渲染，而且是在浏览器刷新屏幕之前执行，用户看不到这个状态。在这里使用setState函数会导致性能问题。<br>    new: getDerivedStateFromProps(nextProps,prevState)<br>    <strong>3.更新</strong><br>    new: getDerivedStateFromProps(nextProps,prevState)<br>    <strong>新的静态getDerivedStateFromProps</strong> 生命周期在组件实例化以及接收新props(只要父组件重新渲染，那么这个props不论值是否一样都是一个新的props)后调用。它可以返回一个对象来更新state，或者返回null来表示新的props不需要任何state更新。<br>    new:getSnapshotBeforeUpdate()<br>    <strong>新的getSnapshotBeforeUpdate</strong> 生命周期在更新之前被调用（例如，在DOM被更新之前）。此生命周期的返回值将作为第三个参数传递给componentDidUpdate。 （这个生命周期不是经常需要的，但可以用于在恢复期间手动保存滚动位置的情况。）<br>      ①： componentWillReceiveProps(nextprops):  注意：<strong>改生命周期在未来17版本中将被弃用</strong><br>          组件从父组件中接受了新的props(只要父组件重新渲染，那么这个props不论值是否一样都是一个新的props)，并且组件已经存在时调用。（组件初始化时候不调用）。<br>          注意：可以根据属性的变化，通过调用this.setState()来更新你的组件状态，旧的属性还是可以通过this.props来获取,这里调用更新状态是安全的，并不会触发额外的render调用<br>      ②： shouldComponentUpdate(nextprops,nextstate):<br>          组件更新之前调用（组件接受新的props或者state）。函数会返回一个布尔值，true才会更新组件。<br>          注意：最好判断一下新旧两个props/state是否相同，相同则返回false不要触发更新。这样就不用生成新的dom树和旧的进行diff算法对比，从而优化性能。（因为父组件render()调用会使得子组件render()也被执行，引起性能问题）！<br>    <img src="/img/20180815113822366.png" alt="image"><br>    ③：componentWillUpdate(nextprops,nextstate):    注意：改生命周期在未来17版本中将被弃用<br>      组件更新之前（componentshouldupdate返回true）时调用，组件初始化时不调用<br>     注意：在这里可以更改state，nextstate.xxx = xxx,但是在这里不能调用setState函数，这会导致函数调用componentshouldupdate从而进入死循环。<br>    ④：componentDidUpdate():<br>          组件更新完成之后调用，组件初始化时候不调用。<br>          注意：可以在这里获取dom<br>    4.<strong>卸载</strong><br>      ①：componentWillUnmount():<br>         组件即将被卸载时执行<br>         注意：在这里清除一些不需要的监听和计时器</p>
+</blockquote>
+<p>如何配置React-Router</p>
+<p>路由的动态加载模块</p>
+<p>服务端渲染SSR</p>
+<p>介绍路由的history</p>
+<p>介绍Redux数据流的流程</p>
+<p>Redux如何实现多个组件之间的通信，多个组件使用相同状态如何进行管理</p>
+<p>多个组件之间如何拆分各自的state，每块小的组件有自己的状态，它们之间还有一些公共的状态需要维护，如何思考这块</p>
+<p>使用过的Redux中间件</p>
+<p>如何解决跨域的问题</p>
+<p>常见Http请求头</p>
+<p>移动端适配1px的问题</p>
+<p>介绍flex布局</p>
+<p>其他css方式设置垂直居中</p>
+<p>居中为什么要使用transform（为什么不使用marginLeft/Top）</p>
+<p>使用过webpack里面哪些plugin和loader</p>
+<p>webpack里面的插件是怎么实现的</p>
+<p>dev-server是怎么跑起来</p>
+<p>项目优化</p>
+<p>抽取公共文件是怎么配置的</p>
+<p>项目中如何处理安全问题</p>
+<p>怎么实现this对象的深拷贝</p>
+<p>网易<br>介绍redux，主要解决什么问题</p>
+<p>文件上传如何做断点续传</p>
+<p>表单可以跨域吗</p>
+<p>promise、async有什么区别</p>
+<p>搜索请求如何处理（防抖）</p>
+<p>搜索请求中文如何请求</p>
+<p>介绍观察者模式</p>
+<p>介绍中介者模式</p>
+<p>观察者和订阅-发布的区别，各自用在哪里</p>
+<p>介绍react优化</p>
+<p>介绍http2.0</p>
+<p>通过什么做到并发请求</p>
+<p>http1.1时如何复用tcp连接</p>
+<p>介绍service worker</p>
+<p>介绍css3中position:sticky</p>
+<p>redux请求中间件如何处理并发</p>
+<p>介绍Promise，异常捕获</p>
+<p>介绍position属性包括CSS3新增</p>
+<p>浏览器事件流向</p>
+<p>介绍事件代理以及优缺点</p>
+<p>React组件中怎么做事件代理</p>
+<p>React组件事件代理的原理</p>
+<p>介绍this各种情况</p>
+<p>前端怎么控制管理路由</p>
+<p>使用路由时出现问题如何解决</p>
+<p>React怎么做数据的检查和变化</p>
+<p>滴滴<br>react-router怎么实现路由切换</p>
+<p>react-router里的<link>标签和<a>标签有什么区别</a></p>
+<p><a>标签默认事件禁掉之后做了什么才实现了跳转</a></p>
+<p>React层面的性能优化</p>
+<p>整个前端性能提升大致分几类</p>
+<p>import { Button } from ‘antd’，打包的时候只打包button，分模块加载，是怎么做到的</p>
+<p>使用import时，webpack对node_modules里的依赖会做什么</p>
+<p>JS异步解决方案的发展历程以及优缺点</p>
+<p>Http报文的请求会有几个部分</p>
+<p>cookie放哪里，cookie能做的事情和存在的价值</p>
+<p>cookie和token都存放在header里面，为什么只劫持前者</p>
+<p>cookie和session有哪些方面的区别</p>
+<p>React中Dom结构发生变化后内部经历了哪些变化</p>
+<p>React挂载的时候有3个组件，textComponent、composeComponent、domComponent，区别和关系，Dom结构发生变化时怎么区分data的变化，怎么更新，更新怎么调度，如果更新的时候还有其他任务存在怎么处理</p>
+<p>key主要是解决哪一类的问题，为什么不建议用索引index（重绘）</p>
+<p>Redux中异步的请求怎么处理</p>
+<p>Redux中间件是什么东西，接受几个参数（两端的柯里化函数）</p>
+<p>柯里化函数两端的参数具体是什么东西</p>
+<p>中间件是怎么拿到store和action，然后怎么处理</p>
+<p>state是怎么注入到组件的，从reducer到组件经历了什么样的过程</p>
+<p>koa中response.send、response.rounded、response.json发生了什么事，浏览器为什么能识别到它是一个json结构或是html</p>
+<p>koa-bodyparser怎么来解析request</p>
+<p>webpack整个生命周期，loader和plugin有什么区别</p>
+<p>介绍AST（Abstract Syntax Tree）抽象语法树</p>
+<p>安卓Activity之间数据是怎么传递的</p>
+<p>安卓4.0到6.0过程中WebView对js兼容性的变化</p>
+<p>WebView和原生是如何通信</p>
+<p>跨域怎么解决，有没有使用过Apache等方案</p>
+<p>今日头条<br>对async、await的理解，内部原理</p>
+<p>介绍下Promise，内部实现</p>
+<p>清除浮动  </p>
+<p>定位问题（绝对定位、相对定位等）</p>
+<p>从输入URL到页面加载全过程</p>
+<p>tcp3次握手</p>
+<p>tcp属于哪一层（1 物理层 -&gt; 2 数据链路层 -&gt; 3 网络层(ip)-&gt; 4 传输层(tcp) -&gt; 5 应用层(http)）</p>
+<p>redux的设计思想</p>
+<p>接入redux的过程</p>
+<p>绑定connect的过程</p>
+<p>connect原理</p>
+<p>webpack介绍</p>
+<p>== 和 ===的区别，什么情况下用相等==</p>
+<p>bind、call、apply的区别</p>
+<p>动画的了解</p>
+<p>介绍下原型链（解决的是继承问题吗）</p>
+<p>对跨域的了解</p>
+<p>有赞<br>Linux 754 介绍</p>
+<p>介绍冒泡排序，选择排序，冒泡排序如何优化</p>
+<p>transform动画和直接使用left、top改变位置有什么优缺点</p>
+<p>如何判断链表是否有环</p>
+<p>介绍二叉搜索树的特点</p>
+<p>介绍暂时性死区</p>
+<p>ES6中的map和原生的对象有什么区别</p>
+<p>观察者和发布-订阅的区别</p>
+<p>react异步渲染的概念,介绍Time Slicing 和 Suspense</p>
+<p>16.X声明周期的改变</p>
+<p>16.X中props改变后在哪个生命周期中处理</p>
+<p>介绍纯函数</p>
+<p>前端性能优化</p>
+<p>pureComponent和FunctionComponent区别</p>
+<p>介绍JSX</p>
+<p>如何做RN在安卓和IOS端的适配</p>
+<p>RN为什么能在原生中绘制成原生组件（bundle.js）</p>
+<p>介绍虚拟DOM</p>
+<p>如何设计一个localStorage，保证数据的实效性</p>
+<p>如何设计Promise.all()</p>
+<p>介绍高阶组件</p>
+<p>sum(2, 3)实现sum(2)(3)的效果</p>
+<p>react性能优化</p>
+<p>两个对象如何比较</p>
+<p>挖财<br>JS的原型</p>
+<p>变量作用域链</p>
+<p>call、apply、bind的区别</p>
+<p>防抖和节流的区别</p>
+<p>介绍各种异步方案</p>
+<p>react生命周期</p>
+<p>介绍Fiber</p>
+<p>前端性能优化</p>
+<p>介绍DOM树对比</p>
+<p>react中的key的作用</p>
+<p>如何设计状态树</p>
+<p>介绍css，xsrf</p>
+<p>http缓存控制</p>
+<p>项目中如何应用数据结构</p>
+<p>native提供了什么能力给RN</p>
+<p>如何做工程上的优化</p>
+<p>shouldComponentUpdate是为了解决什么问题</p>
+<p>如何解决props层级过深的问题</p>
+<p>前端怎么做单元测试</p>
+<p>webpack生命周期</p>
+<p>webpack打包的整个过程</p>
+<p>常用的plugins</p>
+<p>pm2怎么做进程管理，进程挂掉怎么处理</p>
+<p>不用pm2怎么做进程管理</p>
+<p>沪江<br>介绍下浏览器跨域</p>
+<p>怎么去解决跨域问题</p>
+<p>jsonp方案需要服务端怎么配合</p>
+<p>Ajax发生跨域要设置什么（前端）</p>
+<p>加上CORS之后从发起到请求正式成功的过程</p>
+<p>xsrf跨域攻击的安全性问题怎么防范</p>
+<p>使用Async会注意哪些东西</p>
+<p>Async里面有多个await请求，可以怎么优化（请求是否有依赖）</p>
+<p>Promise和Async处理失败的时候有什么区别</p>
+<p>Redux在状态管理方面解决了React本身不能解决的问题</p>
+<p>Redux有没有做过封装</p>
+<p>react生命周期，常用的生命周期</p>
+<p>对应的生命周期做什么事</p>
+<p>遇到性能问题一般在哪个生命周期里解决</p>
+<p>怎么做性能优化（异步加载组件…）</p>
+<p>写react有哪些细节可以优化</p>
+<p>React的事件机制（绑定一个事件到一个组件上）</p>
+<p>介绍下事件代理，主要解决什么问题</p>
+<p>前端开发中用到哪些设计模式</p>
+<p>React/Redux中哪些功能用到了哪些设计模式</p>
+<p>JS变量类型分为几种，区别是什么</p>
+<p>JS里垃圾回收机制是什么，常用的是哪种，怎么处理的</p>
+<p>一般怎么组织CSS（Webpack）</p>
+<p>饿了么<br>小程序里面开页面最多多少</p>
+<p>React子父组件之间如何传值</p>
+<p>Emit事件怎么发，需要引入什么</p>
+<p>介绍下React高阶组件，和普通组件有什么区别</p>
+<p>一个对象数组，每个子对象包含一个id和name，React如何渲染出全部的name</p>
+<p>在哪个生命周期里写</p>
+<p>其中有几个name不存在，通过异步接口获取，如何做</p>
+<p>渲染的时候key给什么值，可以使用index吗，用id好还是index好</p>
+<p>webpack如何配sass，需要配哪些loader</p>
+<p>配css需要哪些loader</p>
+<p>如何配置把js、css、html单独打包成一个文件</p>
+<p>div垂直水平居中（flex、绝对定位）</p>
+<p>两个元素块，一左一右，中间相距10像素</p>
+<p>上下固定，中间滚动布局如何实现</p>
+<p>[1, 2, 3, 4, 5]变成[1, 2, 3, a, b, 5]</p>
+<p>取数组的最大值（ES5、ES6）</p>
+<p>apply和call的区别</p>
+<p>ES5和ES6有什么区别</p>
+<p>some、every、find、filter、map、forEach有什么区别</p>
+<p>上述数组随机取数，每次返回的值都不一样</p>
+<p>如何找0-5的随机数，95-99呢</p>
+<p>页面上有1万个button如何绑定事件</p>
+<p>如何判断是button</p>
+<p>页面上生成一万个button，并且绑定事件，如何做（JS原生操作DOM）</p>
+<p>循环绑定时的index是多少，为什么，怎么解决</p>
+<p>页面上有一个input，还有一个p标签，改变input后p标签就跟着变化，如何处理</p>
+<p>监听input的哪个事件，在什么时候触发</p>
+<p>携程<br>对React看法，有没有遇到一些坑</p>
+<p>对闭包的看法，为什么要用闭包</p>
+<p>手写数组去重函数</p>
+<p>手写数组扁平化函数</p>
+<p>介绍下Promise的用途和性质</p>
+<p>Promise和Callback有什么区别</p>
+<p>React生命周期</p>
+<p>两道手写算法题</p>
+<p>喜马拉雅<br>ES6新的特性</p>
+<p>介绍Promise</p>
+<p>Promise有几个状态</p>
+<p>说一下闭包</p>
+<p>React的生命周期</p>
+<p>componentWillReceiveProps的触发条件是什么</p>
+<p>React16.3对生命周期的改变</p>
+<p>介绍下React的Filber架构</p>
+<p>画Filber渲染树</p>
+<p>介绍React高阶组件</p>
+<p>父子组件之间如何通信</p>
+<p>Redux怎么实现属性传递，介绍下原理</p>
+<p>React-Router版本号</p>
+<p>网站SEO怎么处理</p>
+<p>介绍下HTTP状态码</p>
+<p>403、301、302是什么</p>
+<p>缓存相关的HTTP请求头</p>
+<p>介绍HTTPS</p>
+<p>HTTPS怎么建立安全通道</p>
+<p>前端性能优化（JS原生和React）</p>
+<p>用户体验做过什么优化</p>
+<p>对PWA有什么了解</p>
+<p>对安全有什么了解</p>
+<p>介绍下数字签名的原理</p>
+<p>前后端通信使用什么方案</p>
+<p>RESTful常用的Method</p>
+<p>介绍下跨域</p>
+<p>Access-Control-Allow-Origin在服务端哪里配置</p>
+<p>csrf跨站攻击怎么解决</p>
+<p>前端和后端怎么联调</p>
+<p>兑吧<br>localStorage和cookie有什么区别</p>
+<p>CSS选择器有哪些</p>
+<p>盒子模型，以及标准情况和IE下的区别</p>
+<p>如何实现高度自适应</p>
+<p>prototype和——proto——区别</p>
+<p>_construct是什么</p>
+<p>new是怎么实现的</p>
+<p>promise的精髓，以及优缺点</p>
+<p>如何实现H5手机端的适配</p>
+<p>rem、flex的区别（root em）</p>
+<p>em和px的区别</p>
+<p>React声明周期</p>
+<p>如何去除url中的#号</p>
+<p>Redux状态管理器和变量挂载到window中有什么区别</p>
+<p>webpack和gulp的优缺点</p>
+<p>如何实现异步加载</p>
+<p>如何实现分模块打包（多入口）</p>
+<p>前端性能优化（1js css；2 图片；3 缓存预加载； 4 SSR； 5 多域名加载；6 负载均衡）</p>
+<p>并发请求资源数上限（6个）</p>
+<p>base64为什么能提升性能，缺点</p>
+<p>介绍webp这个图片文件格式</p>
+<p>介绍koa2</p>
+<p>Promise如何实现的</p>
+<p>异步请求，低版本fetch如何低版本适配</p>
+<p>ajax如何处理跨域</p>
+<p>CORS如何设置</p>
+<p>jsonp为什么不支持post方法</p>
+<p>介绍同源策略</p>
+<p>React使用过的一些组件</p>
+<p>介绍Immuable</p>
+<p>介绍下redux整个流程原理</p>
+<p>介绍原型链</p>
+<p>如何继承</p>
+<p>微医<br>介绍JS数据类型，基本数据类型和引用数据类型的区别</p>
+<p>Array是Object类型吗</p>
+<p>数据类型分别存在哪里</p>
+<p>var a  = {name: “前端开发”}; var b = a; a = null那么b输出什么</p>
+<p>var a = {b: 1}存放在哪里</p>
+<p>var a = {b: {c: 1}}存放在哪里</p>
+<p>栈和堆的区别</p>
+<p>垃圾回收时栈和堆的区别</p>
+<p>数组里面有10万个数据，取第一个元素和第10万个元素的时间相差多少</p>
+<p>栈和堆具体怎么存储</p>
+<p>介绍闭包以及闭包为什么没清除</p>
+<p>闭包的使用场景</p>
+<p>JS怎么实现异步</p>
+<p>异步整个执行周期</p>
+<p>Promise的三种状态</p>
+<p>Async/Await怎么实现</p>
+<p>Promise和setTimeout执行先后的区别</p>
+<p>JS为什么要区分微任务和宏任务</p>
+<p>Promise构造函数是同步还是异步执行，then呢</p>
+<p>发布-订阅和观察者模式的区别</p>
+<p>JS执行过程中分为哪些阶段</p>
+<p>词法作用域和this的区别</p>
+<p>平常是怎么做继承</p>
+<p>深拷贝和浅拷贝</p>
+<p>loadsh深拷贝实现原理</p>
+<p>ES6中let块作用域是怎么实现的</p>
+<p>React中setState后发生了什么</p>
+<p>setState为什么默认是异步</p>
+<p>setState什么时候是同步的</p>
+<p>为什么3大框架出现以后就出现很多native（RN）框架（虚拟DOM）</p>
+<p>虚拟DOM主要做了什么</p>
+<p>虚拟DOM本身是什么（JS对象）</p>
+<p>304是什么</p>
+<p>打包时Hash码是怎么生成的</p>
+<p>随机值存在一样的情况，如何避免</p>
+<p>使用webpack构建时有无做一些自定义操作</p>
+<p>webpack做了什么</p>
+<p>a，b两个按钮，点击aba，返回顺序可能是baa，如何保证是aba（Promise.then）</p>
+<p>node接口转发有无做什么优化</p>
+<p>node起服务如何保证稳定性，平缓降级，重启等</p>
+<p>RN有没有做热加载</p>
+<p>RN遇到的兼容性问题</p>
+<p>RN如何实现一个原生的组件</p>
+<p>RN混原生和原生混RN有什么不同</p>
+<p>什么是单页项目</p>
+<p>遇到的复杂业务场景</p>
+<p>Promise.all实现原理</p>
+<p>寺库<br>介绍Promise的特性，优缺点</p>
+<p>介绍Redux</p>
+<p>RN的原理，为什么可以同时在安卓和IOS端运行</p>
+<p>RN如何调用原生的一些功能</p>
+<p>介绍RN的缺点</p>
+<p>介绍排序算法和快排原理</p>
+<p>堆和栈的区别</p>
+<p>介绍闭包</p>
+<p>闭包的核心是什么</p>
+<p>网络的五层模型</p>
+<p>HTTP和HTTPS的区别</p>
+<p>HTTPS的加密过程</p>
+<p>介绍SSL和TLS</p>
+<p>介绍DNS解析</p>
+<p>JS的继承方法</p>
+<p>介绍垃圾回收</p>
+<p>cookie的引用为了解决什么问题</p>
+<p>cookie和localStorage的区别</p>
+<p>如何解决跨域问题</p>
+<p>前端性能优化</p>
+<p>宝宝树<br>使用canvas绘图时如何组织成通用组件</p>
+<p>formData和原生的ajax有什么区别</p>
+<p>介绍下表单提交，和formData有什么关系</p>
+<p>介绍redux接入流程</p>
+<p>rudux和全局管理有什么区别（数据可控、数据响应）</p>
+<p>RN和原生通信</p>
+<p>介绍MVP怎么组织</p>
+<p>介绍异步方案</p>
+<p>promise如何实现then处理</p>
+<p>koa2中间件原理</p>
+<p>常用的中间件</p>
+<p>服务端怎么做统一的状态处理</p>
+<p>如何对相对路径引用进行优化</p>
+<p>node文件查找优先级</p>
+<p>npm2和npm3+有什么区别</p>
+<p>海康威视<br>knex连接数据库响应回调</p>
+<p>介绍异步方案</p>
+<p>如何处理异常捕获</p>
+<p>项目如何管理模块</p>
+<p>前端性能优化</p>
+<p>JS继承方案</p>
+<p>如何判断一个变量是不是数组</p>
+<p>变量a和b，如何交换</p>
+<p>事件委托</p>
+<p>多个<li>标签生成的Dom结构是一个类数组</li></p>
+<p>类数组和数组的区别</p>
+<p>dom的类数组如何转成数组</p>
+<p>介绍单页面应用和多页面应用</p>
+<p>redux状态树的管理</p>
+<p>介绍localstorage的API</p>
+<p>蘑菇街<br>html语义化的理解</p>
+<p><b>和<strong>的区别</strong></b></p>
+<p>对闭包的理解</p>
+<p>工程中闭包使用场景</p>
+<p>介绍this和原型</p>
+<p>使用原型最大的好处</p>
+<p>react设计思路</p>
+<p>为什么虚拟DOM比真实DOM性能好</p>
+<p>react常见的通信方式</p>
+<p>redux整体的工作流程</p>
+<p>redux和全局对象之间的区别</p>
+<p>Redux数据回溯设计思路</p>
+<p>单例、工厂、观察者项目中实际场景</p>
+<p>项目中树的使用场景以及了解</p>
+<p>工作收获</p>
+<p>酷家乐<br>react生命周期</p>
+<p>react性能优化</p>
+<p>添加原生事件不移除为什么会内存泄露</p>
+<p>还有哪些地方会内存泄露</p>
+<p>setInterval需要注意的点</p>
+<p>定时器为什么是不精确的</p>
+<p>setTimeout(1)和setTimeout(2)之间的区别</p>
+<p>介绍宏任务和微任务</p>
+<p>promise里面和then里面执行有什么区别</p>
+<p>介绍pureComponet</p>
+<p>介绍Function Component</p>
+<p>React数据流</p>
+<p>props和state的区别</p>
+<p>介绍react context</p>
+<p>介绍class和ES5的类以及区别</p>
+<p>介绍箭头函数和普通函数的区别</p>
+<p>介绍defineProperty方法，什么时候需要用到</p>
+<p>for..in 和 object.keys的区别</p>
+<p>介绍闭包，使用场景</p>
+<p>使用闭包特权函数的使用场景</p>
+<p>get和post有什么区别</p>
+<p>百分点<br>React15/16.x的区别</p>
+<p>重新渲染render会做些什么</p>
+<p>哪些方法会触发react重新渲染</p>
+<p>state和props触发更新的生命周期分别有什么区别</p>
+<p>setState是同步还是异步</p>
+<p>对无状态组件的理解</p>
+<p>介绍Redux工作流程</p>
+<p>介绍ES6的功能</p>
+<p>let、const以及var的区别</p>
+<p>浅拷贝和深拷贝的区别</p>
+<p>介绍箭头函数的this</p>
+<p>介绍Promise和then</p>
+<p>介绍快速排序</p>
+<p>算法：前K个最大的元素</p>
+<p>海风教育<br>对react看法，它的优缺点</p>
+<p>使用过程中遇到的问题，如何解决的</p>
+<p>react的理念是什么（拿函数式编程来做页面渲染）</p>
+<p>JS是什么范式语言(面向对象还是函数式编程)</p>
+<p>koa原理，为什么要用koa(express和koa对比)</p>
+<p>使用的koa中间件</p>
+<p>ES6使用的语法</p>
+<p>Promise 和 async/await 和 callback的区别</p>
+<p>Promise有没有解决异步的问题（promise链是真正强大的地方）</p>
+<p>Promise和setTimeout的区别（Event Loop）</p>
+<p>进程和线程的区别（一个node实例就是一个进程，node是单线程，通过事件循环来实现异步</p>
+<p>）</p>
+<p>介绍下DFS深度优先</p>
+<p>介绍下观察者模式</p>
+<p>观察者模式里面使用的数据结构(不具备顺序 ，是一个list)</p>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://93qlin.github.io/2019/02/28/2018大厂面试题/" target="_blank" rel="external">https://93qlin.github.io/2019/02/28/2018大厂面试题/</a>
+                </p>
+                <footer><cite><a href="https://93qlin.github.io">@永不言弃</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2019/02/28/dva+roadhog/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">dva+roadhog</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2019/02/28/ant-design/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ant-design</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2018大厂面试题" data-title="2018面试题" data-url="https://93qlin.github.io/2019/02/28/2018大厂面试题/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        多谢多谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "2018面试题",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://93qlin.github.io/2019/02/28/2018大厂面试题/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    <!-- <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul> -->
+ </div>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+<!-- <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script> -->
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"log":false,"mobile":{"show":true},"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

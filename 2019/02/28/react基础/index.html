@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>react基础 | 永不言弃 | 一步一脚印，一岁一枯荣，never never give up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="react,JavaScript">
+  <meta name="description" content="react基础121.npm install -g create-react-app2.create-react-app 项目名称 redux1管理数据源和所有状态，负责展示的组件都可以采用无状态函数式的写法 组件类别有状态，无状态（也叫函数式组件），1有状态（state）:相同输入相同，输出结果可能不同。 1234567无状态组件：无生命周期，只负责根据传入的props来展示，不涉及到要stat">
+<meta name="keywords" content="react,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react基础">
+<meta property="og:url" content="https://93qlin.github.io/2019/02/28/react基础/index.html">
+<meta property="og:site_name" content="永不言弃">
+<meta property="og:description" content="react基础121.npm install -g create-react-app2.create-react-app 项目名称 redux1管理数据源和所有状态，负责展示的组件都可以采用无状态函数式的写法 组件类别有状态，无状态（也叫函数式组件），1有状态（state）:相同输入相同，输出结果可能不同。 1234567无状态组件：无生命周期，只负责根据传入的props来展示，不涉及到要stat">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-28T03:12:12.515Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react基础">
+<meta name="twitter:description" content="react基础121.npm install -g create-react-app2.create-react-app 项目名称 redux1管理数据源和所有状态，负责展示的组件都可以采用无状态函数式的写法 组件类别有状态，无状态（也叫函数式组件），1有状态（state）:相同输入相同，输出结果可能不同。 1234567无状态组件：无生命周期，只负责根据传入的props来展示，不涉及到要stat">
+  
+    <link rel="alternative" href="/atom.xml" title="永不言弃" type="application/atom+xml">
+  
+  <meta name="summary" content>
+  <link rel="shortcut icon" href="/bitbug_favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<link rel="stylesheet" href="/dist/APlayer.min.css">
+<body>
+  <div id="aplayer"></div>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">lin</h5>
+        <a href="mailto:925697386@qq.com" title="925697386@qq.com" class="mail">925697386@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/">
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives">
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags">
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/93qlin" target="_blank">
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/404">
+              <i class="icon icon-lg icon-link"></i>
+              测试
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC"></p>
+  <p>永不言弃 &copy; 2019</p>
+  lin
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+  <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=505820138&auto=0&height=66">
+</iframe> -->
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">react基础</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">react基础</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2019-02-28T03:12:12.515Z" itemprop="datePublished" class="page-time">
+  2019-02-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/react/">react</a></li></ul>
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-react基础" class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    <!-- <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul> -->
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#react基础"><span class="post-toc-number">1.</span> <span class="post-toc-text">react基础</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#redux"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">redux</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#组件"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">组件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#类别"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">类别</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#写法3种："><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">写法3种：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#用法"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">用法</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#动态输出数据"><span class="post-toc-number">2.</span> <span class="post-toc-text">动态输出数据</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#组件间数据传递"><span class="post-toc-number">3.</span> <span class="post-toc-text">组件间数据传递</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-父传子："><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">1.父传子：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-子传父："><span class="post-toc-number">3.0.2.</span> <span class="post-toc-text">2.子传父：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3-子传子"><span class="post-toc-number">3.0.3.</span> <span class="post-toc-text">3.子传子</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#虚拟DOM（体现性能高）"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">虚拟DOM（体现性能高）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#看怎么改变局部"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">看怎么改变局部</span></a></li></ol><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#事件"><span class="post-toc-number"></span> <span class="post-toc-text">事件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#组件的生命周期"><span class="post-toc-number">1.</span> <span class="post-toc-text">组件的生命周期</span></a></li></ol>
+            </li></nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="react基础"><a href="#react基础" class="headerlink" title="react基础"></a>react基础</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.npm install -g create-react-app</span><br><span class="line">2.create-react-app 项目名称</span><br></pre></td></tr></table></figure>
+<h4 id="redux"><a href="#redux" class="headerlink" title="redux"></a>redux</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">管理数据源和所有状态，负责展示的组件都可以采用无状态函数式的写法</span><br></pre></td></tr></table></figure>
+<h4 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h4><h5 id="类别"><a href="#类别" class="headerlink" title="类别"></a>类别</h5><p>有状态，无状态（也叫函数式组件），<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">有状态（state）:相同输入相同，输出结果可能不同。</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">无状态组件：无生命周期，只负责根据传入的props来展示，不涉及到要state状态的操作，相同输入，必定输出相同</span><br><span class="line">***何时使用：</span><br><span class="line">1.无需state,即不处理用户输入，组件所有数据都依赖props传入</span><br><span class="line">2.不需要用到生命周期函数</span><br><span class="line">***好处：</span><br><span class="line">1.不需要生命类，避免大量的extends或constuctor这样的代码，简洁</span><br><span class="line">2.不需要显示声明this,函数式声明的好处不需要像es6那样声明中将this绑定到当前作用域</span><br></pre></td></tr></table></figure>
+<h5 id="写法3种："><a href="#写法3种：" class="headerlink" title="写法3种："></a>写法3种：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">1.早期es5的写法 react.createClass(&#123;...&#125;)</span><br><span class="line">2.es6写法（有状态组件用比较好）: react.Component</span><br><span class="line">export default class Home extends Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      age: props.age,</span><br><span class="line">      status: 0</span><br><span class="line">    &#125;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      this.setState(&#123;</span><br><span class="line">        status: 1</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;, 3000)</span><br><span class="line">  &#125;</span><br><span class="line">  onMakeOlder() &#123;</span><br><span class="line">    this.age += 3;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      age: this.state.age + 3</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;......</span><br><span class="line">3.无状态写法</span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">const Header = (pros) =&gt; &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&quot;container&quot;&gt;</span><br><span class="line">        &lt;div className=&quot;row&quot;&gt;</span><br><span class="line">          &lt;div className=&quot;col-xs-1 col-xs-offset-11&quot;&gt;</span><br><span class="line">            &lt;h1&gt;Header&lt;/h1&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;;</span><br><span class="line">export default Header;</span><br></pre></td></tr></table></figure>
+<h5 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h5><p>1 .闭合<br>2.不闭合(父组件可以传内容过去)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Home name=&#123;&quot;max&quot;&#125; age=&#123;12&#125; user=&#123;user&#125;/&gt;</span><br><span class="line">&lt;Home name=&#123;&quot;max&quot;&#125; age=&#123;12&#125; user=&#123;user&#125;&gt;</span><br><span class="line">  &lt;p&gt;I am child&lt;/p&gt;</span><br><span class="line">&lt;/Home&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="动态输出数据"><a href="#动态输出数据" class="headerlink" title="动态输出数据"></a>动态输出数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">表达式： &#123;&#125;只能在一行</span><br></pre></td></tr></table></figure>
+<h3 id="组件间数据传递"><a href="#组件间数据传递" class="headerlink" title="组件间数据传递"></a>组件间数据传递</h3><p>定义类型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">import PropTypes from &apos;prop-types&apos;;</span><br><span class="line">export default class Home extends Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&quot;container&quot;&gt;</span><br><span class="line">        &lt;div className=&quot;row&quot;&gt;</span><br><span class="line">          &lt;div className=&quot;col-xs-1 col-xs-offset-11&quot;&gt;</span><br><span class="line">            &lt;h1&gt; Home, name is &#123; this.props.name&#125;, age is &#123;this.props.age &#125;&lt;/h1&gt;</span><br><span class="line">            &lt;ul&gt;</span><br><span class="line">              &#123;this.props.user.hobbies.map((habby,index) =&gt; &lt;li key=&#123;index&#125;&gt;&#123;habby&#125;&lt;/li&gt;)&#125;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div&gt;&#123;this.props.children&#125;&lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">Home.propTypes = &#123;</span><br><span class="line">  name: PropTypes.string,</span><br><span class="line">  age: PropTypes.number,</span><br><span class="line">  user: PropTypes.object</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h5 id="1-父传子："><a href="#1-父传子：" class="headerlink" title="1.父传子："></a>1.父传子：</h5><p>传值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Home name=&#123;&quot;max&quot;&#125; age=&#123;12&#125; user=&#123;user&#125;/&gt;</span><br><span class="line">&lt;Home name=&#123;&quot;max&quot;&#125; age=&#123;12&#125; user=&#123;user&#125;&gt;</span><br><span class="line">  &lt;p&gt;I am child&lt;/p&gt;</span><br><span class="line">&lt;/Home&gt;</span><br></pre></td></tr></table></figure></p>
+<p>传方法</p>
+<ol>
+<li>父组件定义方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">父：class App extends Component &#123;</span><br><span class="line">  onGreet() &#123;</span><br><span class="line">    alert(&quot;hello!&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    const user</span><br><span class="line">    .....</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>2.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">父：&lt;Home name=&#123;&quot;max&quot;&#125; age=&#123;12&#125; user=&#123;user&#125; greet=&#123;this.onGreet&#125;/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>3.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">子： &lt;button className=&quot;btn btn-primary&quot; onClick=&#123;this.props.greet&#125;&gt;&lt;/button&gt;</span><br></pre></td></tr></table></figure></p>
+<p>3.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.兄弟或无关组件： eventEmitter(npm 包)</span><br><span class="line">2.发布订阅模式</span><br></pre></td></tr></table></figure></p>
+<h5 id="2-子传父："><a href="#2-子传父：" class="headerlink" title="2.子传父："></a>2.子传父：</h5><p>…..</p>
+<h5 id="3-子传子"><a href="#3-子传子" class="headerlink" title="3.子传子"></a>3.子传子</h5><p>  过程：子 =&gt; 父 =&gt; 子<br>  首先父组件定义一个方法来改变当前的state，然后把事件传给一个子组件，当这个子组件触发这个事件并传值改变父组件的state，然后另一个子组件拿的那个父组件的值也相应更改</p>
+<h4 id="虚拟DOM（体现性能高）"><a href="#虚拟DOM（体现性能高）" class="headerlink" title="虚拟DOM（体现性能高）"></a>虚拟DOM（体现性能高）</h4><blockquote>
+<p>改变该改变的地方，不用重新渲染</p>
+</blockquote>
+<blockquote>
+<p>每操作一遍都会生成一个虚拟的DOM和之前的作比较（diff运算，找到改变的地方重新渲染）</p>
+</blockquote>
+<h4 id="看怎么改变局部"><a href="#看怎么改变局部" class="headerlink" title="看怎么改变局部"></a>看怎么改变局部</h4><p>  f12 =&gt;…=&gt; more tools =&gt; rending =&gt; paint flashing打钩</p>
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">export default class Home extends Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      age: props.age</span><br><span class="line">    &#125;</span><br><span class="line">    this.age = this.props.age;</span><br><span class="line">  &#125;</span><br><span class="line">  onMakeOlder() &#123;</span><br><span class="line">    this.age += 3;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      age: this.state.age + 3</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&quot;container&quot;&gt;</span><br><span class="line">        &lt;div className=&quot;row&quot;&gt;</span><br><span class="line">          &lt;div className=&quot;col-xs-1 col-xs-offset-11&quot;&gt;</span><br><span class="line">            &lt;h1&gt; Home, name is &#123; this.props.name&#125;, age is &#123;this.state.age &#125;&lt;/h1&gt;</span><br><span class="line">            &#123;/* &lt;ul&gt;</span><br><span class="line">              &#123;this.props.user.hobbies.map((habby,index) =&gt; &lt;li key=&#123;index&#125;&gt;&#123;habby&#125;&lt;/li&gt;)&#125;</span><br><span class="line">            &lt;/ul&gt; */&#125;</span><br><span class="line">            &lt;button onClick=&#123;this.onMakeOlder.bind(this)&#125; className=&quot;btn btn-primary&quot;&gt;Make me older&lt;/button&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div&gt;&#123;this.props.children&#125;&lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="组件的生命周期"><a href="#组件的生命周期" class="headerlink" title="组件的生命周期"></a>组件的生命周期</h3><p>  1.Mounting(被挂载时)<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">componentWillMount 在渲染前调用,在客户端也在服务端。</span><br><span class="line">componentDidMount : 在第一次渲染后调用，只在客户端。之后组件已经生成了对应的DOM结构，可以通过this.getDOMNode()来进行访问。 如果你想和其他JavaScript框架一起使用，可以在这个方法中调用setTimeout, setInterval或者发送AJAX请求等操作(防止异部操作阻塞UI)。</span><br></pre></td></tr></table></figure></p>
+<p>  2.Updating(更新时)<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">componentWillReceiveProps 在组件接收到一个新的 prop (更新后)时被调用。这个方法在初始化render时不会被调用。</span><br><span class="line">shouldComponentUpdate（可以发送请求） 返回一个布尔值。在组件接收到新的props或者state时被调用。在初始化时或者使用forceUpdate时不被调用。</span><br><span class="line">可以在你确认不需要更新组件时使用。</span><br><span class="line">componentWillUpdate在组件接收到新的props或者state但还没有render时被调用。在初始化时不会被调用。</span><br><span class="line">componentDidUpdate 在组件完成更新后立即调用。在初始化时不会被调用。</span><br></pre></td></tr></table></figure></p>
+<p>  3.Unmounting(移除时)<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">componentWillUnmount在组件从 DOM 中移除的时候立刻被调用。</span><br></pre></td></tr></table></figure></p>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://93qlin.github.io/2019/02/28/react基础/" target="_blank" rel="external">https://93qlin.github.io/2019/02/28/react基础/</a>
+                </p>
+                <footer><cite><a href="https://93qlin.github.io">@永不言弃</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2019/02/28/函数式编程/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">函数式编程</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2019/02/28/react钩子 hook/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">hook</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="react基础" data-title="react基础" data-url="https://93qlin.github.io/2019/02/28/react基础/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        多谢多谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "react基础",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://93qlin.github.io/2019/02/28/react基础/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    <!-- <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul> -->
+ </div>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+<!-- <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script> -->
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"log":false,"mobile":{"show":true},"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
