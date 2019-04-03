@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="永不言弃">
 <meta property="og:description" content="model: 模式配置 可设置的值为mode：none，development或production（默认值）  用法 只需mode在配置中提供选项：123module.exports = &amp;#123;  mode: &amp;apos;production&amp;apos;&amp;#125;;   或者将其作为CLI参数传递：1webpack --mode=productio  命令来指定打包文件到指定文件夹1we">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-26T14:04:17.386Z">
+<meta property="og:updated_time" content="2019-03-29T12:00:58.264Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack4">
 <meta name="twitter:description" content="model: 模式配置 可设置的值为mode：none，development或production（默认值）  用法 只需mode在配置中提供选项：123module.exports = &amp;#123;  mode: &amp;apos;production&amp;apos;&amp;#125;;   或者将其作为CLI参数传递：1webpack --mode=productio  命令来指定打包文件到指定文件夹1we">
@@ -238,7 +238,7 @@
 <p>babel插件两种使用方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.babelrc（项目根目录新建此文件，然后复制进去）</span><br><span class="line"></span><br><span class="line">Without options:</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: [&quot;@babel/plugin-transform-arrow-functions&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">With options:  （在webpack配置文件里加）</span><br><span class="line"></span><br><span class="line">&lt;!-- &#123;</span><br><span class="line">  &quot;plugins&quot;: [</span><br><span class="line">    [&quot;@babel/plugin-transform-arrow-functions&quot;, &#123; &quot;spec&quot;: true &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125; --&gt;</span><br><span class="line"></span><br><span class="line">module: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: /\.m?js$/,</span><br><span class="line">      exclude: /(node_modules|bower_components)/,</span><br><span class="line">      use: &#123;</span><br><span class="line">        loader: &apos;babel-loader&apos;,</span><br><span class="line">        options: &#123;</span><br><span class="line">          plugins: [&apos;@babel/plugin-proposal-object-rest-spread&apos;]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="babel-preset-预设"><a href="#babel-preset-预设" class="headerlink" title="babel (preset)预设"></a>babel (preset)预设</h4><blockquote>
-<p>作用： 解决每写一个js新语法都装一个插件比如箭头函数，class,<br>bable-env<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: /\.m?js$/,</span><br><span class="line">      exclude: /(node_modules|bower_components)/,</span><br><span class="line">      use: &#123;</span><br><span class="line">        loader: &apos;babel-loader&apos;,</span><br><span class="line">        options: &#123;</span><br><span class="line">          presets: [&apos;@babel/preset-env&apos;], //预设,包含某些es6常用插件</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>作用： 解决每写一个js新语法都装一个插件比如箭头函数，class,<br>bable-env// 不包含装饰器插件，所以es6装饰器可能要加装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: /\.m?js$/,</span><br><span class="line">      exclude: /(node_modules|bower_components)/,</span><br><span class="line">      use: &#123;</span><br><span class="line">        loader: &apos;babel-loader&apos;,</span><br><span class="line">        options: &#123;</span><br><span class="line">          presets: [&apos;@babel/preset-env&apos;,&#123;debug: true&#125;], //预设,包含某些es6常用插件,debug可以看到预设了那些插件</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 
 
@@ -259,12 +259,19 @@
             
 <nav class="post-nav">
   
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2019/03/30/偶尔练练css之小胡子/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">偶尔练练css之小胡子</h4>
+      </a>
+    </div>
+  
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2019/02/28/面试/" id="post-next" class="post-nav-link">
+      <a href="/2019/02/28/项目中第一次向数据库连续添加多条数据/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">面试</h4>
+        <h4 class="title">项目中第一次向数据库连续添加多条数据</h4>
       </a>
     </div>
   
