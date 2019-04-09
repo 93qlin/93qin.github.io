@@ -137,13 +137,13 @@
       <ul class="post-list">
   
     <li class="post-list-item">
-        <article id="post-原型和闭包" class="article article-type-post" itemprop="blogPost">
+        <article id="post-基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈、作用域" class="article article-type-post" itemprop="blogPost">
      
 
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/02/28/原型和闭包/">原型和闭包</a>
+      <a class="post-title-link" href="/2019/02/28/基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈、作用域/">基础1.1:变量（变量提升,暂时性死区）、执行环境、执行栈、作用域</a>
     </h3>
   
 
@@ -155,7 +155,7 @@
 </time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/原型和闭包/">原型和闭包</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/基础1-1-变量（变量提升-暂时性死区）、执行环境、执行栈、作用域/">基础1.1:变量（变量提升,暂时性死区）、执行环境、执行栈、作用域</a></li></ul>
 
 
 
@@ -164,20 +164,16 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-              ==1.一切（引用类型）都是对象，对象是属性的集合。==    2.函数和对象的关系  
- 
- ==函数就是对象的一种==       1   2       var fn = function () &#123; &#125;;   console.log(fn instanceof Object);  // true        
- 
- 
- 函数与对象之间，却不仅仅是一种包含和被
+              一·变量提升  首先两个打印例子       1   2   3       a = &apos;ghostwu&apos;;   var a;   console.log( a );   //ghostwu        
+      1   2       console.log( a );   var a = &apos;ghostwu&apos;; //undefined   
     
     
-        <a href="/2019/02/28/原型和闭包/" class="post-more waves-effect waves-button">
+        <a href="/2019/02/28/基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈、作用域/" class="post-more waves-effect waves-button">
             阅读全文...
         </a>
     </div>
     
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
 
 </article>
 
@@ -273,6 +269,53 @@
     </li>
   
     <li class="post-list-item">
+        <article id="post-原型和闭包" class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/28/原型和闭包/">原型和闭包</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2019-02-28T03:12:12.517Z" itemprop="datePublished" class="post-time">
+  2019-02-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/原型和闭包/">原型和闭包</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+              ==1.一切（引用类型）都是对象，对象是属性的集合。==    2.函数和对象的关系  
+ 
+ ==函数就是对象的一种==       1   2       var fn = function () &#123; &#125;;   console.log(fn instanceof Object);  // true        
+ 
+ 
+ 函数与对象之间，却不仅仅是一种包含和被
+    
+    
+        <a href="/2019/02/28/原型和闭包/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
         <article id="post-单页面多路由" class="article article-type-post" itemprop="blogPost">
      
 
@@ -318,49 +361,6 @@
     </li>
   
     <li class="post-list-item">
-        <article id="post-基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈、作用域" class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/02/28/基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈、作用域/">基础1.1:变量（变量提升,暂时性死区）、执行环境、执行栈、作用域</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2019-02-28T03:12:12.517Z" itemprop="datePublished" class="post-time">
-  2019-02-28
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/基础1-1-变量（变量提升-暂时性死区）、执行环境、执行栈、作用域/">基础1.1:变量（变量提升,暂时性死区）、执行环境、执行栈、作用域</a></li></ul>
-
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-              一·变量提升  首先两个打印例子       1   2   3       a = &apos;ghostwu&apos;;   var a;   console.log( a );   //ghostwu        
-      1   2       console.log( a );   var a = &apos;ghostwu&apos;; //undefined   
-    
-    
-        <a href="/2019/02/28/基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈、作用域/" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
         <article id="post-判断数据类型" class="article article-type-post" itemprop="blogPost">
      
 
@@ -397,50 +397,6 @@
     </div>
     
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-webpack" class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/02/28/webpack/">webpack</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2019-02-28T03:12:12.516Z" itemprop="datePublished" class="post-time">
-  2019-02-28
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/webpack/">webpack</a></li></ul>
-
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-              webpack    基础  1 .初始化： npm init 2 .安装： npm install webpack –save-dev 
-   webpack处理js文件  命令： webpack ./hello.js hello.bunder.js（生成的文件名） 
-   webpack处理css文件  需要安装loader: npm install  css-loader sty
-    
-    
-        <a href="/2019/02/28/webpack/" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
 
 </article>
 
@@ -572,6 +528,50 @@
     </div>
     
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-webpack" class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/28/webpack/">webpack</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2019-02-28T03:12:12.516Z" itemprop="datePublished" class="post-time">
+  2019-02-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/webpack/">webpack</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+              webpack    基础  1 .初始化： npm init 2 .安装： npm install webpack –save-dev 
+   webpack处理js文件  命令： webpack ./hello.js hello.bunder.js（生成的文件名） 
+   webpack处理css文件  需要安装loader: npm install  css-loader sty
+    
+    
+        <a href="/2019/02/28/webpack/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
 
 </article>
 
