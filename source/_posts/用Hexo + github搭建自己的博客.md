@@ -5,7 +5,7 @@ tags:
   - Hexo
   - github
 ---
-## 看见一个朋友用这个做了一个博客然后自己就开始研究一下(好像已经过时了，那就当做自己的另一个笔记本吧)
+<!-- ## 看见一个朋友用这个做了一个博客然后自己就开始研究一下(好像已经过时了，那就当做自己的另一个笔记本吧)
 > 一篇博客(https://blog.csdn.net/Hoshea_chx/article/details/78826689)写的不错就截屏保存，以防删除：
 
-![image](/img/hexo.png)
+![image](/img/hexo.png) -->
