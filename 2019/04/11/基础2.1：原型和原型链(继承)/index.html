@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="永不言弃">
 <meta property="og:description" content="目录  &amp;emsp;1. 原型 &amp;emsp;2. 原型链 &amp;emsp;2. 继承 前因后果 原因OO语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际方法。由于函数没有签名，在ECMAScript中无法实现接口继承，只支持实现继承，所以其实现 继承 主要是依靠原型链继续  原型链是用来实现继承的，因為沒有類的結構，用prototype實現有類語言的繼承特性(創">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-12T12:43:55.666Z">
+<meta property="og:updated_time" content="2019-04-12T13:11:30.049Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2.1原型与原型链(继承)">
 <meta name="twitter:description" content="目录  &amp;emsp;1. 原型 &amp;emsp;2. 原型链 &amp;emsp;2. 继承 前因后果 原因OO语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际方法。由于函数没有签名，在ECMAScript中无法实现接口继承，只支持实现继承，所以其实现 继承 主要是依靠原型链继续  原型链是用来实现继承的，因為沒有類的結構，用prototype實現有類語言的繼承特性(創">
@@ -219,9 +219,10 @@
 
 <p>原型链是实现继承的主要方法。其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。</p>
 <p><strong>概念：</strong></p>
-<p>每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，实例都包含一个指向原型对象的指针。假如原型对象是另一个构造函数的实例，那么原型对象也包含一个指向另一个原型的指针，如此层层递进，就叫原型链。</p>
-<p>所有引用类型都默认继承自 object ，object 的原型为null。</p>
-<p>确定原型与实例之间的关系：instanceof isPrototypeOf<br><strong>继承</strong><br>七种继承的方式<a href="https://github.com/93qlin/webNote/tree/master/Other" target="_blank" rel="noopener">传送门</a><br><strong>使用原型继承的缺陷</strong><br>问题一：引用类型值的原型属性会被所有实例共享</p>
+<p>每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，实例都包含一个指向原型对象的指针。假如原型对象是另一个构造函数的实例，那么原型对象也包含一个指向另一个原型的指针，如此层层递进，就叫原型链。<br>简而言之：因为没有类的结构，用prototype实现有类语言的继承特性（创建构造器，指向对象）</p>
+<p>注：所有引用类型都默认继承自 object ，object 的原型为null。</p>
+<p>确定原型与实例之间的关系：instanceof isPrototypeOf</p>
+<p><strong>继承</strong><br>七种继承的方式<a href="http://www.93lin.cn/2019/02/28/%E5%9F%BA%E7%A1%801.5%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B9%8B%E7%BB%A7%E6%89%BF%E7%9A%84%E7%9A%84%E4%B8%83%E7%A7%8D%E6%96%B9%E5%BC%8F/" target="_blank" rel="noopener">传送门</a><br><strong>使用原型继承的缺陷</strong><br>问题一：引用类型值的原型属性会被所有实例共享</p>
 <p>举个例：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function SuperType() &#123;</span><br><span class="line">    this.colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function SubType() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SubType.prototype = new SuperType();</span><br><span class="line"></span><br><span class="line">var instance1 = new SuperType();</span><br><span class="line">instance1.colors.push(&quot;black&quot;);</span><br><span class="line">alert(instance1.colors); //&quot;red,blue,green,black&quot;</span><br><span class="line"></span><br><span class="line">var instance2 = new SubType();</span><br><span class="line">alert(instance2.colors); //&quot;red,blue,green,black&quot;</span><br></pre></td></tr></table></figure>
 <p>例子中，SubType（子类）通过原型链继承了SuperType，SubType.prototype就变成了SuperType（超类，也就是我们所说的父类）的一个实例。也就是说，SubType.prototype中会有一个colors的数组，SubType的所有实例都将共享colors这个数组（引用类型值）。因此只要SubType其中一个实例对colors做了修改，就会影响到其他所有SubType的实例。</p>
