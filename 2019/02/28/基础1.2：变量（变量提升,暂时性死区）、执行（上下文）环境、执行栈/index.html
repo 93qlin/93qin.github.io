@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>基础1.1:变量（变量提升,暂时性死区）、执行环境、执行栈 | 永不言弃 | 一步一脚印，一岁一枯荣，never never give up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="基础,JavaScript">
+  <meta name="description" content="一·变量提升首先两个打印例子123a = &amp;apos;ghostwu&amp;apos;;var a;console.log( a );   //ghostwu 12console.log( a );var a = &amp;apos;ghostwu&amp;apos;; //undefined why?  首先:明确两点  javascript代码并不是一行一行往下执行的. javascript执行分为2个步骤:1.编">
+<meta name="keywords" content="基础,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础1.1:变量（变量提升,暂时性死区）、执行环境、执行栈">
+<meta property="og:url" content="https://93qlin.github.io/2019/02/28/基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈/index.html">
+<meta property="og:site_name" content="永不言弃">
+<meta property="og:description" content="一·变量提升首先两个打印例子123a = &amp;apos;ghostwu&amp;apos;;var a;console.log( a );   //ghostwu 12console.log( a );var a = &amp;apos;ghostwu&amp;apos;; //undefined why?  首先:明确两点  javascript代码并不是一行一行往下执行的. javascript执行分为2个步骤:1.编">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://93qlin.github.io/img/zhixing.jpg">
+<meta property="og:updated_time" content="2019-04-11T06:59:42.271Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基础1.1:变量（变量提升,暂时性死区）、执行环境、执行栈">
+<meta name="twitter:description" content="一·变量提升首先两个打印例子123a = &amp;apos;ghostwu&amp;apos;;var a;console.log( a );   //ghostwu 12console.log( a );var a = &amp;apos;ghostwu&amp;apos;; //undefined why?  首先:明确两点  javascript代码并不是一行一行往下执行的. javascript执行分为2个步骤:1.编">
+<meta name="twitter:image" content="https://93qlin.github.io/img/zhixing.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="永不言弃" type="application/atom+xml">
+  
+  <meta name="summary" content>
+  <link rel="shortcut icon" href="/bitbug_favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<link rel="stylesheet" href="/dist/APlayer.min.css">
+<body>
+  <div id="aplayer"></div>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">lin</h5>
+        <a href="mailto:925697386@qq.com" title="925697386@qq.com" class="mail">925697386@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/">
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives">
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags">
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/93qlin" target="_blank">
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/404">
+              <i class="icon icon-lg icon-link"></i>
+              测试
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC"></p>
+  <p>永不言弃 &copy; 2019</p>
+  lin
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+  <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=505820138&auto=0&height=66">
+</iframe> -->
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">基础1.1:变量（变量提升,暂时性死区）、执行环境、执行栈</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">基础1.1:变量（变量提升,暂时性死区）、执行环境、执行栈</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2019-02-28T03:12:12.517Z" itemprop="datePublished" class="page-time">
+  2019-02-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/基础1-1-变量（变量提升-暂时性死区）、执行环境、执行栈/">基础1.1:变量（变量提升,暂时性死区）、执行环境、执行栈</a></li></ul>
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈" class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    <!-- <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul> -->
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一·变量提升"><span class="post-toc-number">1.</span> <span class="post-toc-text">一·变量提升</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二：执行环境"><span class="post-toc-number">2.</span> <span class="post-toc-text">二：执行环境</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="一·变量提升"><a href="#一·变量提升" class="headerlink" title="一·变量提升"></a>一·变量提升</h3><p>首先两个打印例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &apos;ghostwu&apos;;</span><br><span class="line">var a;</span><br><span class="line">console.log( a );   //ghostwu</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log( a );</span><br><span class="line">var a = &apos;ghostwu&apos;; //undefined</span><br></pre></td></tr></table></figure>
+<p><strong>why?</strong></p>
+<blockquote>
+<p>首先:明确两点</p>
+<ul>
+<li>javascript代码并不是一行一行往下执行的.</li>
+<li>javascript执行分为2个步骤:<pre><code>1.编译(词法解释/预解释)
+2.执行
+</code></pre></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>其次:当我们碰到 var a = “ghostwu” 定义一个变量的时候， 其实js把这句话看成是2个阶段的事,  var a 发生在==编译==阶段， a = ‘ghostwu’发生在执行阶段. 然后 var a会被提升到当前作用域的最前面,  a = ‘ghostwu’留在原地==等待执行==阶段，所以：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = &apos;ghostwu&apos;;</span><br><span class="line">var a;</span><br><span class="line">console.log( a );</span><br><span class="line">// 上面这段代码经过编译之后，变成下面这样</span><br><span class="line">var a;  //被提升到当前作用域的最前面</span><br><span class="line">a = &apos;ghostwu&apos;; //留在原地，等待执行</span><br><span class="line">console.log( a );</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">console.log( a );</span><br><span class="line">var a = &apos;ghostwu&apos;;</span><br><span class="line">//上面这段代码,经过编译之后，变成下面这样</span><br><span class="line">var a;</span><br><span class="line">console.log( a );</span><br><span class="line">a = &apos;ghostwu&apos;;</span><br></pre></td></tr></table></figure>
+<p><strong>明确函数定义的两种方式</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//函数声明, 形如:</span><br><span class="line">function show()&#123;</span><br><span class="line">    console.log( &apos;函数声明方式&apos; );</span><br><span class="line">&#125;</span><br><span class="line">//函数表达式, 形如:</span><br><span class="line">var show = function()&#123;</span><br><span class="line">    console.log( &apos;表达式方式&apos; );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>因为表达式和函数声明，在编译阶段，会产生不同的解释效果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">show(); //undefined</span><br><span class="line">function show()&#123;</span><br><span class="line">    console.log( a );</span><br><span class="line">    var a = &apos;ghostwu&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>函数声明会被提升</strong></p>
+<blockquote>
+<p>所以，上面的代码，经过编译之后，就变成了下面这样：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function show()&#123;    //函数声明被提升到 当前作用域的最前面</span><br><span class="line">    var a;    //var声明被提升到当前作用域的最前面, 注意，它不会提升到函数的外面, 因为当前的作用域是在函数中</span><br><span class="line">    console.log( a );</span><br><span class="line">    a = &apos;ghostwu&apos;;</span><br><span class="line">&#125;</span><br><span class="line">show();</span><br></pre></td></tr></table></figure>
+<p><strong>函数表达式，是不会提升的</strong>, 看下面的例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">show(); //报错,show is not a function</span><br><span class="line">var show = function()&#123;</span><br><span class="line">console.log( &apos;ghostwu&apos; );</span><br><span class="line">&#125;</span><br><span class="line">//对于上面这段表达式代码，经过编译之后:</span><br><span class="line">var show;</span><br><span class="line">show();  //执行之后就是 undefined, 所以在表达式定义之前，调用函数报错了</span><br><span class="line">show = function()&#123;</span><br><span class="line">console.log( &apos;ghostwu&apos; );</span><br></pre></td></tr></table></figure></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">show(); //你好</span><br><span class="line">var show;</span><br><span class="line">function show()&#123;</span><br><span class="line">    console.log( &apos;你好&apos; );</span><br><span class="line">&#125;</span><br><span class="line">show = function()&#123;</span><br><span class="line">    console.log( &apos;hello&apos; );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上面的例子<strong>为什么</strong>是你好？<br>因为： 当出现同名的函数声明，变量声明的时候， 函数声明会被优先提升，变量声明会被忽略。 所以经过编译之后，就变成:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function show()&#123;</span><br><span class="line">    console.log( &apos;你好&apos; );</span><br><span class="line">&#125;</span><br><span class="line">show(); //你好</span><br><span class="line">show = function()&#123;</span><br><span class="line">    console.log( &apos;hello&apos; );</span><br><span class="line">&#125;</span><br><span class="line">show();//如果这里在调用一次，就是hello, 因为show函数体在执行阶段 被 重新赋值了</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>如果有同名的函数声明，后面的会覆盖前面的，如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">show(); //how are you</span><br><span class="line">var show;</span><br><span class="line">function show()&#123;</span><br><span class="line">    console.log( &apos;hello&apos; );</span><br><span class="line">&#125;    </span><br><span class="line">show = function()&#123;</span><br><span class="line">    console.log( &apos;你好&apos; );</span><br><span class="line">&#125;</span><br><span class="line">function show()&#123;</span><br><span class="line">    console.log( &apos;how are you!&apos; );</span><br><span class="line">&#125;</span><br><span class="line">//上面的代码经过编译之后，变成如下形式:</span><br><span class="line">function show()&#123;</span><br><span class="line">    console.log( &apos;how are you!&apos; );</span><br><span class="line">&#125;</span><br><span class="line">show(); //how are you</span><br><span class="line">show = function()&#123;</span><br><span class="line">    console.log( &apos;你好&apos; );</span><br><span class="line">&#125;</span><br><span class="line">show(); //如果在这里再执行一次，结果：你好</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>暂时性死区</strong><br>我们都知道，var声明的变量会有变量提升的作用，如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.log(a);  //1</span><br><span class="line">var a=1;</span><br><span class="line">console.log(b);  //undefined</span><br><span class="line">var b;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>可以看出，虽然代码中console调用a在前，声明a在后，但是由于在js中，函数及变量的声明都将被提升到函数的最顶部，也就是说（var声明的）变量可以先使用再声明。</p>
+</blockquote>
+<blockquote>
+<p>然后，使用let，const（后面会提及）声明的变量却不存在变量提升。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">console.log(foo); // Uncaught ReferenceError: foo is not defined</span><br><span class="line">let foo = 2;</span><br><span class="line"></span><br><span class="line">console.log(foo1); // Uncaught ReferenceError: foo1 is not defined</span><br><span class="line">let foo1;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p><strong>ES6明确规定</strong>，如果区块中存在let命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。所以在代码块内，使用let,const命令声明变量之前，该变量都是<strong>不可用</strong>的。这在语法上，称为“暂时性死区”（temporal dead zone，简称 TDZ）。</p>
+</blockquote>
+<blockquote>
+<p>总之，暂时性死区的本质就是，只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量。</p>
+</blockquote>
+<p>注：“暂时性死区”也意味着typeof不再是一个百分之百安全的操作，因为会使typeof报错。</p>
+<blockquote>
+<p>变量提升的原因：在创建阶段，函数声明存储在环境中，而变量会被设置为 undefined（在 var 的情况下）或保持未初始化（在 <strong>let和 const</strong>的情况下）。所以这就是为什么可以在声明之前访问 var 定义的变量（尽管是 undefined ），但如果在声明之前访问 let 和 const 定义的变量就会提示引用错误的原因。这就是所谓的变量提升。<br><strong>let不允许在相同作用域内，重复声明同一个变量。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">if (true) &#123;</span><br><span class="line">  let aa;</span><br><span class="line">  let aa; // Uncaught SyntaxError: Identifier &apos;aa&apos; has already been declared</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (true) &#123;</span><br><span class="line">  var _aa;</span><br><span class="line">  let _aa; // Uncaught SyntaxError: Identifier &apos;_aa&apos; has already been declared</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (true) &#123;</span><br><span class="line">  let aa_;</span><br><span class="line">  var aa_; // Uncaught SyntaxError: Identifier &apos;aa_&apos; has already been declared</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>全局变量 vs 全局对象的属性</strong></p>
+<blockquote>
+<p>ES5中全局对象的属性与全局变量基本是等价的，但是也有区别，比如通过var声明的全局变量不能使用delete从 window/global （ global是针对与node环境）上删除，不过在变量的访问上基本等价。</p>
+</blockquote>
+<blockquote>
+<p>ES6 中做了严格的区分，使用 var 和 function 声明的全局变量依旧作为全局对象的属性，使用 let, const 命令声明的全局变量<strong>不属于全局对象的属性</strong>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let let_test = &apos;test&apos;;</span><br><span class="line">console.log(window.let_test);   // undefined</span><br><span class="line">console.log(this.let_test);   // undefined</span><br><span class="line"></span><br><span class="line">var var_test = &apos;test&apos;;</span><br><span class="line">console.log(window.var_test);  // test</span><br><span class="line">console.log(this.var_test);  // test</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>const</strong></p>
+<blockquote>
+<p>除了let以外，ES6还引入了const，同样可以用来创建块作用域变量，但其值是<strong>固定的（常量）。使用const声明变量的时候，必须同时赋值，否则会报错。并且之后任何试图修改值的操作都会引起错误</strong>.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const data;  //Uncaught SyntaxError: Missing initializer in const declaration</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if (true) &#123;</span><br><span class="line">    var a = 2;</span><br><span class="line">    const b = 3; // 包含在 if 中的块作用域常量</span><br><span class="line">    a = 3; // 正常 !</span><br><span class="line">    b = 4; // Uncaught TypeError: Assignment to constant variable.</span><br><span class="line">&#125;</span><br><span class="line">console.log( a ); // 3</span><br><span class="line">console.log( b ); // Uncaught ReferenceError: b is not defined</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：复合类型const变量保存的是引用。因为复合类型的常量不指向数据，而是指向数据(heap)所在的地址(stack)，所以通过 const 声明的复合类型只能保证其地址引用不变，但不能保证其数据不变。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const arr= [1, 2];</span><br><span class="line">// 修改数据而不修改引用地址，正确执行</span><br><span class="line">arr.push(3);  // [1, 2, 3]</span><br><span class="line">// 修改 arr 常量所保存的地址的值，报错</span><br><span class="line">arr = [];     // Uncaught TypeError: Assignment to constant variable.</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>简单的使用const无法完成对象的冻结。可以通过<strong>Object.freeze</strong>()方法实现对对象的冻结。使用Object.freeze()方法返回的对象将不能对其属性进行配置(definedProperty()不可用)同时<strong>不能添加新的属性和移除(remove)已有属性</strong>。彻底冻结对象时需要递归的对它的对象属性进行冻结。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">  a: 1,</span><br><span class="line">  b: &#123;</span><br><span class="line">    b1: 2</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.b.b1 = 3;</span><br><span class="line">console.log(obj.b.b1 ); //3</span><br><span class="line">function freeze(obj)&#123;</span><br><span class="line">  Object.freeze(obj);</span><br><span class="line">  Object.values(obj).forEach(function (value,index) &#123;</span><br><span class="line">    if(typeof value === &apos;object&apos;)&#123;</span><br><span class="line">      freeze(value);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">freeze(obj);</span><br><span class="line">obj.b.b1 = 4;</span><br><span class="line">console.log(obj.b.b1); //3</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="二：执行环境"><a href="#二：执行环境" class="headerlink" title="二：执行环境"></a>二：执行环境</h3><p><strong>什么是js的”执行环境”？</strong></p>
+<blockquote>
+<p> 执行环境是JavaScript中最为重要的一个概念。执行环境定义了变量或函数有权访问的其它数据，决定了各自的行为。每个执行环境中包含这三部分：变量对象/活动对象，作用域链，this的值,当JavaScript代码执行的时候，会进入不同的执行环境，这些不同的执行环境就构成了执行环境栈。</p>
+</blockquote>
+<p><strong>执行环境的类型</strong></p>
+<blockquote>
+<p>执行环境总共有三种类型<br>1.全局执行环境：只有一个，浏览器中的全局对象就是 window 对象，this 指向这个全局对象。<br>2.函数执行环境：存在无数个，只有在函数被调用的时候才会被创建，每次调用函数都会创建一个新的执行环境。<br>3.Eval 函数执行环境： 指的是运行在 eval 函数中的代码，不用很少用而且不建议使用。</p>
+</blockquote>
+<p><strong>执行栈</strong></p>
+<blockquote>
+<p>用于存储在代码执行期间创建的所有执行环境。</p>
+</blockquote>
+<blockquote>
+<p>JavaScript解释器在浏览器中是<strong>单线程</strong>的（<strong>下面再说进程和线程</strong>），这意味着浏览器在同一时间内只执行一个事件，对于其他的事件我们把它们排队在一个称为 执行栈的地方。下表是一个单线程栈的抽象视图。</p>
+</blockquote>
+<p><img src="/img/zhixing.jpg" alt="image"></p>
+<blockquote>
+<p>当浏览器第一次加载你的script，它默认的进了全局执行环境。如果在你的全局代码中你调用了一个函数，那么顺序流就会进入到你调用的函数当中，创建一个新的执行环境并且把这个环境添加到执行栈的顶部。如果在当前的函数中调用了其他函数，同样的事会再次发生。执行流进入内部函数，并且创建一个新的执行环境，把它添加到已经存在的执行栈的顶部。浏览器始终执行当前在栈顶部的执行环境。一旦函数完成了当前的执行环境，它就会被弹出栈的顶部, 把控制权返回给当前执行环境的下个执行环境。下面例子展示了一个递归函数和该程序的执行栈：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (i === <span class="number">3</span>) &#123;</span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">foo(++i);</span><br><span class="line">&#125;</span><br><span class="line">&#125;(<span class="number">0</span>));</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>这段代码简单地调用了自己三次，由1递增i的值。每次函数foo被调用，一个新的执行环境就会被调用。一旦一个环境完成了执行，它就会被弹出执行栈并且把控制权返回给当前执行环境的下个执行环境直到再次到达全局执行环境。</p>
+</blockquote>
+<p><strong>记住执行栈，有五个关键点</strong></p>
+<ul>
+<li>单线程</li>
+<li>同步执行</li>
+<li>一个全局环境</li>
+<li>无限的函数环境</li>
+<li>函数被调用就会创建一个新的执行环境，甚至调用自己。</li>
+</ul>
+<p><strong>执行环境的详情</strong></p>
+<blockquote>
+<p>一个函数被调用就会创建一个新的执行环境。然而解释器的内部，每次调用执行环境会有<strong>两个阶段：</strong></p>
+<ol>
+<li>创建阶段</li>
+</ol>
+<ul>
+<li>当函数被调用，但是为执行内部代码之前:</li>
+<li>创建一个<a href="http://davidshariff.com/blog/javascript-scope-chain-and-closures/" target="_blank" rel="noopener">作用域链</a>。</li>
+<li>创建变量，函数和参数。</li>
+<li>确定this的值。</li>
+</ul>
+<ol start="2">
+<li>激活/代码执行阶段</li>
+</ol>
+<ul>
+<li>赋值，引用函数，解释/执行代码。<br>这可能意味着每个执行环境在概念上作为一个对象并带有三个属性<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">executionContextObj = &#123;</span><br><span class="line">scopeChain: &#123; <span class="comment">/* variableObject + all parent execution context's variableObject */</span> &#125;,</span><br><span class="line"><span class="comment">//作用域链：&#123;变量对象＋所有父执行环境的变量对象&#125;</span></span><br><span class="line">variableObject: &#123; <span class="comment">/* function arguments / parameters, inner variable and function declarations */</span> &#125;,</span><br><span class="line"><span class="comment">//变量对象:&#123;函数形参＋内部的变量＋函数声明(但不包含表达式)&#125;</span></span><br><span class="line"><span class="keyword">this</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p><strong>活动／变量 对象(AO/VO)</strong><br>当函数被调用，executionContextObj就被创建，该对象在实际函数执行前就已创建。这就是已知的第一个阶段创建阶段.在第一阶段，解释器创建了executionContextObj对象，通过扫描函数，传递形参，函数声明和局部变量声明。扫描的结果成为了变量对象在executionContextObj中。</p>
+<ul>
+<li>这有一个解释器是如何评估代码的伪概述：</li>
+</ul>
+<ol>
+<li>找到一些代码来调用函数</li>
+<li>在执行函数代码前，创建执行环境</li>
+<li>进入创建阶段：</li>
+</ol>
+<ul>
+<li>初始化作用域链</li>
+<li>创建变量对象:</li>
+<li>创建arguments对象，检查环境中的参数，初始化名和值，创建一个参考副本</li>
+<li>扫描环境中内的函数声明：</li>
+<li>某个函数被发现，在变量对象创建一个属性，它是函数的确切名。它是一个指针在内存中，指向这个函数。</li>
+<li>如果这个函数名已存在，这个指针的值将会重写。</li>
+<li>扫描环境内的变量声明</li>
+<li>某个变量声明被发现，在变量对象中创建一个属性，他是变量的名，初始化它的值为undefined。</li>
+<li>如果变量名在变量对象中已存在，什么也不做，继续扫描。</li>
+<li>在环境中确定this的值。</li>
+</ul>
+<ol start="4">
+<li>激活/代码执行阶段：在当前环境上运行/解释函数代码，并随着代码一行行执行指派变量的值</li>
+</ol>
+<p>看下面例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line"><span class="keyword">var</span> a = <span class="string">'hello'</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span> <span class="title">privateB</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(<span class="number">22</span>);</span><br></pre></td></tr></table></figure></p>
+<p>On calling foo(22), the creation stage looks as follows:<br>在调用foo(22)时，创建阶段像下面这样：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">fooExecutionContext = &#123;</span><br><span class="line">scopeChain: &#123; ... &#125;,</span><br><span class="line">variableObject: &#123;</span><br><span class="line"><span class="built_in">arguments</span>: &#123;</span><br><span class="line"><span class="number">0</span>: <span class="number">22</span>,</span><br><span class="line">length: <span class="number">1</span></span><br><span class="line">&#125;,</span><br><span class="line">i: <span class="number">22</span>,</span><br><span class="line">c: pointer to <span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"><span class="title">a</span>: <span class="title">undefined</span>,</span></span><br><span class="line"><span class="function"><span class="title">b</span>: <span class="title">undefined</span></span></span><br><span class="line"><span class="function">&#125;,</span></span><br><span class="line"><span class="function"><span class="title">this</span>: </span>&#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>正如你看到的，创建阶段处理了定义属性的名，但是并不把值赋给变量，不包括形参和实参。一旦创建阶段完成,执行流进入函数并且激活/代码执行阶段,在函数执行结束之后，看起来像这样：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">fooExecutionContext = &#123;</span><br><span class="line">scopeChain: &#123; ... &#125;,</span><br><span class="line">variableObject: &#123;</span><br><span class="line"><span class="built_in">arguments</span>: &#123;</span><br><span class="line"><span class="number">0</span>: <span class="number">22</span>,</span><br><span class="line">length: <span class="number">1</span></span><br><span class="line">&#125;,</span><br><span class="line">i: <span class="number">22</span>,</span><br><span class="line">c: pointer to <span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"><span class="title">a</span>: '<span class="title">hello</span>',</span></span><br><span class="line"><span class="function"><span class="title">b</span>: <span class="title">pointer</span> <span class="title">to</span> <span class="title">function</span> <span class="title">privateB</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">&#125;,</span></span><br><span class="line"><span class="function"><span class="title">this</span>: </span>&#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>进阶一言</strong></p>
+<p>你可以在网上找到大量的术语来描述JavaScript进阶。解释变量和函数声明被提升到它们函数作用域的顶端。然而，没有一个详细的解释为什么这样， 现在你配备了关于解释器怎么创建活动对象的新知识，这会很明白这是为什么。看看下面例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">​(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> foo); <span class="comment">// function pointer</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> bar); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">'hello'</span>,</span><br><span class="line">bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="string">'world'</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="string">'hello'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;());​</span><br></pre></td></tr></table></figure></p>
+<p>现在我们能解答的问题有：</p>
+<p>为什么在声明foo之前我们就可以调用?<br>如果我们按照创建阶段进行，我们知道变量在激活/执行阶段之前已经被创建了。因此，在函数流开始执行，foo已经在活动对象中被定义了。<br>foo被声明了两次, 为什么foo展现出来的是functiton，而不是undefined或者string<br>我们从创建阶段知道,尽管foo被声明了两次，函数在活动对象中是在变量之前被创建的，并且如果属性名在活动对象已经存在,我们会简单地绕过这个声明。</p>
+<p>所以，引用函数foo（）是在活动对象上第一次被创建的， 当我们解释到 var foo的时候，我们发现属性名foo已经存在，所以代码不会做任何处理，只是继续进行</p>
+<p>为什么bar是undefined？</p>
+<p>bar确实是一个变量，并且值是一个函数。我们知道变量是在创建阶段被创建的，但是它们的值被初始化为undefined。</p>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://93qlin.github.io/2019/02/28/基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈/" target="_blank" rel="external">https://93qlin.github.io/2019/02/28/基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈/</a>
+                </p>
+                <footer><cite><a href="https://93qlin.github.io">@永不言弃</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2019/02/28/单页面多路由/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">单页面多路由</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2019/02/28/图片上传/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">图片上传</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈" data-title="基础1.1:变量（变量提升,暂时性死区）、执行环境、执行栈" data-url="https://93qlin.github.io/2019/02/28/基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        多谢多谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "基础1.1:变量（变量提升,暂时性死区）、执行环境、执行栈",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://93qlin.github.io/2019/02/28/基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    <!-- <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul> -->
+ </div>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+<!-- <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script> -->
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"log":false,"mobile":{"show":true},"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

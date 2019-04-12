@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>基础1.3：面向对象之理解对象 | 永不言弃 | 一步一脚印，一岁一枯荣，never never give up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="基础,JavaScript">
+  <meta name="description" content="一.理解对象属性&amp;emsp;1. 属性类型&amp;emsp;2. 数据属性&amp;emsp;3. 访问器属性二.多个属性三.读取属性的特性 理解对象属性 属性类型  首先理解特性与属性的关系?特性是内部值，描述了属性的特征，ECMA-262第五版把特性放在两对方括号中  数据属性  包含一个数据值的位置，这个位置可以读取和写入值，数据属性有4个描述其行为的特性。  [[Configurable]]  能否通过">
+<meta name="keywords" content="基础,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础1.3：面向对象之理解对象">
+<meta property="og:url" content="https://93qlin.github.io/2019/02/28/基础1.3：面向对象之理解对象/index.html">
+<meta property="og:site_name" content="永不言弃">
+<meta property="og:description" content="一.理解对象属性&amp;emsp;1. 属性类型&amp;emsp;2. 数据属性&amp;emsp;3. 访问器属性二.多个属性三.读取属性的特性 理解对象属性 属性类型  首先理解特性与属性的关系?特性是内部值，描述了属性的特征，ECMA-262第五版把特性放在两对方括号中  数据属性  包含一个数据值的位置，这个位置可以读取和写入值，数据属性有4个描述其行为的特性。  [[Configurable]]  能否通过">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-12T12:06:44.389Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基础1.3：面向对象之理解对象">
+<meta name="twitter:description" content="一.理解对象属性&amp;emsp;1. 属性类型&amp;emsp;2. 数据属性&amp;emsp;3. 访问器属性二.多个属性三.读取属性的特性 理解对象属性 属性类型  首先理解特性与属性的关系?特性是内部值，描述了属性的特征，ECMA-262第五版把特性放在两对方括号中  数据属性  包含一个数据值的位置，这个位置可以读取和写入值，数据属性有4个描述其行为的特性。  [[Configurable]]  能否通过">
+  
+    <link rel="alternative" href="/atom.xml" title="永不言弃" type="application/atom+xml">
+  
+  <meta name="summary" content>
+  <link rel="shortcut icon" href="/bitbug_favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<link rel="stylesheet" href="/dist/APlayer.min.css">
+<body>
+  <div id="aplayer"></div>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">lin</h5>
+        <a href="mailto:925697386@qq.com" title="925697386@qq.com" class="mail">925697386@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/">
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives">
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags">
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/93qlin" target="_blank">
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/404">
+              <i class="icon icon-lg icon-link"></i>
+              测试
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC"></p>
+  <p>永不言弃 &copy; 2019</p>
+  lin
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+  <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=505820138&auto=0&height=66">
+</iframe> -->
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">基础1.3：面向对象之理解对象</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">基础1.3：面向对象之理解对象</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2019-02-28T03:12:12.518Z" itemprop="datePublished" class="page-time">
+  2019-02-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/基础1-3：面向对象之理解对象/">基础1.3：面向对象之理解对象</a></li></ul>
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-基础1.3：面向对象之理解对象" class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    <!-- <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul> -->
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#t1"><span class="post-toc-number">1.</span> <span class="post-toc-text">理解对象属性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#u1"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">属性类型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#u2"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">数据属性</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#u3"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">访问器属性</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#t2"><span class="post-toc-number">2.</span> <span class="post-toc-text">多个属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#t3"><span class="post-toc-number">3.</span> <span class="post-toc-text">读取属性的特性</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p><a href="#t1">一.理解对象属性</a><br>&emsp;<a href="#u1">1. 属性类型</a><br>&emsp;<a href="#u2">2. 数据属性</a><br>&emsp;<a href="#u3">3. 访问器属性</a><br><a href="#t2">二.多个属性</a><br><a href="#t3">三.读取属性的特性</a></p>
+<p></p><h3 id="t1">理解对象属性</h3><p></p>
+<p></p><h4 id="u1">属性类型</h4><p></p>
+<blockquote>
+<p>首先理解特性与属性的关系?<br>特性是内部值，描述了属性的特征，ECMA-262第五版把特性放在两对方括号中</p>
+</blockquote>
+<p></p><h4 id="u2">数据属性</h4><p></p>
+<blockquote>
+<p>包含一个数据值的位置，这个位置可以读取和写入值，数据属性有4个描述其行为的特性。</p>
+<ol>
+<li>[[Configurable]]  能否通过delete删除属性而定义新属性，能否修改属性的特性，能否把属性设置为访问器属性。直接在对象上定义的属性默认为true。</li>
+<li>[[Enumberable]] 能否通过for-in循环返回属性，直接在对象上定义的属性默认为true。</li>
+<li>[[Writeable]] 能否修改属性的值 直接在对象上定义的属性默认为true。</li>
+<li>[[Value]]  包含这个属性的数据值，这个特性默认为undefined。<br><strong>Object.defineProperty()方法</strong><br>要修改这四个，默认属性必须使用这个方法<br>这个方法接受三个参数（”属性所在的对象”，”属性的名字”，描述符对象），其中描述符对象属性必须是上面四个的一个或多个。可以修改对应的特性值。</li>
+</ol>
+</blockquote>
+<p></p><h4 id="u3">访问器属性</h4><br>它不包含数据值，包含<strong>getter和setter</strong>(这两个 不是必须的)，在读取访问器属性时会调用getter函数，在写入访问器属性时会调用setter函数并传入新值，负责处理数据。<p></p>
+<ol>
+<li>[[Configurable]]  能否通过delete删除属性而定义新属性，能否修改属性的特性，能否把属性设置为数据属性。直接在对象上定义的属性默认为true。</li>
+<li>[[Enumberable]] 能否通过for-in循环返回属性，直接在对象上定义的属性默认为true。</li>
+<li>[[Get]] 读取属性时调用的函数，默认undefined。</li>
+<li>[[Value]] 设置属性时调用的函数，默认undefined。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var book = &#123;</span><br><span class="line"> _year: 2004,</span><br><span class="line"> edition: 1</span><br><span class="line">&#125;;</span><br><span class="line">Object.defineProperty(book, &quot;year&quot;, &#123;</span><br><span class="line"> get: function()&#123;</span><br><span class="line"> return this._year;</span><br><span class="line"> &#125;,</span><br><span class="line"> set: function(newValue)&#123;</span><br><span class="line"> if (newValue &gt; 2004) &#123;</span><br><span class="line"> this._year = newValue;</span><br><span class="line"> this.edition += newValue - 2004;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;);</span><br><span class="line">book.year = 2005;</span><br><span class="line">alert(book.edition); //2</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>以上代码创建了一个 book 对象，并给它定义两个默认的属性：_year 和 edition._year 前面<br>的下划线是一种常用的记号，用于表示只能通过对象方法访问的属性。而访问器属性 year 则包含一个<br>getter 函数和一个 setter 函数。getter 函数返回_year 的值，setter 函数通过计算来确定正确的版本。因此，<br>把 year 属性修改为 2005 会导致_year 变成 2005，而 edition 变为 2。这是使用访问器属性的常见方<br>式，即设置一个属性的值会导致其他属性发生变化。</p>
+</blockquote>
+<p></p><h3 id="t2">多个属性</h3><br><strong>Object.defineProperties()方法</strong><br>。利用这个方法可以通过描述符一次定义多个属性。这个方法接收两个对象参数：第一<br>个对象是要添加和修改其属性的对象，第二个对象的属性与第一个对象中要添加或修改的属性一一对<br>应。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var book = &#123;&#125;;</span><br><span class="line">Object.defineProperties(book, &#123;</span><br><span class="line">     _year: &#123;</span><br><span class="line">     value: 2004</span><br><span class="line">     &#125;,</span><br><span class="line">     edition: &#123;</span><br><span class="line">        value: 1</span><br><span class="line">     &#125;,</span><br><span class="line">     year: &#123;</span><br><span class="line">        get: function()&#123;</span><br><span class="line">             return this._year;</span><br><span class="line">         &#125;,</span><br><span class="line">         set: function(newValue)&#123;</span><br><span class="line">            if (newValue &gt; 2004) &#123;</span><br><span class="line">                this._year = newValue;</span><br><span class="line">                this.edition += newValue - 2004;</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p></p>
+<blockquote>
+<p>以上代码在 book对象上定义了两个数据属性（_year 和 edition）和一个访问器属性（year）。<br>最终的对象与上一节中定义的对象相同。唯一的区别是这里的属性都是在同一时间创建的。<br>支持 Object.defineProperties()方法的浏览器有 IE9+、Firefox 4+、Safari 5+、Opera 12+和<br>Chrome。</p>
+</blockquote>
+<p></p><h3 id="t3">读取属性的特性</h3><br><strong>Object.getOwnPropertyDescriptor()</strong><br>可以取得给定属性的描述符。这个方法接收两个参数：属性所在的对象和要读取其描述符的属性名称。返回值是一个对象，如果<br>是访问器属性，这个对象的属性有 configurable、enumerable、get 和 set；如果是数据属性，这<br>个对象的属性有 configurable、enumerable、writable 和 value。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var book = &#123;&#125;;</span><br><span class="line">Object.defineProperties(book, &#123;</span><br><span class="line"> _year: &#123;</span><br><span class="line">    value: 2004</span><br><span class="line"> &#125;,</span><br><span class="line"> edition: &#123;</span><br><span class="line">    value: 1</span><br><span class="line"> &#125;,</span><br><span class="line"> year: &#123;</span><br><span class="line">     get: function()&#123;</span><br><span class="line">         return this._year;</span><br><span class="line">    &#125;,</span><br><span class="line">     set: function(newValue)&#123;</span><br><span class="line">         if (newValue &gt; 2004) &#123;</span><br><span class="line">             this._year = newValue;</span><br><span class="line">             this.edition += newValue - 2004;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;);</span><br><span class="line">var descriptor = Object.getOwnPropertyDescriptor(book, &quot;_year&quot;);</span><br><span class="line">alert(descriptor.value); //2004</span><br><span class="line">alert(descriptor.configurable); //false</span><br><span class="line">alert(typeof descriptor.get); //&quot;undefined&quot;</span><br><span class="line">var descriptor = Object.getOwnPropertyDescriptor(book, &quot;year&quot;);</span><br><span class="line">alert(descriptor.value); //undefined</span><br><span class="line">alert(descriptor.enumerable); //false</span><br><span class="line">alert(typeof descriptor.get); //&quot;function&quot;</span><br></pre></td></tr></table></figure><p></p>
+<blockquote>
+<p>对于<strong>数据属性_year</strong>，value 等于最初的值，configurable 是 false，而 get 等于 undefined。<br>对于<strong>访问器属性 year</strong>，value 等于 undefined，enumerable 是 false，而 get 是一个指向 getter<br>函数的指针。<br>在 JavaScript 中，可以针对任何对象——包括 DOM 和 BOM 对象，使用 Object.getOwnPropertyDescriptor()方法。支持这个方法的浏览器有<br>IE9+、Firefox 4+、Safari 5+、Opera 12+和 Chrome。</p>
+</blockquote>
+<blockquote>
+<p>总结：本节应该知道以下三点：</p>
+<ol>
+<li>属性类型。</li>
+<li>定义多个属性</li>
+<li>读取属性<strong>特性</strong></li>
+</ol>
+</blockquote>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://93qlin.github.io/2019/02/28/基础1.3：面向对象之理解对象/" target="_blank" rel="external">https://93qlin.github.io/2019/02/28/基础1.3：面向对象之理解对象/</a>
+                </p>
+                <footer><cite><a href="https://93qlin.github.io">@永不言弃</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2019/02/28/基础1.4：面向对象之创建对象的七种模式/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">基础1.4：面向对象之创建对象的七种模式</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2019/02/28/基础2.2：作用域和作用域链/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">2.2作用域与作用域链</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="基础1.3：面向对象之理解对象" data-title="基础1.3：面向对象之理解对象" data-url="https://93qlin.github.io/2019/02/28/基础1.3：面向对象之理解对象/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        多谢多谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "基础1.3：面向对象之理解对象",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://93qlin.github.io/2019/02/28/基础1.3：面向对象之理解对象/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    <!-- <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul> -->
+ </div>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+<!-- <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script> -->
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"log":false,"mobile":{"show":true},"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

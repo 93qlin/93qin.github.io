@@ -137,25 +137,25 @@
       <ul class="post-list">
   
     <li class="post-list-item">
-        <article id="post-基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈、作用域" class="article article-type-post" itemprop="blogPost">
+        <article id="post-基础2.3：闭包，作用域链理解闭包" class="article article-type-post" itemprop="blogPost">
      
 
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/02/28/基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈、作用域/">基础1.1:变量（变量提升,暂时性死区）、执行环境、执行栈、作用域</a>
+      <a class="post-title-link" href="/2019/02/28/基础2.3：闭包，作用域链理解闭包/">基础2.3：闭包,作用域链理解闭包</a>
     </h3>
   
 
 
 
     <div class="post-meta">
-        <time datetime="2019-02-28T03:12:12.517Z" itemprop="datePublished" class="post-time">
+        <time datetime="2019-02-28T03:12:12.518Z" itemprop="datePublished" class="post-time">
   2019-02-28
 </time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/基础1-1-变量（变量提升-暂时性死区）、执行环境、执行栈、作用域/">基础1.1:变量（变量提升,暂时性死区）、执行环境、执行栈、作用域</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/基础2-3：作用域链，作用域链理解闭包/">基础2.3：作用域链，作用域链理解闭包</a></li></ul>
 
 
 
@@ -164,11 +164,11 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-              一·变量提升  首先两个打印例子       1   2   3       a = &apos;ghostwu&apos;;   var a;   console.log( a );   //ghostwu        
-      1   2       console.log( a );   var a = &apos;ghostwu&apos;; //undefined   
+             定义  简洁版：保护一个可重用的局部变量的词法结构 
+
     
     
-        <a href="/2019/02/28/基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈、作用域/" class="post-more waves-effect waves-button">
+        <a href="/2019/02/28/基础2.3：闭包，作用域链理解闭包/" class="post-more waves-effect waves-button">
             阅读全文...
         </a>
     </div>
@@ -180,13 +180,13 @@
     </li>
   
     <li class="post-list-item">
-        <article id="post-基础1.1：从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理" class="article article-type-post" itemprop="blogPost">
+        <article id="post-判断数据类型" class="article article-type-post" itemprop="blogPost">
      
 
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/02/28/基础1.1：从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理/">基础1.2：从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理</a>
+      <a class="post-title-link" href="/2019/02/28/判断数据类型/">判断数据类型</a>
     </h3>
   
 
@@ -198,7 +198,7 @@
 </time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/基础1-2：从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理/">基础1.2：从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/判断数据类型/">判断数据类型</a></li></ul>
 
 
 
@@ -207,57 +207,10 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-           
+              使用Object.prototype上的原生toString()方法判断数据类型，使用方法如下：    1.判断基本类型：       1   2   3   4   5       Object.prototype.toString.call(null);//”[object Null]”   Object.prototype.toString.call(undefined);//”
     
     
-        <a href="/2019/02/28/基础1.1：从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理/" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-图片上传" class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/02/28/图片上传/">图片上传</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2019-02-28T03:12:12.517Z" itemprop="datePublished" class="post-time">
-  2019-02-28
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/图片上传/">图片上传</a></li></ul>
-
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-              图片上传（ https://blog.csdn.net/qq_29712995/article/details/78839093）   安装axios的话： 
- 
- 1利用npm安装npm install axios –save 
- 
- 
- 2使用ES6的写法引入 import axios from ‘axios’ 我们可能会想，如何使用axios上传照片： 一般情况上传照片有两种方式
-    
-    
-        <a href="/2019/02/28/图片上传/" class="post-more waves-effect waves-button">
+        <a href="/2019/02/28/判断数据类型/" class="post-more waves-effect waves-button">
             阅读全文...
         </a>
     </div>
@@ -316,6 +269,48 @@
     </li>
   
     <li class="post-list-item">
+        <article id="post-基础1.1：从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理" class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/28/基础1.1：从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理/">基础1.2：从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2019-02-28T03:12:12.517Z" itemprop="datePublished" class="post-time">
+  2019-02-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/基础1-2：从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理/">基础1.2：从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+           
+    
+    
+        <a href="/2019/02/28/基础1.1：从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
         <article id="post-单页面多路由" class="article article-type-post" itemprop="blogPost">
      
 
@@ -361,13 +356,13 @@
     </li>
   
     <li class="post-list-item">
-        <article id="post-判断数据类型" class="article article-type-post" itemprop="blogPost">
+        <article id="post-基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈" class="article article-type-post" itemprop="blogPost">
      
 
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/02/28/判断数据类型/">判断数据类型</a>
+      <a class="post-title-link" href="/2019/02/28/基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈/">基础1.1:变量（变量提升,暂时性死区）、执行环境、执行栈</a>
     </h3>
   
 
@@ -379,7 +374,7 @@
 </time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/判断数据类型/">判断数据类型</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/基础1-1-变量（变量提升-暂时性死区）、执行环境、执行栈/">基础1.1:变量（变量提升,暂时性死区）、执行环境、执行栈</a></li></ul>
 
 
 
@@ -388,10 +383,58 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-              使用Object.prototype上的原生toString()方法判断数据类型，使用方法如下：    1.判断基本类型：       1   2   3   4   5       Object.prototype.toString.call(null);//”[object Null]”   Object.prototype.toString.call(undefined);//”
+              一·变量提升  首先两个打印例子       1   2   3       a = &apos;ghostwu&apos;;   var a;   console.log( a );   //ghostwu        
+      1   2       console.log( a );   var a = &apos;ghostwu&apos;; //undefined   
     
     
-        <a href="/2019/02/28/判断数据类型/" class="post-more waves-effect waves-button">
+        <a href="/2019/02/28/基础1.2：变量（变量提升,暂时性死区）、执行（上下文）环境、执行栈/" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
+        <article id="post-图片上传" class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/02/28/图片上传/">图片上传</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2019-02-28T03:12:12.517Z" itemprop="datePublished" class="post-time">
+  2019-02-28
+</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/图片上传/">图片上传</a></li></ul>
+
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+              图片上传（ https://blog.csdn.net/qq_29712995/article/details/78839093）   安装axios的话： 
+ 
+ 1利用npm安装npm install axios –save 
+ 
+ 
+ 2使用ES6的写法引入 import axios from ‘axios’ 我们可能会想，如何使用axios上传照片： 一般情况上传照片有两种方式
+    
+    
+        <a href="/2019/02/28/图片上传/" class="post-more waves-effect waves-button">
             阅读全文...
         </a>
     </div>
@@ -446,49 +489,6 @@
     </li>
   
     <li class="post-list-item">
-        <article id="post-事件绑定、事件监听、事件委托（事件代理）" class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/02/28/事件绑定、事件监听、事件委托（事件代理）/">事件绑定、事件监听、事件委托（事件代理）</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2019-02-28T03:12:12.516Z" itemprop="datePublished" class="post-time">
-  2019-02-28
-</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/事件绑定、事件监听、事件委托（事件代理）/">事件绑定、事件监听、事件委托（事件代理）</a></li></ul>
-
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-              事件绑定、事件监听、事件委托（事件代理）( http://www.jb51.net/article/93752.htm )    事件绑定  
- 要想让 JavaScript 对用户的操作作出响应，首先要对 DOM 元素绑定事件处理函数。所谓事件处理函数，就是处理用户操作的函数，不同的操作对应不同的名称。 在JavaScript中，有三种常用的绑定事件的方法： 在DOM元素中直接绑定；
-    
-    
-        <a href="/2019/02/28/事件绑定、事件监听、事件委托（事件代理）/" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
         <article id="post-vue问题，技巧提升" class="article article-type-post" itemprop="blogPost">
      
 
@@ -534,13 +534,13 @@
     </li>
   
     <li class="post-list-item">
-        <article id="post-webpack" class="article article-type-post" itemprop="blogPost">
+        <article id="post-事件绑定、事件监听、事件委托（事件代理）" class="article article-type-post" itemprop="blogPost">
      
 
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/02/28/webpack/">webpack</a>
+      <a class="post-title-link" href="/2019/02/28/事件绑定、事件监听、事件委托（事件代理）/">事件绑定、事件监听、事件委托（事件代理）</a>
     </h3>
   
 
@@ -552,7 +552,7 @@
 </time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/webpack/">webpack</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/事件绑定、事件监听、事件委托（事件代理）/">事件绑定、事件监听、事件委托（事件代理）</a></li></ul>
 
 
 
@@ -561,17 +561,16 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-              webpack    基础  1 .初始化： npm init 2 .安装： npm install webpack –save-dev 
-   webpack处理js文件  命令： webpack ./hello.js hello.bunder.js（生成的文件名） 
-   webpack处理css文件  需要安装loader: npm install  css-loader sty
+              事件绑定、事件监听、事件委托（事件代理）( http://www.jb51.net/article/93752.htm )    事件绑定  
+ 要想让 JavaScript 对用户的操作作出响应，首先要对 DOM 元素绑定事件处理函数。所谓事件处理函数，就是处理用户操作的函数，不同的操作对应不同的名称。 在JavaScript中，有三种常用的绑定事件的方法： 在DOM元素中直接绑定；
     
     
-        <a href="/2019/02/28/webpack/" class="post-more waves-effect waves-button">
+        <a href="/2019/02/28/事件绑定、事件监听、事件委托（事件代理）/" class="post-more waves-effect waves-button">
             阅读全文...
         </a>
     </div>
     
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 
 </article>
 

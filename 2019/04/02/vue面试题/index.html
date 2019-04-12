@@ -10,18 +10,21 @@
   
   
   <meta name="keywords" content="vue">
-  <meta name="description" content="常见面试题">
+  <meta name="description" content="目录  &amp;emsp;1. 说一下Vue的双向绑定数据的原理 &amp;emsp;2. 解释单向数据流和双向数据绑定 &amp;emsp;3. Vue如何去除url中的 # &amp;emsp;4. 对 MVC、MVVM的理解 &amp;emsp;5. 介绍虚拟DOM &amp;emsp;6. vue生命周期的理解 &amp;emsp;7. 组件通信 &amp;emsp;8. 路由实现 &amp;emsp;9. v-if 和 v-show 区别 &amp;emsp;10">
 <meta name="keywords" content="vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面试">
 <meta property="og:url" content="https://93qlin.github.io/2019/04/02/vue面试题/index.html">
 <meta property="og:site_name" content="永不言弃">
-<meta property="og:description" content="常见面试题">
+<meta property="og:description" content="目录  &amp;emsp;1. 说一下Vue的双向绑定数据的原理 &amp;emsp;2. 解释单向数据流和双向数据绑定 &amp;emsp;3. Vue如何去除url中的 # &amp;emsp;4. 对 MVC、MVVM的理解 &amp;emsp;5. 介绍虚拟DOM &amp;emsp;6. vue生命周期的理解 &amp;emsp;7. 组件通信 &amp;emsp;8. 路由实现 &amp;emsp;9. v-if 和 v-show 区别 &amp;emsp;10">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-03T13:29:51.335Z">
+<meta property="og:image" content="https://github.com/93qlin/webNote/blob/master/Other/images/mvc.png?raw=true">
+<meta property="og:image" content="https://github.com/93qlin/webNote/blob/master/Other/images/mvvm.png?raw=true">
+<meta property="og:updated_time" content="2019-04-09T13:56:25.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试">
-<meta name="twitter:description" content="常见面试题">
+<meta name="twitter:description" content="目录  &amp;emsp;1. 说一下Vue的双向绑定数据的原理 &amp;emsp;2. 解释单向数据流和双向数据绑定 &amp;emsp;3. Vue如何去除url中的 # &amp;emsp;4. 对 MVC、MVVM的理解 &amp;emsp;5. 介绍虚拟DOM &amp;emsp;6. vue生命周期的理解 &amp;emsp;7. 组件通信 &amp;emsp;8. 路由实现 &amp;emsp;9. v-if 和 v-show 区别 &amp;emsp;10">
+<meta name="twitter:image" content="https://github.com/93qlin/webNote/blob/master/Other/images/mvc.png?raw=true">
   
     <link rel="alternative" href="/atom.xml" title="永不言弃" type="application/atom+xml">
   
@@ -197,7 +200,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#常见面试题"><span class="post-toc-number">1.</span> <span class="post-toc-text">常见面试题</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#undefined"><span class="post-toc-number">1.</span> <span class="post-toc-text">目录</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k1"><span class="post-toc-number">1.0.0.1.</span> <span class="post-toc-text">1. 说一下Vue的双向绑定数据的原理</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k2"><span class="post-toc-number">1.0.0.2.</span> <span class="post-toc-text">2. 解释单向数据流和双向数据绑定</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k3"><span class="post-toc-number">1.0.0.3.</span> <span class="post-toc-text">3. Vue 如何去除url中的 #</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k4"><span class="post-toc-number">1.0.0.4.</span> <span class="post-toc-text">4. 对 MVC、MVVM的理解</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k5"><span class="post-toc-number">1.0.0.5.</span> <span class="post-toc-text">5. 介绍虚拟DOM</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k6"><span class="post-toc-number">1.0.0.6.</span> <span class="post-toc-text">6. vue生命周期的理解</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k7"><span class="post-toc-number">1.0.0.7.</span> <span class="post-toc-text">7. 组件通信</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k8"><span class="post-toc-number">1.0.0.8.</span> <span class="post-toc-text">8. vue-router 路由实现</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k9"><span class="post-toc-number">1.0.0.9.</span> <span class="post-toc-text">9. v-if 和 v-show 区别</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k10"><span class="post-toc-number">1.0.0.10.</span> <span class="post-toc-text">10. $route和$router的区别</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k11"><span class="post-toc-number">1.0.0.11.</span> <span class="post-toc-text">11. NextTick 是做什么的</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k12"><span class="post-toc-number">1.0.0.12.</span> <span class="post-toc-text">12. Vue 组件 data 为什么必须是函数</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k13"><span class="post-toc-number">1.0.0.13.</span> <span class="post-toc-text">13. 计算属性computed 和事件 methods 有什么区别</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k14"><span class="post-toc-number">1.0.0.14.</span> <span class="post-toc-text">14. 对比 jQuery ，Vue 有什么不同</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k15"><span class="post-toc-number">1.0.0.15.</span> <span class="post-toc-text">15. Vue 中怎么自定义指令</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k16"><span class="post-toc-number">1.0.0.16.</span> <span class="post-toc-text">16. Vue 中怎么自定义过滤器</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k17"><span class="post-toc-number">1.0.0.17.</span> <span class="post-toc-text">17. 对 keep-alive 的了解</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k18"><span class="post-toc-number">1.0.0.18.</span> <span class="post-toc-text">18. Vue 中 key 的作用</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k19"><span class="post-toc-number">1.0.0.19.</span> <span class="post-toc-text">19. Vue 的核心是什么</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k20"><span class="post-toc-number">1.0.0.20.</span> <span class="post-toc-text">20. vue 等单页面应用的优缺点</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#k21"><span class="post-toc-number">1.0.0.21.</span> <span class="post-toc-text">21. vue-router 使用params与query传参有什么区别</span></a></li></ol></li></ol>
             </nav>
             
         </aside>
@@ -205,7 +208,227 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="常见面试题"><a href="#常见面试题" class="headerlink" title="常见面试题"></a>常见面试题</h1>
+            <h2>目录</h2>
+
+<p>&emsp;<a href="#k1">1. 说一下Vue的双向绑定数据的原理</a></p>
+<p>&emsp;<a href="#k2">2. 解释单向数据流和双向数据绑定</a></p>
+<p>&emsp;<a href="#k3">3. Vue如何去除url中的 #</a></p>
+<p>&emsp;<a href="#k4">4. 对 MVC、MVVM的理解</a></p>
+<p>&emsp;<a href="#k5">5. 介绍虚拟DOM</a></p>
+<p>&emsp;<a href="#k6">6. vue生命周期的理解</a></p>
+<p>&emsp;<a href="#k7">7. 组件通信</a></p>
+<p>&emsp;<a href="#k8">8. 路由实现</a></p>
+<p>&emsp;<a href="#k9">9. v-if 和 v-show 区别</a></p>
+<p>&emsp;<a href="#k10">10. $route和$router的区别</a></p>
+<p>&emsp;<a href="#k11">11. NextTick 是做什么的</a></p>
+<p>&emsp;<a href="#k12">12. Vue 组件 data 为什么必须是函数</a></p>
+<p>&emsp;<a href="#k13">13. 计算属性computed 和事件 methods 有什么区别</a></p>
+<p>&emsp;<a href="#k14">14. 对比 jQuery ，Vue 有什么优缺点</a></p>
+<p>&emsp;<a href="#k15">15. Vue 中怎么自定义指令</a></p>
+<p>&emsp;<a href="#k16">16. Vue 中怎么自定义过滤器</a></p>
+<p>&emsp;<a href="#k17">17. 对 keep-alive 的了解</a></p>
+<p>&emsp;<a href="#k18">18. Vue 中 key 的作用</a></p>
+<p>&emsp;<a href="#k19">19. 你觉得 Vue 的核心是什么</a></p>
+<p>&emsp;<a href="#k20">20. vue 等单页面应用的优缺点</a></p>
+<p>&emsp;<a href="#k21">21. vue-router 使用params与query传参有什么区别</a></p>
+<h5 id="k1">1. 说一下Vue的双向绑定数据的原理</h5>
+
+<blockquote>
+<p><code>vue</code> 实现数据双向绑定主要是：采用数据劫持结合发布者-订阅者模式的方式，通过 <code>Object.defineProperty()</code> 来劫持各个属性的 <code>setter</code>，<code>getter</code>，在数据变动时发布消息给订阅者，触发相应监听回调</p>
+</blockquote>
+<h5 id="k2">2. 解释单向数据流和双向数据绑定</h5>
+
+<blockquote>
+<p>单向数据流： 顾名思义，数据流是单向的。数据流动方向可以跟踪，流动单一，追查问题的时候可以更快捷。缺点就是写起来不太方便。要使UI发生变更就必须创建各种 <code>action</code> 来维护对应的 <code>state</code></p>
+</blockquote>
+<blockquote>
+<p>双向数据绑定：数据之间是相通的，将数据变更的操作隐藏在框架内部。优点是在表单交互较多的场景下，会简化大量业务无关的代码。缺点就是无法追踪局部状态的变化，增加了出错时 <code>debug</code> 的难度</p>
+</blockquote>
+<h5 id="k3">3. Vue 如何去除url中的 #</h5>
+
+<p><code>vue-router</code> 默认使用 <code>hash</code> 模式，所以在路由加载的时候，项目中的 <code>url</code> 会自带 <code>#</code>。如果不想使用 <code>#</code>， 可以使用 <code>vue-router</code> 的另一种模式 <code>history</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Router(&#123;</span><br><span class="line">  mode: <span class="string">'history'</span>,</span><br><span class="line">  routes: [ ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>需要注意的是，当我们启用 <code>history</code> 模式的时候，由于我们的项目是一个单页面应用，所以在路由跳转的时候，就会出现访问不到静态资源而出现 <code>404</code> 的情况，这时候就需要服务端增加一个覆盖所有情况的候选资源：如果 <code>URL</code> 匹配不到任何静态资源，则应该返回同一个 <code>index.html</code> 页面</p>
+</blockquote>
+<h5 id="k4">4. 对 MVC、MVVM的理解</h5>
+
+<blockquote>
+<p>MVC</p>
+</blockquote>
+<p><img src="https://github.com/93qlin/webNote/blob/master/Other/images/mvc.png?raw=true" alt="image"></p>
+<p>特点：</p>
+<ol>
+<li><code>View</code> 传送指令到 <code>Controller</code></li>
+<li><code>Controller</code> 完成业务逻辑后，要求 <code>Model</code> 改变状态</li>
+<li><code>Model</code> 将新的数据发送到 <code>View</code>，用户得到反馈</li>
+</ol>
+<p><strong>所有通信都是单向的</strong></p>
+<blockquote>
+<p>MVVM</p>
+</blockquote>
+<p><img src="https://github.com/93qlin/webNote/blob/master/Other/images/mvvm.png?raw=true" alt="image"></p>
+<p>特点：</p>
+<ol>
+<li>各部分之间的通信，都是双向的</li>
+<li>采用双向绑定：<code>View</code> 的变动，自动反映在 <code>ViewModel</code>，反之亦然</li>
+</ol>
+<p>具体请移步 <a href="http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html" target="_blank" rel="noopener">这里</a></p>
+<h5 id="k5">5. 介绍虚拟DOM</h5>
+
+<p><a href="https://www.jianshu.com/p/616999666920" target="_blank" rel="noopener">参考这里</a></p>
+<h5 id="k6">6. vue生命周期的理解</h5>
+
+<blockquote>
+<p>vue实例有一个完整的生命周期，生命周期也就是指一个实例从开始创建到销毁的这个过程</p>
+</blockquote>
+<ul>
+<li><code>beforeCreated()</code> 在实例创建之间执行，数据未加载状态</li>
+<li><code>created()</code> 在实例创建、数据加载后，能初始化数据，<code>dom</code>渲染之前执行</li>
+<li><code>beforeMount()</code> 虚拟<code>dom</code>已创建完成，在数据渲染前最后一次更改数据</li>
+<li><code>mounted()</code> 页面、数据渲染完成，真实<code>dom</code>挂载完成</li>
+<li><code>beforeUpadate()</code> 重新渲染之前触发</li>
+<li><code>updated()</code> 数据已经更改完成，<code>dom</code> 也重新 <code>render</code> 完成,更改数据会陷入死循环</li>
+<li><code>beforeDestory()</code> 和 <code>destoryed()</code> 前者是销毁前执行（实例仍然完全可用），后者则是销毁后执行</li>
+</ul>
+<h5 id="k7">7. 组件通信</h5>
+
+<blockquote>
+<p>父组件向子组件通信</p>
+</blockquote>
+<p>子组件通过 props 属性，绑定父组件数据，实现双方通信</p>
+<blockquote>
+<p>子组件向父组件通信</p>
+</blockquote>
+<p>将父组件的事件在子组件中通过 <code>$emit</code> 触发</p>
+<blockquote>
+<p>非父子组件、兄弟组件之间的数据传递</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*新建一个Vue实例作为中央事件总嫌*/</span></span><br><span class="line"><span class="keyword">let</span> event = <span class="keyword">new</span> Vue();</span><br><span class="line"></span><br><span class="line"><span class="comment">/*监听事件*/</span></span><br><span class="line">event.$on(<span class="string">'eventName'</span>, (val) =&gt; &#123;</span><br><span class="line">    <span class="comment">//......do something</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*触发事件*/</span></span><br><span class="line">event.$emit(<span class="string">'eventName'</span>, <span class="string">'this is a message.'</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Vuex 数据管理</p>
+</blockquote>
+<h5 id="k8">8. vue-router 路由实现</h5>
+
+<blockquote>
+<p>路由就是用来跟后端服务器进行交互的一种方式，通过不同的路径，来请求不同的资源，请求不同的页面是路由的其中一种功能</p>
+</blockquote>
+<p>参考 <a href="https://zhuanlan.zhihu.com/p/37730038" target="_blank" rel="noopener">这里</a></p>
+<h5 id="k9">9. v-if 和 v-show 区别</h5>
+
+<blockquote>
+<p>使用了 <code>v-if</code> 的时候，如果值为 <code>false</code> ，那么页面将不会有这个 <code>html</code> 标签生成。</p>
+</blockquote>
+<blockquote>
+<p><code>v-show</code> 则是不管值为 <code>true</code> 还是 <code>false</code> ，<code>html</code> 元素都会存在，只是 <code>CSS</code> 中的 <code>display</code> 显示或隐藏</p>
+</blockquote>
+<h5 id="k10">10. $route和$router的区别</h5>
+
+<blockquote>
+<p><code>$router</code> 为 <code>VueRouter</code> 实例，想要导航到不同 <code>URL</code>，则使用 <code>$router.push</code> 方法</p>
+</blockquote>
+<blockquote>
+<p><code>$route</code> 为当前 <code>router</code> 跳转对象里面可以获取 <code>name</code> 、 <code>path</code> 、 <code>query</code> 、 <code>params</code> 等</p>
+</blockquote>
+<h5 id="k11">11. NextTick 是做什么的</h5>
+
+<blockquote>
+<p><code>$nextTick</code> 是在下次 <code>DOM</code> 更新循环结束之后执行延迟回调，在修改数据之后使用 <code>$nextTick</code>，则可以在回调中获取更新后的 <code>DOM</code></p>
+</blockquote>
+<p>具体可参考官方文档 <a href="https://cn.vuejs.org/v2/guide/reactivity.html" target="_blank" rel="noopener">深入响应式原理</a></p>
+<h5 id="k12">12. Vue 组件 data 为什么必须是函数</h5>
+
+<blockquote>
+<p>因为js本身的特性带来的，如果 <code>data</code> 是一个对象，那么由于对象本身属于引用类型，当我们修改其中的一个属性时，会影响到所有Vue实例的数据。如果将 <code>data</code> 作为一个函数返回一个对象，那么每一个实例的 <code>data</code> 属性都是独立的，不会相互影响了</p>
+</blockquote>
+<h5 id="k13">13. 计算属性computed 和事件 methods 有什么区别</h5>
+
+<p>我们可以将同一函数定义为一个 <code>method</code> 或者一个计算属性。对于最终的结果，两种方式是相同的</p>
+<p>不同点：</p>
+<blockquote>
+<p>computed: 计算属性是基于它们的依赖进行缓存的,只有在它的相关依赖发生改变时才会重新求值</p>
+</blockquote>
+<blockquote>
+<p>对于 <code>method</code> ，只要发生重新渲染，<code>method</code> 调用总会执行该函数</p>
+</blockquote>
+<h5 id="k14">14. 对比 jQuery ，Vue 有什么不同</h5>
+
+<blockquote>
+<p>jQuery 专注视图层，通过操作 DOM 去实现页面的一些逻辑渲染； Vue 专注于数据层，通过数据的双向绑定，最终表现在 DOM 层面，减少了 DOM 操作</p>
+</blockquote>
+<blockquote>
+<p>Vue 使用了组件化思想，使得项目子集职责清晰，提高了开发效率，方便重复利用，便于协同开发</p>
+</blockquote>
+<h5 id="k15">15. Vue 中怎么自定义指令</h5>
+
+<blockquote>
+<p>全局注册</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注册一个全局自定义指令 `v-focus`</span></span><br><span class="line">Vue.directive(<span class="string">'focus'</span>, &#123;</span><br><span class="line">  <span class="comment">// 当被绑定的元素插入到 DOM 中时……</span></span><br><span class="line">  inserted: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 聚焦元素</span></span><br><span class="line">    el.focus()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>局部注册</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">directives: &#123;</span><br><span class="line">  focus: &#123;</span><br><span class="line">    <span class="comment">// 指令的定义</span></span><br><span class="line">    inserted: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</span><br><span class="line">      el.focus()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参考 <a href="https://cn.vuejs.org/v2/guide/custom-directive.html" target="_blank" rel="noopener">官方文档-自定义指令</a></p>
+<h5 id="k16">16. Vue 中怎么自定义过滤器</h5>
+
+<blockquote>
+<p>可以用全局方法 <code>Vue.filter()</code> 注册一个自定义过滤器，它接收两个参数：过滤器 <code>ID</code> 和过滤器函数。过滤器函数以值为参数，返回转换后的值</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.filter(<span class="string">'reverse'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 'abc' =&gt; 'cba' --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-text</span>=<span class="string">"message | reverse"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>过滤器也同样接受全局注册和局部注册</p>
+<h5 id="k17">17. 对 keep-alive 的了解</h5>
+
+<blockquote>
+<p><code>keep-alive</code> 是 <code>Vue</code> 内置的一个组件，可以使被包含的组件保留状态，或避免重新渲染</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">keep-alive</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">component</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 该组件将被缓存！ --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">component</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">keep-alive</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以使用API提供的props，实现组件的动态缓存</p>
+</blockquote>
+<p>具体参考 <a href="https://cn.vuejs.org/v2/api/#keep-alive" target="_blank" rel="noopener">官方API</a></p>
+<h5 id="k18">18. Vue 中 key 的作用</h5>
+
+<blockquote>
+<p><code>key</code> 的特殊属性主要用在 <code>Vue</code> 的虚拟 <code>DOM</code> 算法，在新旧 <code>nodes</code> 对比时辨识 <code>VNodes</code>。如果不使用 <code>key</code>，<code>Vue</code> 会使用一种最大限度减少动态元素并且尽可能的尝试修复/再利用相同类型元素的算法。使用 <code>key</code>，它会基于 <code>key</code> 的变化重新排列元素顺序，并且会移除 <code>key</code> 不存在的元素。</p>
+</blockquote>
+<blockquote>
+<p>有相同父元素的子元素必须有独特的 <code>key</code>。重复的 <code>key</code> 会造成渲染错误</p>
+</blockquote>
+<p>具体参考 <a href="https://cn.vuejs.org/v2/api/#key" target="_blank" rel="noopener">官方API</a></p>
+<h5 id="k19">19. Vue 的核心是什么</h5>
+
+<blockquote>
+<p>数据驱动 组件系统</p>
+</blockquote>
+<h5 id="k20">20. vue 等单页面应用的优缺点</h5>
+
+<blockquote>
+<p>优点：</p>
+</blockquote>
+<ul>
+<li>良好的交互体验</li>
+<li>良好的前后端工作分离模式</li>
+<li>减轻服务器压力</li>
+</ul>
+<blockquote>
+<p>缺点：</p>
+</blockquote>
+<ul>
+<li>SEO难度较高</li>
+<li>前进、后退管理</li>
+<li>初次加载耗时多</li>
+</ul>
+<h5 id="k21">21. vue-router 使用params与query传参有什么区别</h5>
+
+<p><code>vue-router</code> 可以通过 <code>params</code> 与 <code>query</code> 进行传参</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 传递</span></span><br><span class="line"><span class="keyword">this</span>.$router.push(&#123;<span class="attr">path</span>: <span class="string">'./xxx'</span>, <span class="attr">params</span>: &#123;<span class="attr">xx</span>:xxx&#125;&#125;)</span><br><span class="line"><span class="keyword">this</span>.$router.push(&#123;<span class="attr">path</span>: <span class="string">'./xxx'</span>, <span class="attr">query</span>: &#123;<span class="attr">xx</span>:xxx&#125;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接收</span></span><br><span class="line"><span class="keyword">this</span>.$route.params</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.$route.query</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>params</code> 是路由的一部分,必须要有。<code>query</code> 是拼接在 <code>url</code> 后面的参数，没有也没关系</li>
+<li><code>params</code> 不设置的时候，刷新页面或者返回参数会丢，<code>query</code> 则不会有这个问题</li>
+</ul>
+
 
             
             <div class="post-reward">

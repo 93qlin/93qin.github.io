@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>基础1.5.：面向对象之继承的的七种方式 | 永不言弃 | 一步一脚印，一岁一枯荣，never never give up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="基础,JavaScript">
+  <meta name="description" content="七种方式：  1 .原型链继承 2 .借用构造函数继承 3 .组合继承 4 .原型式继承 5 .寄生式继承 6 .寄生组合式继承(最佳方式) 7 .混入方式继承多个对象 一.原型链继承基本思想：  其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。  1.1构造函数、原型和实例的关系：  每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型">
+<meta name="keywords" content="基础,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础1.5.：面向对象之继承的的七种方式">
+<meta property="og:url" content="https://93qlin.github.io/2019/02/28/基础1.5：面向对象之继承的的七种方式/index.html">
+<meta property="og:site_name" content="永不言弃">
+<meta property="og:description" content="七种方式：  1 .原型链继承 2 .借用构造函数继承 3 .组合继承 4 .原型式继承 5 .寄生式继承 6 .寄生组合式继承(最佳方式) 7 .混入方式继承多个对象 一.原型链继承基本思想：  其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。  1.1构造函数、原型和实例的关系：  每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/038BF7E3A3D84C8BA17770C539240107?method=download&shareKey=e09951823cbe593973b9abf9d32be85d">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/F91BEAFDC46749D1ADB8E7E54E1517BB?method=download&shareKey=d28d6c0a26a8bf6dfc4888668ba57a59">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/DEFACD1D69D04F1ABF4366D8C98BC298?method=download&shareKey=ca967273dbb2d4423afe0429984516ed">
+<meta property="og:updated_time" content="2019-04-12T12:07:46.453Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基础1.5.：面向对象之继承的的七种方式">
+<meta name="twitter:description" content="七种方式：  1 .原型链继承 2 .借用构造函数继承 3 .组合继承 4 .原型式继承 5 .寄生式继承 6 .寄生组合式继承(最佳方式) 7 .混入方式继承多个对象 一.原型链继承基本思想：  其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。  1.1构造函数、原型和实例的关系：  每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/038BF7E3A3D84C8BA17770C539240107?method=download&shareKey=e09951823cbe593973b9abf9d32be85d">
+  
+    <link rel="alternative" href="/atom.xml" title="永不言弃" type="application/atom+xml">
+  
+  <meta name="summary" content>
+  <link rel="shortcut icon" href="/bitbug_favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<link rel="stylesheet" href="/dist/APlayer.min.css">
+<body>
+  <div id="aplayer"></div>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">lin</h5>
+        <a href="mailto:925697386@qq.com" title="925697386@qq.com" class="mail">925697386@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/">
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives">
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/tags">
+              <i class="icon icon-lg icon-tags"></i>
+              Tags
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/93qlin" target="_blank">
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/404">
+              <i class="icon icon-lg icon-link"></i>
+              测试
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC"></p>
+  <p>永不言弃 &copy; 2019</p>
+  lin
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+  <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=505820138&auto=0&height=66">
+</iframe> -->
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">基础1.5.：面向对象之继承的的七种方式</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">基础1.5.：面向对象之继承的的七种方式</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2019-02-28T03:12:12.520Z" itemprop="datePublished" class="page-time">
+  2019-02-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/基础1-5-：面向对象之继承的的七种方式/">基础1.5.：面向对象之继承的的七种方式</a></li></ul>
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-基础1.5：面向对象之继承的的七种方式" class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    <!-- <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul> -->
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一-原型链继承"><span class="post-toc-number">1.</span> <span class="post-toc-text">一.原型链继承</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#二-借用构造函数"><span class="post-toc-number">2.</span> <span class="post-toc-text">二.借用构造函数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#三-组合继承"><span class="post-toc-number">3.</span> <span class="post-toc-text">三 组合继承</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#四-原型式继承"><span class="post-toc-number">4.</span> <span class="post-toc-text">四 原型式继承</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#五-寄生式继承"><span class="post-toc-number">5.</span> <span class="post-toc-text">五 寄生式继承</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#六-寄生组合式继承"><span class="post-toc-number">6.</span> <span class="post-toc-text">六 寄生组合式继承</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#七-混入方式继承多个对象"><span class="post-toc-number">7.</span> <span class="post-toc-text">七 混入方式继承多个对象</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>七种方式：</p>
+</blockquote>
+<p>1 .原型链继承</p>
+<p>2 .借用构造函数继承</p>
+<p>3 .组合继承</p>
+<p>4 .原型式继承</p>
+<p>5 .寄生式继承</p>
+<p>6 .寄生组合式继承(<strong>最佳方式</strong>)</p>
+<p>7 .混入方式继承多个对象</p>
+<h4 id="一-原型链继承"><a href="#一-原型链继承" class="headerlink" title="一.原型链继承"></a>一.原型链继承</h4><p><strong>基本思想：</strong></p>
+<blockquote>
+<p>其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。</p>
+</blockquote>
+<p><strong>1.1构造函数、原型和实例的关系：</strong></p>
+<blockquote>
+<p>每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。我们让原型对象等于另一个类型的实例,此时的原型对象将包含一个指向另一个原型的指针，相应地，另一个原型中也包含着一个指向另一个构造函数<br>的指针。假如另一个原型又是另一个类型的实例，那么上述关系依然成立，如此层层递进,就构成了实例与原型的链条。这就是所谓<strong>原型链的基本概念</strong>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function SuperType()&#123;</span><br><span class="line"> this.property = true;</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.getSuperValue = function()&#123;</span><br><span class="line"> return this.property;</span><br><span class="line">&#125;;</span><br><span class="line">function SubType()&#123;</span><br><span class="line"> this.subproperty = false;</span><br><span class="line">&#125;</span><br><span class="line">//继承了 SuperType</span><br><span class="line">SubType.prototype = new SuperType();</span><br><span class="line">SubType.prototype.getSubValue = function ()&#123;</span><br><span class="line"> return this.subproperty;</span><br><span class="line">&#125;;</span><br><span class="line">var instance = new SubType();</span><br><span class="line">alert(instance.getSuperValue()); //true</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/038BF7E3A3D84C8BA17770C539240107?method=download&amp;shareKey=e09951823cbe593973b9abf9d32be85d" alt="img"></p>
+<p><strong>1.2搜索机制</strong></p>
+<blockquote>
+<p>上一节中说到，当以读取模式访问一个实例属性时，首先会在实例中搜索该属性。如果没有找到该属性，则会继续搜索实例的原型。在<br>通过原型链实现继承的情况下，搜索过程就得以沿着原型链继续向上。就拿上面的例子来说，调用<br>instance.getSuperValue()会经历三个搜索步骤：1）搜索实例；2）搜索 SubType.prototype；<br>3）<br><strong>1.3确定原型和实例的关系两种方式</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alert(instance instanceof Object); //true</span><br><span class="line">alert(instance instanceof SuperType); //true</span><br><span class="line">alert(instance instanceof SubType); //true</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>由于原型链的关系，我们可以说 instance 是 Object、SuperType 或SubType中任何一个类型的实例。因此，测试这三个构造函数的结果都返回了 true。<br>第二种方式是使用 isPrototypeOf()方法。同样，只要是原型链中出现过的原型，都可以说是该<br>原型链所派生的实例的原型，因此 isPrototypeOf()方法也会返回 true，如下所示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alert(Object.prototype.isPrototypeOf(instance)); //true</span><br><span class="line">alert(SuperType.prototype.isPrototypeOf(instance)); //true</span><br><span class="line">alert(SubType.prototype.isPrototypeOf(instance)); //true</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>1.3 谨慎地定义方法</strong></p>
+<blockquote>
+<p>子类型有时候需要重写超类型中的某个方法，或者需要添加超类型中不存在的某个方法。但不管怎<br>样，给原型添加方法的代码一定要放在<strong>替换原型的语句之后</strong>。来看下面的例子。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function SuperType()&#123;</span><br><span class="line"> this.property = true;</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.getSuperValue = function()&#123;</span><br><span class="line"> return this.property;</span><br><span class="line">&#125;;</span><br><span class="line">function SubType()&#123;</span><br><span class="line"> this.subproperty = false;</span><br><span class="line">&#125;</span><br><span class="line">//继承了 SuperType</span><br><span class="line">SubType.prototype = new SuperType();</span><br><span class="line">//添加新方法</span><br><span class="line">SubType.prototype.getSubValue = function ()&#123;</span><br><span class="line"> return this.subproperty;</span><br><span class="line">&#125;;</span><br><span class="line">//重写超类型中的方法</span><br><span class="line">SubType.prototype.getSuperValue = function ()&#123;</span><br><span class="line"> return false;</span><br><span class="line">&#125;;</span><br><span class="line">var instance = new SubType();</span><br><span class="line">alert(instance.getSuperValue()); //false</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>1.4 缺点(主要两方面)</strong></p>
+<p>最主要的问题来自包含引<br>用类型值的原型。上一节说过包含引用类型值的原型属性会被所有实例共享；而<br><strong>这也正是为什么要在构造函数中，而不是在原型对象中定义属性的原因</strong>。在通过原型来实现继承时，原型实际上会变成另一个类型的实例。于是，原先的实例属性也就顺理成章地变成了现在的原型属性了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function SuperType()&#123;</span><br><span class="line"> this.colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line">function SubType()&#123;</span><br><span class="line">&#125;</span><br><span class="line">//继承了 SuperType</span><br><span class="line">SubType.prototype = new SuperType();</span><br><span class="line">var instance1 = new SubType();</span><br><span class="line">instance1.colors.push(&quot;black&quot;);</span><br><span class="line">alert(instance1.colors); //&quot;red,blue,green,black&quot;</span><br><span class="line">var instance2 = new SubType();</span><br><span class="line">alert(instance2.colors); //&quot;red,blue,green,black&quot;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>当 SubType 通过原型链继承了<br>SuperType 之后，SubType.prototype 就变成了 SuperType 的一个实例，因此它也拥有了一个它自<br>己的 colors 属性——就跟专门创建了一个 SubType.prototype.colors 属性一样。但结果是什么<br>呢？结果是 SubType 的所有实例都会共享这一个 colors 属性。<br>第二个问题是：在创建子类型的实例时，不能向超类型的构造函数中传递参数。实际上，<br>应该说是没有办法在不影响所有对象实例的情况下，给超类型的构造函数传递参数。有鉴于此，再加上<br>前面刚刚讨论过的由于原型中包含引用类型值所带来的问题，<strong>实践中很少会单独使用原型链</strong>。</p>
+</blockquote>
+<h4 id="二-借用构造函数"><a href="#二-借用构造函数" class="headerlink" title="二.借用构造函数"></a>二.借用构造函数</h4><blockquote>
+<p>解决原型中包含引用类型值所带来问题的过程中，开发人员开始使用一种叫做借用构造函数,即在子类型构造函数的内部调用超类型构造函数。因为，<strong>函数只不过是在特定环境中执行代码的对象</strong>，因此通过使用 apply()和call()方法也可以在（将来）新创建的对象上执行构造函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function SuperType()&#123;</span><br><span class="line"> this.colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line">function SubType()&#123;</span><br><span class="line"> //继承了 SuperType</span><br><span class="line"> SuperType.call(this);</span><br><span class="line">&#125;</span><br><span class="line">var instance1 = new SubType();</span><br><span class="line">instance1.colors.push(&quot;black&quot;);</span><br><span class="line">alert(instance1.colors); //&quot;red,blue,green,black&quot;</span><br><span class="line">var instance2 = new SubType();</span><br><span class="line">alert(instance2.colors); //&quot;red,blue,green&quot;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>新创建的 SubType 实例的环境下调用了 SuperType 构造函数。<br>这样一来，就会在新 SubType 对象上执行 SuperType()函数中定义的所有对象初始化代码。结果，<br>SubType 的每个实例就都会具有自己的 colors 属性的副本了。</p>
+</blockquote>
+<p><strong>2.1. 传递参数</strong></p>
+<blockquote>
+<p>相对于原型链而言，借用构造函数有一个很大的优势，即可以在子类型构造函数中向超类型构造函数传递参数。看下面这个例子。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function SuperType(name)&#123;</span><br><span class="line"> this.name = name;</span><br><span class="line">&#125;</span><br><span class="line">function SubType()&#123;</span><br><span class="line"> //继承了 SuperType，同时还传递了参数</span><br><span class="line"> SuperType.call(this, &quot;Nicholas&quot;);</span><br><span class="line"></span><br><span class="line"> //实例属性</span><br><span class="line"> this.age = 29;</span><br><span class="line">&#125;</span><br><span class="line">var instance = new SubType();</span><br><span class="line">alert(instance.name); //&quot;Nicholas&quot;;</span><br><span class="line">alert(instance.age); //29</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>以上代码中的 SuperType 只接受一个参数 name，该参数会直接赋给一个属性。在 SubType 构造<br>函数内部调用 SuperType 构造函数时，实际上是为 SubType 的实例设置了 name 属性。为了确保<br>SuperType 构造函数不会重写子类型的属性，可以在调用超类型构造函数后，再添加应该在子类型中<br>定义的属性。</p>
+</blockquote>
+<p><strong>2.2. 缺点</strong></p>
+<ul>
+<li>只能继承父类的实例属性和方法，不能继承原型属性/方法</li>
+<li>无法实现复用，每个子类都有父类实例函数的副本，影响性能</li>
+</ul>
+<blockquote>
+<p>如果仅仅是借用构造函数，那么也将无法避免构造函数模式存在的问题——方法都在构造函数中定<br>义，因此函数复用就无从谈起了。而且，在超类型的原型中定义的方法，对子类型而言也是不可见的，结<br>果所有类型都只能使用构造函数模式。考虑到这些问题，借用构造函数的技术<strong>也是很少单独使用的</strong>。</p>
+</blockquote>
+<h4 id="三-组合继承"><a href="#三-组合继承" class="headerlink" title="三 组合继承"></a>三 组合继承</h4><p>是将原型链和借用构造函数的技术组合到一块，从而发挥二者之长的一种继承模式。其背后的思路是使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承。这样，既通过在原型上定义方法实现了函数复用，又能够保证每个实例都有它自己的属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function SuperType(name)&#123;</span><br><span class="line"> this.name = name;</span><br><span class="line"> this.colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.sayName = function()&#123;</span><br><span class="line"> alert(this.name);</span><br><span class="line">&#125;;</span><br><span class="line">function SubType(name, age)&#123;</span><br><span class="line"> //继承属性</span><br><span class="line"> // 第二次调用SuperType()</span><br><span class="line"> SuperType.call(this, name);</span><br><span class="line"></span><br><span class="line"> this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">// 继承方法</span><br><span class="line">// 构建原型链</span><br><span class="line">// 第一次调用SuperType()</span><br><span class="line">SubType.prototype = new SuperType();</span><br><span class="line">// 重写SubType.prototype的constructor属性，指向自己的构造函数SubType</span><br><span class="line">SubType.prototype.constructor = SubType;</span><br><span class="line">SubType.prototype.sayAge = function()&#123;</span><br><span class="line"> alert(this.age);</span><br><span class="line">&#125;;</span><br><span class="line">var instance1 = new SubType(&quot;Nicholas&quot;, 29);</span><br><span class="line">instance1.colors.push(&quot;black&quot;);</span><br><span class="line">alert(instance1.colors); //&quot;red,blue,green,black&quot;</span><br><span class="line">instance1.sayName(); //&quot;Nicholas&quot;;</span><br><span class="line">instance1.sayAge(); //29</span><br><span class="line">var instance2 = new SubType(&quot;Greg&quot;, 27);</span><br><span class="line">alert(instance2.colors); //&quot;red,blue,green&quot;</span><br><span class="line">instance2.sayName(); //&quot;Greg&quot;;</span><br><span class="line">instance2.sayAge(); //27</span><br></pre></td></tr></table></figure></p>
+<p><strong>缺点：</strong></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/F91BEAFDC46749D1ADB8E7E54E1517BB?method=download&amp;shareKey=d28d6c0a26a8bf6dfc4888668ba57a59" alt="img"></p>
+<blockquote>
+<p>第一次调用SuperType()：给SubType.prototype写入两个属性name，color。<br>第二次调用SuperType()：给instance1写入两个属性name，color。<br>实例对象instance1上的两个属性就屏蔽了其原型对象SubType.prototype的两个同名属性。所以，组合模式的缺点就是在使用子类创建实例对象时，其原型中会存在两份相同的属性/方法。<br>组合继承避免了原型链和借用构造函数的缺陷，融合了它们的优点，成为 JavaScript 中最常用的继承模式。而且，instanceof和isPrototypeOf()也能够用于识别基于组合继承创建的对象。</p>
+</blockquote>
+<h4 id="四-原型式继承"><a href="#四-原型式继承" class="headerlink" title="四 原型式继承"></a>四 原型式继承</h4><blockquote>
+<p>是借助原型可以基于已有的对象创建新对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function object(o)&#123;</span><br><span class="line"> function F()&#123;&#125;</span><br><span class="line"> F.prototype = o;</span><br><span class="line"> return new F();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>在 object()函数内部，先创建了一个临时性的构造函数，然后将传入的对象作为这个构造函数的<br>原型，最后返回了这个临时类型的一个新实例。从本质上讲，object()对传入其中的对象执行了一次浅复制。来看下面的例子。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line"> name: &quot;Nicholas&quot;,</span><br><span class="line"> friends: [&quot;Shelby&quot;, &quot;Court&quot;, &quot;Van&quot;]</span><br><span class="line">&#125;;</span><br><span class="line">var anotherPerson = object(person);</span><br><span class="line">anotherPerson.name = &quot;Greg&quot;;</span><br><span class="line">anotherPerson.friends.push(&quot;Rob&quot;);</span><br><span class="line">var yetAnotherPerson = object(person);</span><br><span class="line">yetAnotherPerson.name = &quot;Linda&quot;;</span><br><span class="line">yetAnotherPerson.friends.push(&quot;Barbie&quot;);</span><br><span class="line">alert(person.friends); //&quot;Shelby,Court,Van,Rob,Barbie&quot;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>这种原型式继承，要求你必须有一个对象可以作为另一个对象的基础。如果有这么<br>一个对象的话，可以把它传递给object()函数，然后再根据具体需求对得到的对象加以修改即可。在这个例子中，可以作为另一个对象基础的是person对象，于是我们把它传入到 object()函数中，然后该函数就会返回一个新对象。这个新对象将person作为原型，所以它的原型中就包含一个基本类型值属性和一个引用类型值属性。这意味着person.friends 不仅属于 person 所有，而且也会被anotherPerson以及yetAnotherPerson共享。实际上，这就相当于又创建了person对象的两个副本。es5通过新增<strong>Object.create()</strong>方法规范化了原型式继承。这个方法接收两个参数：一个用作新对象原型的对象和（可选的）一个为新对象定义额外属性的对象。在传入<strong>一个参数</strong>的情况下，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Object.create()与 object()方法的行为相同。</span><br><span class="line">var person = &#123;</span><br><span class="line"></span><br><span class="line">name: &quot;Nicholas&quot;,</span><br><span class="line"></span><br><span class="line">friends: [&quot;Shelby&quot;, &quot;Court&quot;, &quot;Van&quot;]</span><br><span class="line">&#125;;</span><br><span class="line">var anotherPerson = Object.create(person);</span><br><span class="line">anotherPerson.name = &quot;Greg&quot;;</span><br><span class="line">anotherPerson.friends.push(&quot;Rob&quot;);</span><br><span class="line"></span><br><span class="line">var yetAnotherPerson = Object.create(person);</span><br><span class="line">yetAnotherPerson.name = &quot;Linda&quot;;</span><br><span class="line">yetAnotherPerson.friends.push(&quot;Barbie&quot;);</span><br><span class="line">alert(person.friends); //&quot;Shelby,Court,Van,Rob,Barbie&quot;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>Object.create()方法的第二个参数与Object.defineProperties()(理解对象的定义多个属性)方法的第二个参数格式相<br>同：每个属性都是通过自己的描述符定义的。以这种方式指定的任何属性都会覆盖原型对象上的同名属<br>性。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line"> name: &quot;Nicholas&quot;,</span><br><span class="line"> friends: [&quot;Shelby&quot;, &quot;Court&quot;, &quot;Van&quot;]</span><br><span class="line">&#125;;</span><br><span class="line">var anotherPerson = Object.create(person, &#123;</span><br><span class="line"></span><br><span class="line">name: &#123;</span><br><span class="line"></span><br><span class="line">value: &quot;Greg&quot;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">alert(anotherPerson.name); //&quot;Greg&quot;</span><br></pre></td></tr></table></figure></p>
+<p>在没有必要兴师动众地创建构造函数，而只想让一个对象与另一个对象保持类似的情况下，原型式继承是完全可以胜任的<br><strong>缺点： </strong></p>
+<ul>
+<li>原型链继承多个实例的引用类型属性指向相同，存在篡改的可能。</li>
+<li>无法传递参数<h4 id="五-寄生式继承"><a href="#五-寄生式继承" class="headerlink" title="五 寄生式继承"></a>五 寄生式继承</h4><blockquote>
+<p>寄生式继承的思路与寄生构造函数和工厂模式类似，即创建一个仅用于封装继承过程的函数，该函数在内部以某种方式来增强对象，最后再像真地是它做了所有工作一样返回对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function createAnother(original)&#123;</span><br><span class="line"> var clone = object(original); //通过调用函数创建一个新对象</span><br><span class="line"> clone.sayHi = function()&#123; //以某种方式来增强这个对象</span><br><span class="line"> alert(&quot;hi&quot;);</span><br><span class="line"> &#125;;</span><br><span class="line"> return clone; //返回这个对象</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line"> name: &quot;Nicholas&quot;,</span><br><span class="line"> friends: [&quot;Shelby&quot;, &quot;Court&quot;, &quot;Van&quot;]</span><br><span class="line">&#125;;</span><br><span class="line">var anotherPerson = createAnother(person);</span><br><span class="line">anotherPerson.sayHi(); //&quot;hi&quot;</span><br></pre></td></tr></table></figure>
+<p>这个例子中的代码基于 person 返回了一个新对象——anotherPerson。新对象不仅具有 person<br>的所有属性和方法，而且还有自己的 sayHi()方法。<br>在主要考虑对象而不是自定义类型和构造函数的情况下，寄生式继承也是一种有用的模式。前面示<br>范继承模式时使用的 <strong>object()函数不是必需的</strong>；任何能够返回新对象的函数都适用于此模式。</p>
+<p><strong>缺点（同原型式继承）</strong>：</p>
+<ul>
+<li>原型链继承多个实例的引用类型属性指向相同，存在篡改的可能。</li>
+<li>无法传递参数<h4 id="六-寄生组合式继承"><a href="#六-寄生组合式继承" class="headerlink" title="六 寄生组合式继承"></a>六 寄生组合式继承</h4><blockquote>
+<p>结合借用构造函数传递参数和寄生模式实现继承<br><strong>背景</strong></p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>前面说过，组合继承是 JavaScript 最常用的继承模式；不过，它也有自己的不足。组合继承最大的<br>问题就是无论什么情况下，都会调用两次超类型构造函数：一次是在创建子类型原型的时候，另一次是<br>在子类型构造函数内部。没错，子类型最终会包含超类型对象的全部实例属性，但我们不得不在调用子<br>类型构造函数时重写这些属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function SuperType(name)&#123;</span><br><span class="line"> this.name = name;</span><br><span class="line"> this.colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.sayName = function()&#123;</span><br><span class="line"> alert(this.name);</span><br><span class="line">&#125;;</span><br><span class="line">function SubType(name, age)&#123;</span><br><span class="line"> SuperType.call(this, name); //第二次调用 SuperType()</span><br><span class="line"></span><br><span class="line"> this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">SubType.prototype = new SuperType(); //第一次调用 SuperType()</span><br><span class="line">SubType.prototype.constructor = SubType;</span><br><span class="line">SubType.prototype.sayAge = function()&#123;</span><br><span class="line"> alert(this.age);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>加粗字体的行中是调用 SuperType 构造函数的代码。在第一次调用 SuperType 构造函数时，<br>SubType.prototype 会得到两个属性：name 和 colors；它们都是 SuperType 的实例属性，只不过<br>现在位于 SubType 的原型中。当调用 SubType 构造函数时，又会调用一次 SuperType 构造函数，这<br>一次又在新对象上创建了实例属性 name 和 colors。于是，这两个属性就屏蔽了原型中的两个同名属<br>性。图 6-6 展示了上述过程。<br><strong>有两组 name 和 colors 属性：一组在实例上，一组在 SubType 原型中。（上面有图说明</strong>这就是调<br>用两次 SuperType 构造函数的结果。好在我们已经找到了解决这个问题方法——寄生组合式继承。<br>所谓寄生组合式继承，即通过借用构造函数来继承属性，通过原型链的混成形式来继承方法。其背<br>后的基本思路是：不必为了指定子类型的原型而调用超类型的构造函数，我们所需要的无非就是超类型<br>原型的一个副本而已。本质上，就是使用寄生式继承来继承超类型的原型，然后再将结果指定给子类型<br>的原型。寄生组合式继承的基本模式如下所示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">function inheritPrototype(subType, superType)&#123;</span><br><span class="line"> var prototype = Object.create(superType.prototype); // 创建对象，创建父类原型的一个副本</span><br><span class="line"> prototype.constructor = subType;                    // 增强对象，弥补因重写原型而失去的默认的constructor 属性</span><br><span class="line"> subType.prototype = prototype;                      // 指定对象，将新创建的对象赋值给子类的原型</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 父类初始化实例属性和原型属性</span><br><span class="line">function SuperType(name)&#123;</span><br><span class="line"> this.name = name;</span><br><span class="line"> this.colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.sayName = function()&#123;</span><br><span class="line"> alert(this.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 借用构造函数传递增强子类实例属性（支持传参和避免篡改）</span><br><span class="line">function SubType(name, age)&#123;</span><br><span class="line"> SuperType.call(this, name);</span><br><span class="line"> this.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 将父类原型指向子类</span><br><span class="line">inheritPrototype(SubType, SuperType);</span><br><span class="line"></span><br><span class="line">// 新增子类原型属性</span><br><span class="line">SubType.prototype.sayAge = function()&#123;</span><br><span class="line"> alert(this.age);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var instance1 = new SubType(&quot;xyc&quot;, 23);</span><br><span class="line">var instance2 = new SubType(&quot;lxy&quot;, 23);</span><br><span class="line"></span><br><span class="line">instance1.colors.push(&quot;2&quot;); // [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;, &quot;2&quot;]</span><br><span class="line">instance1.colors.push(&quot;3&quot;); // [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;, &quot;3&quot;]</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/DEFACD1D69D04F1ABF4366D8C98BC298?method=download&amp;shareKey=ca967273dbb2d4423afe0429984516ed" alt="img"></p>
+<blockquote>
+<p>这个例子的高效率体现在它只调用了一次SuperType 构造函数，并且因此避免了在SubType.prototype 上创建不必要的、多余的属性。于此同时，原型链还能保持不变；因此，还能够正常使用instanceof 和isPrototypeOf()</p>
+</blockquote>
+<p><strong>这是最成熟的方法，也是现在库实现的方法</strong></p>
+<h4 id="七-混入方式继承多个对象"><a href="#七-混入方式继承多个对象" class="headerlink" title="七 混入方式继承多个对象"></a>七 混入方式继承多个对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function MyClass() &#123;</span><br><span class="line">    SuperClass.call(this);</span><br><span class="line">    OtherSuperClass.call(this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 继承一个类</span><br><span class="line">MyClass.prototype = Object.create(SuperClass.prototype);</span><br><span class="line">// 混合其它</span><br><span class="line">Object.assign(MyClass.prototype, OtherSuperClass.prototype);</span><br><span class="line">// 重新指定constructor</span><br><span class="line">MyClass.prototype.constructor = MyClass;</span><br><span class="line"></span><br><span class="line">MyClass.prototype.myMethod = function() &#123;</span><br><span class="line">    // do something</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Object.assign会把  OtherSuperClass原型上的函数拷贝到 MyClass原型上，使 MyClass 的所有实例都可用 OtherSuperClass 的方法。</p>
+</blockquote>
+
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="https://93qlin.github.io/2019/02/28/基础1.5：面向对象之继承的的七种方式/" target="_blank" rel="external">https://93qlin.github.io/2019/02/28/基础1.5：面向对象之继承的的七种方式/</a>
+                </p>
+                <footer><cite><a href="https://93qlin.github.io">@永不言弃</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2019/02/28/树形数据扁平化，扁平化数据树形化/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">扁平化数据树形化 ,树形数据扁平化</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2019/02/28/多个连续的箭头函数与柯里化/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">多个连续的箭头函数与柯里化</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="基础1.5：面向对象之继承的的七种方式" data-title="基础1.5.：面向对象之继承的的七种方式" data-url="https://93qlin.github.io/2019/02/28/基础1.5：面向对象之继承的的七种方式/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        多谢多谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "基础1.5.：面向对象之继承的的七种方式",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "https://93qlin.github.io/2019/02/28/基础1.5：面向对象之继承的的七种方式/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    <!-- <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul> -->
+ </div>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+<!-- <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script> -->
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"log":false,"mobile":{"show":true},"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
