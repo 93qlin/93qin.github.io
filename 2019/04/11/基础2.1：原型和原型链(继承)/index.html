@@ -18,10 +18,12 @@
 <meta property="og:site_name" content="永不言弃">
 <meta property="og:description" content="目录  &amp;emsp;1. 原型 &amp;emsp;2. 原型链 &amp;emsp;2. 继承 前因后果 原因OO语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际方法。由于函数没有签名，在ECMAScript中无法实现接口继承，只支持实现继承，所以其实现 继承 主要是依靠原型链继续  原型链是用来实现继承的，因為沒有類的結構，用prototype實現有類語言的繼承特性(創">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-12T13:24:35.750Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/93qlin/93qlin.github.io/master/img/yuanxinlian.png">
+<meta property="og:updated_time" content="2019-04-12T13:58:45.857Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2.1原型与原型链(继承)">
 <meta name="twitter:description" content="目录  &amp;emsp;1. 原型 &amp;emsp;2. 原型链 &amp;emsp;2. 继承 前因后果 原因OO语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际方法。由于函数没有签名，在ECMAScript中无法实现接口继承，只支持实现继承，所以其实现 继承 主要是依靠原型链继续  原型链是用来实现继承的，因為沒有類的結構，用prototype實現有類語言的繼承特性(創">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/93qlin/93qlin.github.io/master/img/yuanxinlian.png">
   
     <link rel="alternative" href="/atom.xml" title="永不言弃" type="application/atom+xml">
   
@@ -220,6 +222,7 @@
 <p>原型<a href="http://www.93lin.cn/2019/02/28/%E5%9F%BA%E7%A1%801.4%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%83%E7%A7%8D%E6%A8%A1%E5%BC%8F/" target="_blank" rel="noopener">传送门</a></p>
 <h5 id="j2">2. 原型链</h5>
 
+<p><img src="https://raw.githubusercontent.com/93qlin/93qlin.github.io/master/img/yuanxinlian.png" alt="image"></p>
 <p>原型链是实现继承的主要方法。其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。</p>
 <p><strong>概念：</strong></p>
 <p>每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，实例都包含一个指向原型对象的指针。假如原型对象是另一个构造函数的实例，那么原型对象也包含一个指向另一个原型的指针，如此层层递进，就叫原型链。<br>简而言之：因为没有类的结构，用prototype实现有类语言的继承特性（创建构造器，指向对象）</p>
@@ -240,6 +243,7 @@
 <p>instance1通过原型链继承的name属性值，在instance1创建之前就已经被确定为Allan了。无论怎么new SuperType()都更改不了name属性值，这就是所谓的“在创建子类型的实例时，不能向超类型的构造函数中传递参数”。</p>
 <p>针对问题二中的第二句话，“实际上，应该说是没有办法在不影响所有对象实例的情况下，给超类型的构造函数传递参数”,这句话应该怎么理解？</p>
 <p>其实在上面的代码中，我在创建SuperType实例的时候，向它传递了一个”Allan”的字符串参数。但是我们看到后面所有的SubType的实例，无论是instance1还是instance2的name属性都是Allan，也就是说SuperType创建实例时传递的参数，影响了后面所有SubType的实例。这就是所谓“没有办法在不影响所有对象实例的情况下，给超类型的构造函数传递参数”。</p>
+<p><strong>js通过沿着作用域链还是原型链查找变量?</strong></p>
 
 
             
