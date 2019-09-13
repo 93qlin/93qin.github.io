@@ -19,7 +19,8 @@
 <meta property="og:description" content="目录  &amp;emsp;1. 原型 &amp;emsp;2. 原型链 &amp;emsp;2. 继承 前因后果 原因OO语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际方法。由于函数没有签名，在ECMAScript中无法实现接口继承，只支持实现继承，所以其实现 继承 主要是依靠原型链继续  原型链是用来实现继承的，因為沒有類的結構，用prototype實現有類語言的繼承特性(創">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://raw.githubusercontent.com/93qlin/93qlin.github.io/master/img/yuanxinlian.png">
-<meta property="og:updated_time" content="2019-04-14T12:21:03.953Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/93qlin/webNote/master/img/yuanxin.png">
+<meta property="og:updated_time" content="2019-04-16T13:01:35.685Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2.1原型与原型链(继承)">
 <meta name="twitter:description" content="目录  &amp;emsp;1. 原型 &amp;emsp;2. 原型链 &amp;emsp;2. 继承 前因后果 原因OO语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际方法。由于函数没有签名，在ECMAScript中无法实现接口继承，只支持实现继承，所以其实现 继承 主要是依靠原型链继续  原型链是用来实现继承的，因為沒有類的結構，用prototype實現有類語言的繼承特性(創">
@@ -217,17 +218,14 @@
 <blockquote>
 <p>原型链是用来实现继承的，因為沒有類的結構，用prototype實現有類語言的繼承特性(創建構造器，指向對象)原型的作用，则是实现对象的继承</p>
 </blockquote>
-<h5 id="j1">1. 原型</h5>
+<h5 id="j1">1. 原型</h5><br><strong>1.每个函数function都有一个prototype，即原型。这里再加一句话——每个对象都有一个<strong>proto</strong>，可称为隐式原型。</strong><br><strong>2.每个对象都有一个<strong>proto</strong>属性，指向创建该对象的函数的prototype。</strong><br><strong>3.函数也是一种对象，函数也有<strong>proto</strong>，函数也是被创建出来的。谁创建了函数呢？——Function——注意这个大写的“F”。</strong><br><strong>4.Function也是一个函数，函数是一种对象，也有<strong>proto</strong>属性。既然是函数，那么它一定是被Function创建。所以——Function是被自身创建的。所以它的<strong>proto</strong>指向了自身的Prototype。</strong><br><strong>自定义函数Foo.<strong>proto</strong>指向Function.prototype，Object.<strong>proto</strong>指向Function.prototype，Function.<strong>proto</strong>指向Function.prototype</strong><br><strong>5.函数.Object.prototype确实一个特例——它的<strong>proto</strong>指向的是null，切记切记！</strong><br>原型<a href="http://www.93lin.cn/2019/02/28/%E5%9F%BA%E7%A1%801.4%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%83%E7%A7%8D%E6%A8%A1%E5%BC%8F/" target="_blank" rel="noopener">传送门</a><br><br><br><br><br><h5 id="j2">2. 原型链</h5>
 
-<p>原型<a href="http://www.93lin.cn/2019/02/28/%E5%9F%BA%E7%A1%801.4%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%83%E7%A7%8D%E6%A8%A1%E5%BC%8F/" target="_blank" rel="noopener">传送门</a></p>
-<h5 id="j2">2. 原型链</h5>
-
-<p><img src="https://raw.githubusercontent.com/93qlin/93qlin.github.io/master/img/yuanxinlian.png" alt="image"></p>
-<p>原型链是实现继承的主要方法。其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。</p>
+<p><img src="https://raw.githubusercontent.com/93qlin/93qlin.github.io/master/img/yuanxinlian.png" alt="image"><br><strong>访问一个对象的属性时，先在基本属性中查找，如果没有，再沿着<strong>proto</strong>这条链向上找，这就是原型链。</strong><br>原型链是实现继承的主要方法。其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。</p>
 <p><strong>概念：</strong></p>
 <p>每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，实例都包含一个指向原型对象的指针。假如原型对象是另一个构造函数的实例，那么原型对象也包含一个指向另一个原型的指针，如此层层递进，就叫原型链。<br>简而言之：因为没有类的结构，用prototype实现有类语言的继承特性（创建构造器，指向对象）</p>
 <p>注：所有引用类型都默认继承自 object ，object 的原型为null。</p>
 <p>确定原型与实例之间的关系：instanceof isPrototypeOf</p>
+<p>一张图总结：<br><img src="https://raw.githubusercontent.com/93qlin/webNote/master/img/yuanxin.png" alt="image"></p>
 <h5 id="j3">3. 继承</h5>
 
 <p>七种继承的方式<a href="http://www.93lin.cn/2019/02/28/%E5%9F%BA%E7%A1%801.5%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B9%8B%E7%BB%A7%E6%89%BF%E7%9A%84%E7%9A%84%E4%B8%83%E7%A7%8D%E6%96%B9%E5%BC%8F/" target="_blank" rel="noopener">传送门</a></p>
@@ -291,6 +289,13 @@
             </div>
             
 <nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2019/05/30/前五后四之分页/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">[no title]</h4>
+      </a>
+    </div>
   
 
   

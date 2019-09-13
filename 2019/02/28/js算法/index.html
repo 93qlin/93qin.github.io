@@ -10,18 +10,18 @@
   
   
   <meta name="keywords" content="JavaScript,算法">
-  <meta name="description" content="JS实现的数组全排列输出算法 从n个不同元素中任取m（m≤n）个元素，按照一定的顺序排列起来，叫做从n个不同元素中取出m个元素的一个排列。当m=n时所有的排列情况叫全排列。1234567891011121314151617181920function permute(input) &amp;#123;  var permArr = [],  usedChars = [];  function main(i">
+  <meta name="description" content="JS实现的数组全排列输出算法 从n个不同元素中任取m（m≤n）个元素，按照一定的顺序排列起来，叫做从n个不同元素中取出m个元素的一个排列。当m=n时所有的排列情况叫全排列。全排列（递归交换）算法1、将第一个位置分别放置各个不同的元素；2、对剩余的位置进行全排列（递归）；1234567891011121314151617181920function permutation(arr)&amp;#123;  i">
 <meta name="keywords" content="JavaScript,算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法">
 <meta property="og:url" content="https://93qlin.github.io/2019/02/28/js算法/index.html">
 <meta property="og:site_name" content="永不言弃">
-<meta property="og:description" content="JS实现的数组全排列输出算法 从n个不同元素中任取m（m≤n）个元素，按照一定的顺序排列起来，叫做从n个不同元素中取出m个元素的一个排列。当m=n时所有的排列情况叫全排列。1234567891011121314151617181920function permute(input) &amp;#123;  var permArr = [],  usedChars = [];  function main(i">
+<meta property="og:description" content="JS实现的数组全排列输出算法 从n个不同元素中任取m（m≤n）个元素，按照一定的顺序排列起来，叫做从n个不同元素中取出m个元素的一个排列。当m=n时所有的排列情况叫全排列。全排列（递归交换）算法1、将第一个位置分别放置各个不同的元素；2、对剩余的位置进行全排列（递归）；1234567891011121314151617181920function permutation(arr)&amp;#123;  i">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-28T03:12:12.515Z">
+<meta property="og:updated_time" content="2019-04-28T14:27:37.897Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法">
-<meta name="twitter:description" content="JS实现的数组全排列输出算法 从n个不同元素中任取m（m≤n）个元素，按照一定的顺序排列起来，叫做从n个不同元素中取出m个元素的一个排列。当m=n时所有的排列情况叫全排列。1234567891011121314151617181920function permute(input) &amp;#123;  var permArr = [],  usedChars = [];  function main(i">
+<meta name="twitter:description" content="JS实现的数组全排列输出算法 从n个不同元素中任取m（m≤n）个元素，按照一定的顺序排列起来，叫做从n个不同元素中取出m个元素的一个排列。当m=n时所有的排列情况叫全排列。全排列（递归交换）算法1、将第一个位置分别放置各个不同的元素；2、对剩余的位置进行全排列（递归）；1234567891011121314151617181920function permutation(arr)&amp;#123;  i">
   
     <link rel="alternative" href="/atom.xml" title="永不言弃" type="application/atom+xml">
   
@@ -206,7 +206,7 @@
 
             <div class="post-content" id="post-content" itemprop="postContent">
             <h4 id="JS实现的数组全排列输出算法"><a href="#JS实现的数组全排列输出算法" class="headerlink" title="JS实现的数组全排列输出算法"></a>JS实现的数组全排列输出算法</h4><blockquote>
-<p>从n个不同元素中任取m（m≤n）个元素，按照一定的顺序排列起来，叫做从n个不同元素中取出m个元素的一个排列。当m=n时所有的排列情况叫全排列。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function permute(input) &#123;</span><br><span class="line">  var permArr = [],</span><br><span class="line">  usedChars = [];</span><br><span class="line">  function main(input)&#123;</span><br><span class="line">    var i, ch;</span><br><span class="line">    for (i = 0; i &lt; input.length; i++) &#123;</span><br><span class="line">      ch = input.splice(i, 1)[0];</span><br><span class="line">      usedChars.push(ch);</span><br><span class="line">      if (input.length == 0) &#123;</span><br><span class="line">        permArr.push(usedChars.slice());</span><br><span class="line">      &#125;</span><br><span class="line">      main(input);</span><br><span class="line">      input.splice(i, 0, ch);</span><br><span class="line">      usedChars.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    return permArr</span><br><span class="line">  &#125;</span><br><span class="line">  return main(input);</span><br><span class="line">&#125;;</span><br><span class="line">console.log(permute([5, 3, 7, 1]));</span><br></pre></td></tr></table></figure></p>
+<p>从n个不同元素中任取m（m≤n）个元素，按照一定的顺序排列起来，叫做从n个不同元素中取出m个元素的一个排列。当m=n时所有的排列情况叫全排列。<br>全排列（递归交换）算法<br>1、将第一个位置分别放置各个不同的元素；<br>2、对剩余的位置进行全排列（递归）；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function permutation(arr)&#123;</span><br><span class="line">  if (arr.length == 1)</span><br><span class="line">    return arr;</span><br><span class="line">  else if (arr.length == 2)</span><br><span class="line">    return [[arr[0],arr[1]],[arr[1],arr[0]]];</span><br><span class="line">  else &#123;</span><br><span class="line">    var temp = [];</span><br><span class="line">    for (var i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">      var save = arr[i];</span><br><span class="line">      arr.splice(i, 1);//取出arr[i]</span><br><span class="line">      var res = permutation(arr);//递归排列arr[0],arr[1],...,arr[i-1],arr[i+1],...,arr[n]</span><br><span class="line">      arr.splice(i, 0, save);//将arr[j]放入数组，保持原来的位置</span><br><span class="line">      for (var j = 0; j &lt; res.length; j++) &#123;</span><br><span class="line">        res[j].unshift(arr[i]);</span><br><span class="line">        temp.push(res[j]);//将arr[j]组合起来</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return temp;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <h4 id="判断一个单词是否是回文？"><a href="#判断一个单词是否是回文？" class="headerlink" title="判断一个单词是否是回文？"></a>判断一个单词是否是回文？</h4><p>回文是指把相同的词汇或句子，在下文中调换位置或颠倒过来，产生首尾回环的情趣，叫做回文，也叫回环。比如 mamam redivider .<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function checkPalindrom(str) &#123;  </span><br><span class="line">    return str == str.split(&apos;&apos;).reverse().join(&apos;&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h4 id="去掉一组整型数组重复的值"><a href="#去掉一组整型数组重复的值" class="headerlink" title="去掉一组整型数组重复的值"></a>去掉一组整型数组重复的值</h4><p>比如 输入: [1,13,24,11,11,14,1,2]，  输出: [1,13,24,11,14,2] ，需要去掉重复的11 和 1 这两个元素。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function(arr) &#123;  </span><br><span class="line">  let hashTable = &#123;&#125;;</span><br><span class="line">  let data = [];</span><br><span class="line">  for(let i=0,l=arr.length;i&lt;l;i++) &#123;</span><br><span class="line">    if(!hashTable[arr[i]]) &#123;</span><br><span class="line">      hashTable[arr[i]] = true;</span><br><span class="line">      data.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return data</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -231,18 +231,18 @@
 <nav class="post-nav">
   
     <div class="waves-block waves-effect prev fl">
-      <a href="/2019/02/28/事件绑定、事件监听、事件委托（事件代理）/" id="post-prev" class="post-nav-link">
+      <a href="/2019/02/28/react钩子 hook/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">事件绑定、事件监听、事件委托（事件代理）</h4>
+        <h4 class="title">hook</h4>
       </a>
     </div>
   
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2019/02/28/react基础/" id="post-next" class="post-nav-link">
+      <a href="/2019/02/28/java接口和多态/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">react基础</h4>
+        <h4 class="title">接口和多态</h4>
       </a>
     </div>
   
