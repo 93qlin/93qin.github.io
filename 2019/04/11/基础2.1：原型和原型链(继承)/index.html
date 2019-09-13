@@ -19,7 +19,7 @@
 <meta property="og:description" content="目录  &amp;emsp;1. 原型 &amp;emsp;2. 原型链 &amp;emsp;2. 继承 前因后果 原因OO语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际方法。由于函数没有签名，在ECMAScript中无法实现接口继承，只支持实现继承，所以其实现 继承 主要是依靠原型链继续  原型链是用来实现继承的，因為沒有類的結構，用prototype實現有類語言的繼承特性(創">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://raw.githubusercontent.com/93qlin/93qlin.github.io/master/img/yuanxinlian.png">
-<meta property="og:updated_time" content="2019-04-12T13:58:45.857Z">
+<meta property="og:updated_time" content="2019-04-14T12:21:03.953Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2.1原型与原型链(继承)">
 <meta name="twitter:description" content="目录  &amp;emsp;1. 原型 &amp;emsp;2. 原型链 &amp;emsp;2. 继承 前因后果 原因OO语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际方法。由于函数没有签名，在ECMAScript中无法实现接口继承，只支持实现继承，所以其实现 继承 主要是依靠原型链继续  原型链是用来实现继承的，因為沒有類的結構，用prototype實現有類語言的繼承特性(創">
@@ -243,7 +243,36 @@
 <p>instance1通过原型链继承的name属性值，在instance1创建之前就已经被确定为Allan了。无论怎么new SuperType()都更改不了name属性值，这就是所谓的“在创建子类型的实例时，不能向超类型的构造函数中传递参数”。</p>
 <p>针对问题二中的第二句话，“实际上，应该说是没有办法在不影响所有对象实例的情况下，给超类型的构造函数传递参数”,这句话应该怎么理解？</p>
 <p>其实在上面的代码中，我在创建SuperType实例的时候，向它传递了一个”Allan”的字符串参数。但是我们看到后面所有的SubType的实例，无论是instance1还是instance2的name属性都是Allan，也就是说SuperType创建实例时传递的参数，影响了后面所有SubType的实例。这就是所谓“没有办法在不影响所有对象实例的情况下，给超类型的构造函数传递参数”。</p>
-<p><strong>js通过沿着作用域链还是原型链查找变量?</strong></p>
+<p><strong>js通过沿着作用域链还是原型链查找变量?</strong><br>首先，要分清作用域链与原型链的区别，简单来说</p>
+<p><strong>作用域链是相对于函数的，原型链是相对于对象的</strong></p>
+<p>js中访问变量有多种方式</p>
+<ol>
+<li>直接通过标识符访问</li>
+<li>通过 . 或 [] 访问对象中的标识符</li>
+</ol>
+<p>猜想访问方式不同，导致了查找的方式不同：</p>
+<ol>
+<li>直接通过标识符访问，访问的可能是函数中的标识符，也可能是全局对象（浏览器中是 window）的标识符，也就是说，可能沿着作用域链也可能沿着原型链访问</li>
+<li>通过 . 或 [] 访问对象中的标识符，js会沿着原型链查找</li>
+</ol>
+<p>对于第二点，以下的小测试可以证明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Object.prototype.a = 1;</span><br><span class="line">a = 2</span><br><span class="line">var o = &#123;</span><br><span class="line">	a: 3</span><br><span class="line">&#125;</span><br><span class="line">function test() &#123;</span><br><span class="line"></span><br><span class="line">	console.log(this.a)</span><br><span class="line">&#125;</span><br><span class="line">test();  // 2 (1)</span><br><span class="line">test.call(o); // 3 (2)</span><br><span class="line">delete o.a;</span><br><span class="line">test.call(o);  // 1 (3)</span><br><span class="line">delete a;</span><br><span class="line">test();  // 1  (4)</span><br></pre></td></tr></table></figure></p>
+<p>① 相当于调用 window.test（），this 指向 window，访问的是 window.a；</p>
+<p>② 中 this 指向 o，访问的是 o.a；</p>
+<p>将全局的 a， 也就是 window.a 和 o.a 删除之后，得到的结果均是 1。</p>
+<p>因此，通过 . 或 [] 访问<code>对象</code>中的标识符，js会沿着原型链查找。</p>
+<p>第一点，直接通过标识符访问，也就是访问当前执行上下文EC的作用域中的变量，这一过程称为标识符解析，依赖于作用域链。<br>作用域链Scope其实就是对执行上下文EC中的变量对象VO|AO有序访问的链表</p>
+<p>关于作用域链与执行上下文 EC 的关系，请看这里</p>
+<p>测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Object.prototype.a = 1;</span><br><span class="line">Window.prototype.a = 4</span><br><span class="line">a = 2</span><br><span class="line">var o = &#123;</span><br><span class="line">	a: 3</span><br><span class="line">&#125;</span><br><span class="line">function test() &#123;</span><br><span class="line"></span><br><span class="line">	console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">test();  // 2 (1)</span><br><span class="line">test.call(o); // 2 (2)</span><br><span class="line"></span><br><span class="line">delete a;</span><br><span class="line">test() // 4 (3)</span><br><span class="line">test.call(o);  // 4 (4)</span><br><span class="line"></span><br><span class="line">delete Window.prototype.a</span><br><span class="line">test() //1 (6)</span><br><span class="line">test.call(o) //1 (6)</span><br></pre></td></tr></table></figure></p>
+<p>把 this.a 改为 a，②的结果就变啦。</p>
+<p>① 和 ② 的执行上下文EC（即 this 的指向）分别为 window 和 o，但作用域链都是 test变量对象 + 全局变量对象。而test变量对象中没有 a，全局变量对象含有 a 。这就说明，在函数中直接通过标识符变量，js会沿着作用域中查找。</p>
+<p>有趣的是，当删除了全局变量对象中的 a，再访问 a，浏览器并没有报错，而是输出 4；删除 Window.prototype.a 之后，输出的这是 1.<br>在 test 中添加一下代码 ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(a === Window.prototype.a)</span><br><span class="line">console.log(a === Object.prototype.a)</span><br></pre></td></tr></table></figure></p>
+<p>由结果可知，访问到的a 分别为 Window.prototype 和 Object.prototype 中的变量。</p>
+<p>为什么呢？因为在浏览器中，全局变量对象在浏览器中指向 window， window 也是对象，且位于作用域链的末尾；作用域链查找完，仍然找不到，js 就会沿着全局变量对象的原型链查找。</p>
+<p>结论</p>
+<ol>
+<li>直接通过标识符访问变量，首先沿着作用域链查找每一个变量对象，直到全局变量对象（window）仍没有，就沿着全局变量对象（window）的原型链查找</li>
+<li>通过 . 或 [] 访问对象中的标识符，就直接沿着原型链查找</li>
+</ol>
 
 
             
